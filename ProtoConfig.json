@@ -1,0 +1,53 @@
+{
+  "_t": "BH.oM.Adapters.gRPC.ProtoConfig",
+  "OrganisationsToInclude": [
+    "BHoM"
+  ],
+  "RepositoriesToInclude": [
+    "BHoM/BHoM"
+  ],
+  "RootPackage": "bhom",
+  "FileGroups": [
+    {
+      "_t": "BH.oM.Adapters.gRPC.ProtoFileGroup",
+      "Name": "disciplines",
+      "Assemblies": [
+        "Acoustic_oM",
+        "Analytical_oM",
+        "Architecture_oM",
+        "Environment_oM",
+        "Facade_oM",
+        "Ground_oM",
+        "LifeCycleAssessment_oM",
+        "Lighting_oM",
+        "MEP_oM",
+        "Physical_oM",
+        "Security_oM",
+        "Structure_oM"
+      ],
+      "NamespaceSegments": []
+    },
+    {
+      "_t": "BH.oM.Adapters.gRPC.ProtoFileGroup",
+      "Name": "geometry",
+      "Assemblies": [
+        "Geometry_oM",
+        "Graphics_oM"
+      ],
+      "NamespaceSegments": []
+    },
+    {
+      "_t": "BH.oM.Adapters.gRPC.ProtoFileGroup",
+      "Name": "requests",
+      "Assemblies": [],
+      "NamespaceSegments": [
+        "Requests"
+      ]
+    }
+  ],
+  "SkippedUnionTypes": [
+    "BH.oM.Base.IFragment"
+  ],
+  "ConsumerSideUnions": true,
+  "_bhomVersion": "10.0"
+}
