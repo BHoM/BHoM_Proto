@@ -10,14 +10,14 @@ import "google/protobuf/timestamp.proto";
 
 // Class to use for tests requiring an IAdapterId to be assigned to objects being tested.
 message TestAdapterId {
-  option (.bhom.csharp_type) = "BH.oM.Test.Adapter.TestAdapterId";
+  option (.bhom.message_info).csharp_type = "BH.oM.Test.Adapter.TestAdapterId";
   // The Id of the object to use for the test.
-  google.protobuf.Any id = 10 [(.bhom.property) = "Id"];
+  google.protobuf.Any id = 10 [(.bhom.field_info).property = "Id"];
 }
 
 // C# interface: BH.oM.Test.ITestInformation
 message ITestInformation {
-  option (.bhom.csharp_type) = "BH.oM.Test.ITestInformation";
+  option (.bhom.message_info).csharp_type = "BH.oM.Test.ITestInformation";
   oneof value {
     EventMessage event_message = 1;
     TestResult test_result = 2;
@@ -26,51 +26,51 @@ message ITestInformation {
 
 // Class to store an event raised during the execution on a TestResult.
 message EventMessage {
-  option (.bhom.csharp_type) = "BH.oM.Test.Results.EventMessage";
+  option (.bhom.message_info).csharp_type = "BH.oM.Test.Results.EventMessage";
   // Message raised during the execution.
-  string message = 10 [(.bhom.property) = "Message"];
+  string message = 10 [(.bhom.field_info).property = "Message"];
   // Severity of the message.
-  TestStatus status = 11 [(.bhom.property) = "Status"];
+  TestStatus status = 11 [(.bhom.field_info).property = "Status"];
   // Provides the UTC time of when the event was raised.
-  google.protobuf.Timestamp utc_time = 12 [(.bhom.property) = "UTCTime"];
+  google.protobuf.Timestamp utc_time = 12 [(.bhom.field_info).property = "UTCTime"];
   // Original location where the event was generated.
-  string stack_trace = 13 [(.bhom.property) = "StackTrace"];
+  string stack_trace = 13 [(.bhom.field_info).property = "StackTrace"];
 }
 
 message InputOutputComparison {
-  option (.bhom.csharp_type) = "BH.oM.Test.Results.InputOutputComparison";
+  option (.bhom.message_info).csharp_type = "BH.oM.Test.Results.InputOutputComparison";
   // The hash of the item being evaluated
-  google.protobuf.Any object_id = 10 [(.bhom.property) = "ObjectId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
+  google.protobuf.Any object_id = 10 [(.bhom.field_info).property = "ObjectId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
   // The set the result belongs to.
-  google.protobuf.Any result_case = 11 [(.bhom.property) = "ResultCase"];  // any IComparable: a message, or a google.protobuf wrapper for single values
+  google.protobuf.Any result_case = 11 [(.bhom.field_info).property = "ResultCase"];  // any IComparable: a message, or a google.protobuf wrapper for single values
   // The type of the object being evaluated.
-  string object_type = 12 [(.bhom.property) = "ObjectType"];  // C# type full name
-  InputOutputComparisonType result_type = 13 [(.bhom.property) = "ResultType"];
+  string object_type = 12 [(.bhom.field_info).property = "ObjectType"];  // C# type full name
+  InputOutputComparisonType result_type = 13 [(.bhom.field_info).property = "ResultType"];
   // Any differences between the input object and the returned object.
-  repeated InputOutputDifference results = 14 [(.bhom.property) = "Results"];
+  repeated InputOutputDifference results = 14 [(.bhom.field_info).property = "Results"];
   // Time of the results creation as OADate
-  double time_step = 15 [(.bhom.property) = "TimeStep"];
+  double time_step = 15 [(.bhom.field_info).property = "TimeStep"];
 }
 
 message InputOutputComparisonDiffing {
-  option (.bhom.csharp_type) = "BH.oM.Test.Results.InputOutputComparisonDiffing";
+  option (.bhom.message_info).csharp_type = "BH.oM.Test.Results.InputOutputComparisonDiffing";
   // The name of the item being evaluated
-  google.protobuf.Any object_id = 10 [(.bhom.property) = "ObjectId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
+  google.protobuf.Any object_id = 10 [(.bhom.field_info).property = "ObjectId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
   // The set the result belongs to.
-  google.protobuf.Any result_case = 11 [(.bhom.property) = "ResultCase"];  // any IComparable: a message, or a google.protobuf wrapper for single values
+  google.protobuf.Any result_case = 11 [(.bhom.field_info).property = "ResultCase"];  // any IComparable: a message, or a google.protobuf wrapper for single values
   // The name of the evaluated property
-  string property_id = 12 [(.bhom.property) = "PropertyId"];
+  string property_id = 12 [(.bhom.field_info).property = "PropertyId"];
   // The type of the object being evaluated.
-  string object_type = 13 [(.bhom.property) = "ObjectType"];  // C# type full name
-  double time_step = 14 [(.bhom.property) = "TimeStep"];
-  InputOutputComparisonDiffingType type = 15 [(.bhom.property) = "Type"];
-  google.protobuf.Any input_value = 16 [(.bhom.property) = "InputValue"];
-  google.protobuf.Any new_value = 17 [(.bhom.property) = "NewValue"];
-  google.protobuf.Any reference_value = 18 [(.bhom.property) = "ReferenceValue"];
+  string object_type = 13 [(.bhom.field_info).property = "ObjectType"];  // C# type full name
+  double time_step = 14 [(.bhom.field_info).property = "TimeStep"];
+  InputOutputComparisonDiffingType type = 15 [(.bhom.field_info).property = "Type"];
+  google.protobuf.Any input_value = 16 [(.bhom.field_info).property = "InputValue"];
+  google.protobuf.Any new_value = 17 [(.bhom.field_info).property = "NewValue"];
+  google.protobuf.Any reference_value = 18 [(.bhom.field_info).property = "ReferenceValue"];
 }
 
 enum InputOutputComparisonDiffingType {
-  option (.bhom.csharp_enum) = "BH.oM.Test.Results.InputOutputComparisonDiffingType";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Test.Results.InputOutputComparisonDiffingType";
   INPUT_OUTPUT_COMPARISON_DIFFING_TYPE_UNDEFINED = 0;
   INPUT_OUTPUT_COMPARISON_DIFFING_TYPE_DATA_ONLY_AVAILABLE_IN_REFERENCE = 1;
   INPUT_OUTPUT_COMPARISON_DIFFING_TYPE_DETERIORATION = 2;
@@ -86,75 +86,75 @@ enum InputOutputComparisonDiffingType {
 }
 
 message InputOutputComparisonSummary {
-  option (.bhom.csharp_type) = "BH.oM.Test.Results.InputOutputComparisonSummary";
+  option (.bhom.message_info).csharp_type = "BH.oM.Test.Results.InputOutputComparisonSummary";
   // The hashes of the item being evaluated, comma separated
-  google.protobuf.Any object_id = 10 [(.bhom.property) = "ObjectId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
+  google.protobuf.Any object_id = 10 [(.bhom.field_info).property = "ObjectId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
   // The sets the result belongs to, comma separated.
-  google.protobuf.Any result_case = 11 [(.bhom.property) = "ResultCase"];  // any IComparable: a message, or a google.protobuf wrapper for single values
+  google.protobuf.Any result_case = 11 [(.bhom.field_info).property = "ResultCase"];  // any IComparable: a message, or a google.protobuf wrapper for single values
   // The type of the object being evaluated.
-  string object_type = 12 [(.bhom.property) = "ObjectType"];  // C# type full name
+  string object_type = 12 [(.bhom.field_info).property = "ObjectType"];  // C# type full name
   // Not in use
-  double time_step = 13 [(.bhom.property) = "TimeStep"];
-  InputOutputComparisonType result_type = 14 [(.bhom.property) = "ResultType"];
+  double time_step = 13 [(.bhom.field_info).property = "TimeStep"];
+  InputOutputComparisonType result_type = 14 [(.bhom.field_info).property = "ResultType"];
   // Number of times a particular difference has been registred.
-  int32 occurrences = 15 [(.bhom.property) = "Occurrences"];
+  int32 occurrences = 15 [(.bhom.field_info).property = "Occurrences"];
   // The name of the evaluated property. Only applicable for ResultType 'Difference'.
-  string property_id = 16 [(.bhom.property) = "PropertyId"];
+  string property_id = 16 [(.bhom.field_info).property = "PropertyId"];
   // Average difference between the input and returned item. Only applicable for Results of type 'Difference' for numerical values.
-  double average_difference = 17 [(.bhom.property) = "AverageDifference"];
+  double average_difference = 17 [(.bhom.field_info).property = "AverageDifference"];
   // Maximum difference between the input and returned item. Only applicable for Results of type 'Difference' for numerical values.
-  double maximum_difference = 18 [(.bhom.property) = "MaximumDifference"];
+  double maximum_difference = 18 [(.bhom.field_info).property = "MaximumDifference"];
   // Value of the input item for the maximum difference. Only applicable for Results of type 'Difference' for numerical values.
-  double maximum_difference_input_item = 19 [(.bhom.property) = "MaximumDifferenceInputItem"];
+  double maximum_difference_input_item = 19 [(.bhom.field_info).property = "MaximumDifferenceInputItem"];
   // Value of the returned item for the maximum difference. Only applicable for Results of type 'Difference' for numerical values.
-  double maximum_difference_returned_item = 20 [(.bhom.property) = "MaximumDifferenceReturnedItem"];
+  double maximum_difference_returned_item = 20 [(.bhom.field_info).property = "MaximumDifferenceReturnedItem"];
 }
 
 // Type of difference or error of the result.
 enum InputOutputComparisonType {
-  option (.bhom.csharp_enum) = "BH.oM.Test.Results.InputOutputComparisonType";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Test.Results.InputOutputComparisonType";
   INPUT_OUTPUT_COMPARISON_TYPE_EQUAL = 0;
   INPUT_OUTPUT_COMPARISON_TYPE_EXCEPTION = 1;
   INPUT_OUTPUT_COMPARISON_TYPE_DIFFERENCE = 2;
 }
 
 message InputOutputDifference {
-  option (.bhom.csharp_type) = "BH.oM.Test.Results.InputOutputDifference";
+  option (.bhom.message_info).csharp_type = "BH.oM.Test.Results.InputOutputDifference";
   // The hash of the item being evaluated
-  google.protobuf.Any object_id = 10 [(.bhom.property) = "ObjectId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
+  google.protobuf.Any object_id = 10 [(.bhom.field_info).property = "ObjectId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
   // The set the result belongs to.
-  google.protobuf.Any result_case = 11 [(.bhom.property) = "ResultCase"];  // any IComparable: a message, or a google.protobuf wrapper for single values
+  google.protobuf.Any result_case = 11 [(.bhom.field_info).property = "ResultCase"];  // any IComparable: a message, or a google.protobuf wrapper for single values
   // The type of the object being evaluated.
-  string object_type = 12 [(.bhom.property) = "ObjectType"];  // C# type full name
+  string object_type = 12 [(.bhom.field_info).property = "ObjectType"];  // C# type full name
   // The name of the evaluated property. Empty if result type is Equal or Exception.
-  string property_id = 13 [(.bhom.property) = "PropertyId"];
+  string property_id = 13 [(.bhom.field_info).property = "PropertyId"];
   // The value of the property on input as a string. Empty if result type is Equal or Exception.
-  string input_item = 14 [(.bhom.property) = "InputItem"];
+  string input_item = 14 [(.bhom.field_info).property = "InputItem"];
   // The returned value of the property as a string. Empty if result type is Equal or Exception.
-  string returned_item = 15 [(.bhom.property) = "ReturnedItem"];
+  string returned_item = 15 [(.bhom.field_info).property = "ReturnedItem"];
   // Time of the results creation as OADate
-  double time_step = 16 [(.bhom.property) = "TimeStep"];
+  double time_step = 16 [(.bhom.field_info).property = "TimeStep"];
 }
 
 message TestResult {
-  option (.bhom.csharp_type) = "BH.oM.Test.Results.TestResult";
+  option (.bhom.message_info).csharp_type = "BH.oM.Test.Results.TestResult";
   // Describes the focus of the test that this Test Result answers. This is typically for CI processes but should be human readable for ease of use.
-  string description = 10 [(.bhom.property) = "Description"];
+  string description = 10 [(.bhom.field_info).property = "Description"];
   // States whether the test was a success or not. Defaults to Error to ensure any defaults are investigated appropriately.
-  TestStatus status = 11 [(.bhom.property) = "Status"];
+  TestStatus status = 11 [(.bhom.field_info).property = "Status"];
   // Information generated during the test.
-  repeated ITestInformation information = 12 [(.bhom.property) = "Information"];
+  repeated ITestInformation information = 12 [(.bhom.field_info).property = "Information"];
   // A human readable message explaining why this Test Result has turned out the way it has, with potential solutions or links to associated wiki pages.
-  string message = 13 [(.bhom.property) = "Message"];
+  string message = 13 [(.bhom.field_info).property = "Message"];
   // Provides the UTC time of when the Test Result was executed.
-  google.protobuf.Timestamp utc_time = 14 [(.bhom.property) = "UTCTime"];
+  google.protobuf.Timestamp utc_time = 14 [(.bhom.field_info).property = "UTCTime"];
   // Machine readable identifier for the Test Result.
-  string id = 15 [(.bhom.property) = "ID"];
+  string id = 15 [(.bhom.field_info).property = "ID"];
 }
 
 // Defines the status of the Test Information. Designed to be very clear, concrete statuses, with minimal ambiguity.
 enum TestStatus {
-  option (.bhom.csharp_enum) = "BH.oM.Test.TestStatus";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Test.TestStatus";
   TEST_STATUS_ERROR = 0;
   TEST_STATUS_PASS = 1;
   TEST_STATUS_WARNING = 2;
@@ -162,36 +162,32 @@ enum TestStatus {
 
 // Defines input data and expected output data for one run of a particular unit test.
 message TestData {
-  option (.bhom.csharp_type) = "BH.oM.Test.UnitTests.TestData";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Test.UnitTests.TestData";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
   // Inputs to the method. Inputs are matched based on index in the list, i.e. index 0 in this list will be used as the first parameter of the method tested.
-  repeated google.protobuf.Any inputs = 10 [(.bhom.property) = "Inputs"];
+  repeated google.protobuf.Any inputs = 10 [(.bhom.field_info).property = "Inputs"];
   // The expected outputs from the method for the provided inputs.
   // The length of this collection will only be greater than one if the method being tested returns an Output<T1,..,Tn>, for which the indices will match the ones of the Output<>.
   // This means methods returning a collection will be seen as returning one object, where the object is the collection.
-  repeated google.protobuf.Any outputs = 11 [(.bhom.property) = "Outputs"];
+  repeated google.protobuf.Any outputs = 11 [(.bhom.field_info).property = "Outputs"];
 }
 
 // Defines a data-driven unit test for a specific method. Class defines inputs, method to be run and expected output.
 message UnitTest {
-  option (.bhom.csharp_type) = "BH.oM.Test.UnitTests.UnitTest";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Test.UnitTests.UnitTest";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
   // Method is not exchanged: System.Reflection.MethodBase has no protobuf equivalent.
   reserved 10;
-  option (.bhom.reserved_member) = "Method=10";
+  option (.bhom.message_info).reserved_member = "Method=10";
   // List of input/output pairs to test the method for. Each TestData item corresponds to one run of the method.
-  repeated TestData data = 11 [(.bhom.property) = "Data"];
+  repeated TestData data = 11 [(.bhom.field_info).property = "Data"];
 }
 

@@ -8,24 +8,24 @@ import "bhom/options.proto";
 
 // Settings for extraction of Density from a List of IDensityProviders.
 message DensityExtractionOptions {
-  option (.bhom.csharp_type) = "BH.oM.Matter.Options.DensityExtractionOptions";
+  option (.bhom.message_info).csharp_type = "BH.oM.Matter.Options.DensityExtractionOptions";
   // A specific type of IDensityProvider to limit the search to. If null all IDensityProviders on the material are considered.
   // Errors will be raised if the type provided is not a IDensityProvider type.
-  string type = 10 [(.bhom.property) = "Type"];  // C# type full name
+  string type = 10 [(.bhom.field_info).property = "Type"];  // C# type full name
   // If true, and material does not contain a IDensityProvider of the specified type, DensityExtraction falls back to look for other densities. If false and material does not contain the type DensityExtraction exits.
-  bool allow_fallback_if_no_type = 11 [(.bhom.property) = "AllowFallbackIfNoType"];
-  DensityExtractionType extraction_type = 12 [(.bhom.property) = "ExtractionType"];
+  bool allow_fallback_if_no_type = 11 [(.bhom.field_info).property = "AllowFallbackIfNoType"];
+  DensityExtractionType extraction_type = 12 [(.bhom.field_info).property = "ExtractionType"];
   // The ratio tolerance for considering the value of the densities as equal. Density values are deemed equal if (max - min / mean) is smaller than this value, where mean = (max + min)/2, i.e. a tolerance of 0.01 means an allowable difference of 1% normalised to the mean value of found densities.
-  double equal_tolerance = 13 [(.bhom.property) = "EqualTolerance"];  // [Ratio, -]
+  double equal_tolerance = 13 [(.bhom.field_info).property = "EqualTolerance"];  // [Ratio, -]
   // Ignores densities of 0 if true when computing average or checking for equality.
-  bool ignore_zero_values = 14 [(.bhom.property) = "IgnoreZeroValues"];
+  bool ignore_zero_values = 14 [(.bhom.field_info).property = "IgnoreZeroValues"];
   // Threshold for density values to be seen as 0.
-  double zero_tolerance = 15 [(.bhom.property) = "ZeroTolerance"];
+  double zero_tolerance = 15 [(.bhom.field_info).property = "ZeroTolerance"];
 }
 
 // Specifies how the density should be extracted from a list of IDensityProvider.
 enum DensityExtractionType {
-  option (.bhom.csharp_enum) = "BH.oM.Matter.Options.DensityExtractionType";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Matter.Options.DensityExtractionType";
   DENSITY_EXTRACTION_TYPE_ALL_MATCHING = 0;
   DENSITY_EXTRACTION_TYPE_AVERAGE = 1;
   DENSITY_EXTRACTION_TYPE_MAXIMUM = 2;

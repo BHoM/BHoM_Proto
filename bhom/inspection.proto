@@ -11,125 +11,117 @@ import "google/protobuf/timestamp.proto";
 
 // An audit that covers all information associated with a single inspection. This includes issues, areas inspected, project information, construction progress, and distribution information.
 message Audit {
-  option (.bhom.csharp_type) = "BH.oM.Inspection.Audit";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Inspection.Audit";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
   // Title of Audit (typically the project name or name of a specific scope of the project)
-  string title = 10 [(.bhom.property) = "Title"];
+  string title = 10 [(.bhom.field_info).property = "Title"];
   // Filename of Audit used to identify it when saved to reports or other formats
-  string filename = 11 [(.bhom.property) = "Filename"];
+  string filename = 11 [(.bhom.field_info).property = "Filename"];
   // Unique ID of Audit provided by the Audit's source
-  string audit_id = 12 [(.bhom.property) = "AuditID"];
+  string audit_id = 12 [(.bhom.field_info).property = "AuditID"];
   // Site Visit Number of the Audit (this is a sequential number corresponding to the amount of audits conducted for this project up to this point)
-  int32 site_visit_number = 13 [(.bhom.property) = "SiteVisitNumber"];
+  int32 site_visit_number = 13 [(.bhom.field_info).property = "SiteVisitNumber"];
   // Client for which the Audit is being recorded
-  string client = 14 [(.bhom.property) = "Client"];
+  string client = 14 [(.bhom.field_info).property = "Client"];
   // Revision Number of the Audit (typically 0, only used when the information related to a specific audit is revised)
-  int32 revision_number = 15 [(.bhom.property) = "RevisionNumber"];
+  int32 revision_number = 15 [(.bhom.field_info).property = "RevisionNumber"];
   // Date the Audit was conducted in local time.
-  google.protobuf.Timestamp inspection_date = 16 [(.bhom.property) = "InspectionDate"];
+  google.protobuf.Timestamp inspection_date = 16 [(.bhom.field_info).property = "InspectionDate"];
   // Date the Audit was conducted in UTC time.
-  google.protobuf.Timestamp inspection_date_utc = 17 [(.bhom.property) = "InspectionDateUtc"];
+  google.protobuf.Timestamp inspection_date_utc = 17 [(.bhom.field_info).property = "InspectionDateUtc"];
   // Date the Audit was issued in local time.
-  google.protobuf.Timestamp issue_date = 18 [(.bhom.property) = "IssueDate"];
+  google.protobuf.Timestamp issue_date = 18 [(.bhom.field_info).property = "IssueDate"];
   // Date the Audit was issued in UTC time.
-  google.protobuf.Timestamp issue_date_utc = 19 [(.bhom.property) = "IssueDateUtc"];
+  google.protobuf.Timestamp issue_date_utc = 19 [(.bhom.field_info).property = "IssueDateUtc"];
   // Creator of the Audit
-  string author = 20 [(.bhom.property) = "Author"];
+  string author = 20 [(.bhom.field_info).property = "Author"];
   // Project Number of the Project the Audit is for
-  string project_number = 21 [(.bhom.property) = "ProjectNumber"];
+  string project_number = 21 [(.bhom.field_info).property = "ProjectNumber"];
   // Job leader of the Project the Audit is for
-  string job_leader = 22 [(.bhom.property) = "JobLeader"];
+  string job_leader = 22 [(.bhom.field_info).property = "JobLeader"];
   // List of people the Audit is distributed to
-  repeated string distribution = 23 [(.bhom.property) = "Distribution"];
+  repeated string distribution = 23 [(.bhom.field_info).property = "Distribution"];
   // List of people in attendance during audit
-  repeated string attendance = 24 [(.bhom.property) = "Attendance"];
+  repeated string attendance = 24 [(.bhom.field_info).property = "Attendance"];
   // Reason(s) for visit and audit
-  string visit_purpose = 25 [(.bhom.property) = "VisitPurpose"];
+  string visit_purpose = 25 [(.bhom.field_info).property = "VisitPurpose"];
   // List of areas inspected throughout the audit
-  repeated string areas_inspected = 26 [(.bhom.property) = "AreasInspected"];
+  repeated string areas_inspected = 26 [(.bhom.field_info).property = "AreasInspected"];
   // Installation progress objects from the audit (Each of these corresponds to the status of a specific area inspected)
-  repeated InstallationProgress installation_progress_objects = 27 [(.bhom.property) = "InstallationProgressObjects"];
+  repeated InstallationProgress installation_progress_objects = 27 [(.bhom.field_info).property = "InstallationProgressObjects"];
   // Issues from audit. These are reference IssueNumbers to corresponding issues identified during the audit for various areas that need to be addressed, which can include supporting images of the work as applicable.
-  repeated string issue_numbers = 28 [(.bhom.property) = "IssueNumbers"];
+  repeated string issue_numbers = 28 [(.bhom.field_info).property = "IssueNumbers"];
   // Score as a percentage. This represents the amount of issues / areas that have been resolved, and is an optional value not used by all audits.
-  string score = 29 [(.bhom.property) = "Score"];
+  string score = 29 [(.bhom.field_info).property = "Score"];
 }
 
 // A comment on an Issue typically identifying either the nature of the issue, the actions being taken to resolve the issue, or the approval / rejection of actions taken.
 message Comment {
-  option (.bhom.csharp_type) = "BH.oM.Inspection.Comment";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Inspection.Comment";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
   // Comment message
-  string message = 10 [(.bhom.property) = "Message"];
+  string message = 10 [(.bhom.field_info).property = "Message"];
   // Name of the individual making the comment
-  string owner = 11 [(.bhom.property) = "Owner"];
+  string owner = 11 [(.bhom.field_info).property = "Owner"];
   // Date the comment was made
-  google.protobuf.Timestamp comment_date = 12 [(.bhom.property) = "CommentDate"];
+  google.protobuf.Timestamp comment_date = 12 [(.bhom.field_info).property = "CommentDate"];
 }
 
 // Installation progress in a specific area associated with an audit, including image filepaths as applicable
 message InstallationProgress {
-  option (.bhom.csharp_type) = "BH.oM.Inspection.InstallationProgress";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Inspection.InstallationProgress";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
   // The general status of installation progress at the time of the inspection.
-  string status = 10 [(.bhom.property) = "Status"];
+  string status = 10 [(.bhom.field_info).property = "Status"];
   // Description for the area that this installation progress refers to.
-  string area = 11 [(.bhom.property) = "Area"];
+  string area = 11 [(.bhom.field_info).property = "Area"];
   // Filenames of images showing the construction progress in the area specified.
-  repeated string media = 12 [(.bhom.property) = "Media"];
+  repeated string media = 12 [(.bhom.field_info).property = "Media"];
 }
 
 // An issue belonging to an audit
 message Issue {
-  option (.bhom.csharp_type) = "BH.oM.Inspection.Issue";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Inspection.Issue";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
   // Issue number to identify this specific issue. This is typically a combination of the audit number and the issue number within its audit.
-  string issue_number = 10 [(.bhom.property) = "IssueNumber"];
+  string issue_number = 10 [(.bhom.field_info).property = "IssueNumber"];
   // Date the issue was initially created
-  google.protobuf.Timestamp date_created = 11 [(.bhom.property) = "DateCreated"];
+  google.protobuf.Timestamp date_created = 11 [(.bhom.field_info).property = "DateCreated"];
   // Date the issue was Closed
-  google.protobuf.Timestamp date_closed = 12 [(.bhom.property) = "DateClosed"];
+  google.protobuf.Timestamp date_closed = 12 [(.bhom.field_info).property = "DateClosed"];
   // Priority tag to better categorize your issue  identifying its urgency
-  string priority = 13 [(.bhom.property) = "Priority"];
+  string priority = 13 [(.bhom.field_info).property = "Priority"];
   // Status description of the issue (eg open, in progress, closed)
-  string status = 14 [(.bhom.property) = "Status"];
+  string status = 14 [(.bhom.field_info).property = "Status"];
   // A list of assignees for the issue. These are the individuals / companies responsible for resolving the issue.
-  repeated string assign = 15 [(.bhom.property) = "Assign"];
+  repeated string assign = 15 [(.bhom.field_info).property = "Assign"];
   // Issue type (eg For Information)
-  string type = 16 [(.bhom.property) = "Type"];
+  string type = 16 [(.bhom.field_info).property = "Type"];
   // The scope and nature of the issue
-  string description = 17 [(.bhom.property) = "Description"];
+  string description = 17 [(.bhom.field_info).property = "Description"];
   // Filenames of the images associated with the issue.These must include the file extension.
-  repeated string media = 18 [(.bhom.property) = "Media"];
+  repeated string media = 18 [(.bhom.field_info).property = "Media"];
   // Location of the issue in 3D space in terms of the project's coordinate system
-  .bhom.geometry.Point position = 19 [(.bhom.property) = "Position"];
+  .bhom.geometry.Point position = 19 [(.bhom.field_info).property = "Position"];
   // List of comments made on the issue, identifying either the nature of the issue, the actions being taken to resolve the issue, or the approval / rejection of actions taken.
-  repeated Comment comments = 20 [(.bhom.property) = "Comments"];
+  repeated Comment comments = 20 [(.bhom.field_info).property = "Comments"];
   // Unique ID of Audit the Issue was originally recorded within.
-  string audit_id = 21 [(.bhom.property) = "AuditID"];
+  string audit_id = 21 [(.bhom.field_info).property = "AuditID"];
 }
 

@@ -9,163 +9,161 @@ import "bhom/options.proto";
 import "google/protobuf/any.proto";
 
 message Eye {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.Eye";
-  .bhom.geometry.Point tracking_point = 10 [(.bhom.property) = "TrackingPoint"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.Eye";
+  .bhom.geometry.Point tracking_point = 10 [(.bhom.field_info).property = "TrackingPoint"];
 }
 
 message Head {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.Head";
-  .bhom.geometry.Point tracking_point = 10 [(.bhom.property) = "TrackingPoint"];
-  PairOfEyes pair_of_eyes = 11 [(.bhom.property) = "PairOfEyes"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.Head";
+  .bhom.geometry.Point tracking_point = 10 [(.bhom.field_info).property = "TrackingPoint"];
+  PairOfEyes pair_of_eyes = 11 [(.bhom.field_info).property = "PairOfEyes"];
 }
 
 message LeftFoot {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.LeftFoot";
-  .bhom.geometry.Line tracking_line = 10 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.LeftFoot";
+  .bhom.geometry.Line tracking_line = 10 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message LeftHand {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.LeftHand";
-  .bhom.geometry.Point tracking_point = 10 [(.bhom.property) = "TrackingPoint"];
-  .bhom.geometry.Line tracking_line = 11 [(.bhom.property) = "TrackingLine"];
-  HandStateName state = 12 [(.bhom.property) = "State"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.LeftHand";
+  .bhom.geometry.Point tracking_point = 10 [(.bhom.field_info).property = "TrackingPoint"];
+  .bhom.geometry.Line tracking_line = 11 [(.bhom.field_info).property = "TrackingLine"];
+  HandStateName state = 12 [(.bhom.field_info).property = "State"];
 }
 
 message LeftHip {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.LeftHip";
-  .bhom.geometry.Line tracking_line = 10 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.LeftHip";
+  .bhom.geometry.Line tracking_line = 10 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message LeftLowerArm {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.LeftLowerArm";
-  .bhom.geometry.Line tracking_line = 10 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.LeftLowerArm";
+  .bhom.geometry.Line tracking_line = 10 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message LeftLowerLeg {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.LeftLowerLeg";
-  .bhom.geometry.Line tracking_line = 10 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.LeftLowerLeg";
+  .bhom.geometry.Line tracking_line = 10 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message LeftShoulder {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.LeftShoulder";
-  .bhom.geometry.Line tracking_line = 10 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.LeftShoulder";
+  .bhom.geometry.Line tracking_line = 10 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message LeftThumb {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.LeftThumb";
-  .bhom.geometry.Point tracking_point = 10 [(.bhom.property) = "TrackingPoint"];
-  .bhom.geometry.Line tracking_line = 11 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.LeftThumb";
+  .bhom.geometry.Point tracking_point = 10 [(.bhom.field_info).property = "TrackingPoint"];
+  .bhom.geometry.Line tracking_line = 11 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message LeftUpperArm {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.LeftUpperArm";
-  .bhom.geometry.Line tracking_line = 10 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.LeftUpperArm";
+  .bhom.geometry.Line tracking_line = 10 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message LeftUpperLeg {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.LeftUpperLeg";
-  .bhom.geometry.Line tracking_line = 10 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.LeftUpperLeg";
+  .bhom.geometry.Line tracking_line = 10 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message Neck {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.Neck";
-  .bhom.geometry.Line tracking_line = 10 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.Neck";
+  .bhom.geometry.Line tracking_line = 10 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message PairOfEyes {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.PairOfEyes";
-  .bhom.geometry.Point tracking_point = 10 [(.bhom.property) = "TrackingPoint"];
-  Eye left_eye = 11 [(.bhom.property) = "LeftEye"];
-  Eye right_eye = 12 [(.bhom.property) = "RightEye"];
-  .bhom.geometry.Point reference_location = 13 [(.bhom.property) = "ReferenceLocation"];
-  .bhom.geometry.Vector view_direction = 14 [(.bhom.property) = "ViewDirection"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.PairOfEyes";
+  .bhom.geometry.Point tracking_point = 10 [(.bhom.field_info).property = "TrackingPoint"];
+  Eye left_eye = 11 [(.bhom.field_info).property = "LeftEye"];
+  Eye right_eye = 12 [(.bhom.field_info).property = "RightEye"];
+  .bhom.geometry.Point reference_location = 13 [(.bhom.field_info).property = "ReferenceLocation"];
+  .bhom.geometry.Vector view_direction = 14 [(.bhom.field_info).property = "ViewDirection"];
 }
 
 message RightFoot {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.RightFoot";
-  .bhom.geometry.Line tracking_line = 10 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.RightFoot";
+  .bhom.geometry.Line tracking_line = 10 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message RightHand {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.RightHand";
-  .bhom.geometry.Point tracking_point = 10 [(.bhom.property) = "TrackingPoint"];
-  .bhom.geometry.Line tracking_line = 11 [(.bhom.property) = "TrackingLine"];
-  HandStateName state = 12 [(.bhom.property) = "State"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.RightHand";
+  .bhom.geometry.Point tracking_point = 10 [(.bhom.field_info).property = "TrackingPoint"];
+  .bhom.geometry.Line tracking_line = 11 [(.bhom.field_info).property = "TrackingLine"];
+  HandStateName state = 12 [(.bhom.field_info).property = "State"];
 }
 
 message RightHip {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.RightHip";
-  .bhom.geometry.Line tracking_line = 10 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.RightHip";
+  .bhom.geometry.Line tracking_line = 10 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message RightLowerArm {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.RightLowerArm";
-  .bhom.geometry.Line tracking_line = 10 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.RightLowerArm";
+  .bhom.geometry.Line tracking_line = 10 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message RightLowerLeg {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.RightLowerLeg";
-  .bhom.geometry.Line tracking_line = 10 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.RightLowerLeg";
+  .bhom.geometry.Line tracking_line = 10 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message RightShoulder {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.RightShoulder";
-  .bhom.geometry.Line tracking_line = 10 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.RightShoulder";
+  .bhom.geometry.Line tracking_line = 10 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message RightThumb {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.RightThumb";
-  .bhom.geometry.Point tracking_point = 10 [(.bhom.property) = "TrackingPoint"];
-  .bhom.geometry.Line tracking_line = 11 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.RightThumb";
+  .bhom.geometry.Point tracking_point = 10 [(.bhom.field_info).property = "TrackingPoint"];
+  .bhom.geometry.Line tracking_line = 11 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message RightUpperArm {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.RightUpperArm";
-  .bhom.geometry.Line tracking_line = 10 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.RightUpperArm";
+  .bhom.geometry.Line tracking_line = 10 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message RightUpperLeg {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.RightUpperLeg";
-  .bhom.geometry.Line tracking_line = 10 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.RightUpperLeg";
+  .bhom.geometry.Line tracking_line = 10 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message Spine {
-  option (.bhom.csharp_type) = "BH.oM.Humans.BodyParts.Spine";
-  .bhom.geometry.Line tracking_line = 10 [(.bhom.property) = "TrackingLine"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.BodyParts.Spine";
+  .bhom.geometry.Line tracking_line = 10 [(.bhom.field_info).property = "TrackingLine"];
 }
 
 message Employee {
-  option (.bhom.csharp_type) = "BH.oM.Humans.Employee";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.Employee";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
   // Company the Employee works for.
-  string company = 10 [(.bhom.property) = "Company"];
+  string company = 10 [(.bhom.field_info).property = "Company"];
   // Office assigned to the Employee.
-  string office = 11 [(.bhom.property) = "Office"];
+  string office = 11 [(.bhom.field_info).property = "Office"];
   // Discipline the Employee works in.
-  string discipline = 12 [(.bhom.property) = "Discipline"];
+  string discipline = 12 [(.bhom.field_info).property = "Discipline"];
   // Team the Employee belongs to.
-  string team = 13 [(.bhom.property) = "Team"];
+  string team = 13 [(.bhom.field_info).property = "Team"];
   // Manager of the Employee.
-  Employee manager = 14 [(.bhom.property) = "Manager"];
+  Employee manager = 14 [(.bhom.field_info).property = "Manager"];
   // Seniority of the Employee.
-  string grade = 15 [(.bhom.property) = "Grade"];
+  string grade = 15 [(.bhom.field_info).property = "Grade"];
   // Company email of the Employee.
-  string email = 16 [(.bhom.property) = "Email"];
+  string email = 16 [(.bhom.field_info).property = "Email"];
   // Company phone number of the Employee.
-  string phone = 17 [(.bhom.property) = "Phone"];
-  string code_development_role = 18 [(.bhom.property) = "CodeDevelopmentRole"];
+  string phone = 17 [(.bhom.field_info).property = "Phone"];
+  string code_development_role = 18 [(.bhom.field_info).property = "CodeDevelopmentRole"];
   // Business Unit the Employee is assigned to.
-  string business_unit = 19 [(.bhom.property) = "BusinessUnit"];
+  string business_unit = 19 [(.bhom.field_info).property = "BusinessUnit"];
 }
 
 enum HandStateName {
-  option (.bhom.csharp_enum) = "BH.oM.Humans.HandStateName";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Humans.HandStateName";
   HAND_STATE_NAME_CLOSED = 0;
   HAND_STATE_NAME_LASSO = 1;
   HAND_STATE_NAME_NOT_TRACKED = 2;
@@ -174,20 +172,18 @@ enum HandStateName {
 }
 
 message Human {
-  option (.bhom.csharp_type) = "BH.oM.Humans.Human";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  repeated IHumanRole roles = 10 [(.bhom.property) = "Roles"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.Human";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  repeated IHumanRole roles = 10 [(.bhom.field_info).property = "Roles"];
 }
 
 // C# interface: BH.oM.Humans.IHumanRole
 message IHumanRole {
-  option (.bhom.csharp_type) = "BH.oM.Humans.IHumanRole";
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.IHumanRole";
   oneof value {
     Employee employee = 1;
     Skeleton skeleton = 2;
@@ -196,7 +192,7 @@ message IHumanRole {
 }
 
 enum JointName {
-  option (.bhom.csharp_enum) = "BH.oM.Humans.JointName";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Humans.JointName";
   JOINT_NAME_HEAD = 0;
   JOINT_NAME_SPINE_SHOULDER = 1;
   JOINT_NAME_RIGHT_SHOULDER = 2;
@@ -225,109 +221,103 @@ enum JointName {
 }
 
 message Skeleton {
-  option (.bhom.csharp_type) = "BH.oM.Humans.Skeleton";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  Head head = 10 [(.bhom.property) = "Head"];
-  RightHand right_hand = 11 [(.bhom.property) = "RightHand"];
-  LeftHand left_hand = 12 [(.bhom.property) = "LeftHand"];
-  RightThumb right_thumb = 13 [(.bhom.property) = "RightThumb"];
-  LeftThumb left_thumb = 14 [(.bhom.property) = "LeftThumb"];
-  Neck neck = 15 [(.bhom.property) = "Neck"];
-  RightShoulder right_shoulder = 16 [(.bhom.property) = "RightShoulder"];
-  LeftShoulder left_shoulder = 17 [(.bhom.property) = "LeftShoulder"];
-  Spine spine = 18 [(.bhom.property) = "Spine"];
-  RightHip right_hip = 19 [(.bhom.property) = "RightHip"];
-  LeftHip left_hip = 20 [(.bhom.property) = "LeftHip"];
-  RightUpperArm right_upper_arm = 21 [(.bhom.property) = "RightUpperArm"];
-  LeftUpperArm left_upper_arm = 22 [(.bhom.property) = "LeftUpperArm"];
-  RightLowerArm right_lower_arm = 23 [(.bhom.property) = "RightLowerArm"];
-  LeftLowerArm left_lower_arm = 24 [(.bhom.property) = "LeftLowerArm"];
-  RightUpperLeg right_upper_leg = 25 [(.bhom.property) = "RightUpperLeg"];
-  LeftUpperLeg left_upper_leg = 26 [(.bhom.property) = "LeftUpperLeg"];
-  RightLowerLeg right_lower_leg = 27 [(.bhom.property) = "RightLowerLeg"];
-  LeftLowerLeg left_lower_leg = 28 [(.bhom.property) = "LeftLowerLeg"];
-  RightFoot right_foot = 29 [(.bhom.property) = "RightFoot"];
-  LeftFoot left_foot = 30 [(.bhom.property) = "LeftFoot"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.Skeleton";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  Head head = 10 [(.bhom.field_info).property = "Head"];
+  RightHand right_hand = 11 [(.bhom.field_info).property = "RightHand"];
+  LeftHand left_hand = 12 [(.bhom.field_info).property = "LeftHand"];
+  RightThumb right_thumb = 13 [(.bhom.field_info).property = "RightThumb"];
+  LeftThumb left_thumb = 14 [(.bhom.field_info).property = "LeftThumb"];
+  Neck neck = 15 [(.bhom.field_info).property = "Neck"];
+  RightShoulder right_shoulder = 16 [(.bhom.field_info).property = "RightShoulder"];
+  LeftShoulder left_shoulder = 17 [(.bhom.field_info).property = "LeftShoulder"];
+  Spine spine = 18 [(.bhom.field_info).property = "Spine"];
+  RightHip right_hip = 19 [(.bhom.field_info).property = "RightHip"];
+  LeftHip left_hip = 20 [(.bhom.field_info).property = "LeftHip"];
+  RightUpperArm right_upper_arm = 21 [(.bhom.field_info).property = "RightUpperArm"];
+  LeftUpperArm left_upper_arm = 22 [(.bhom.field_info).property = "LeftUpperArm"];
+  RightLowerArm right_lower_arm = 23 [(.bhom.field_info).property = "RightLowerArm"];
+  LeftLowerArm left_lower_arm = 24 [(.bhom.field_info).property = "LeftLowerArm"];
+  RightUpperLeg right_upper_leg = 25 [(.bhom.field_info).property = "RightUpperLeg"];
+  LeftUpperLeg left_upper_leg = 26 [(.bhom.field_info).property = "LeftUpperLeg"];
+  RightLowerLeg right_lower_leg = 27 [(.bhom.field_info).property = "RightLowerLeg"];
+  LeftLowerLeg left_lower_leg = 28 [(.bhom.field_info).property = "LeftLowerLeg"];
+  RightFoot right_foot = 29 [(.bhom.field_info).property = "RightFoot"];
+  LeftFoot left_foot = 30 [(.bhom.field_info).property = "LeftFoot"];
 }
 
 message Audience {
-  option (.bhom.csharp_type) = "BH.oM.Humans.ViewQuality.Audience";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  repeated Spectator spectators = 10 [(.bhom.property) = "Spectators"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.ViewQuality.Audience";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  repeated Spectator spectators = 10 [(.bhom.field_info).property = "Spectators"];
 }
 
 message Avalue {
-  option (.bhom.csharp_type) = "BH.oM.Humans.ViewQuality.Avalue";
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.ViewQuality.Avalue";
   // Percentage of the cone of vision occupied by the clipped activity area.
-  double a_value = 10 [(.bhom.property) = "AValue"];
+  double a_value = 10 [(.bhom.field_info).property = "AValue"];
   // Percentage of the cone of vision occupied by heads occluding the activity area.
-  double occulsion = 11 [(.bhom.property) = "Occulsion"];
+  double occulsion = 11 [(.bhom.field_info).property = "Occulsion"];
   // Activity area projected to the spectator's viewing plane.
-  .bhom.geometry.Polyline full_activity_area = 12 [(.bhom.property) = "FullActivityArea"];
+  .bhom.geometry.Polyline full_activity_area = 12 [(.bhom.field_info).property = "FullActivityArea"];
   // Resulting Polyline after clipping the full activity area with the cone of vision.
-  .bhom.geometry.Polyline clipped_activity_area = 13 [(.bhom.property) = "ClippedActivityArea"];
+  .bhom.geometry.Polyline clipped_activity_area = 13 [(.bhom.field_info).property = "ClippedActivityArea"];
   // Effective cone of vision orientated to the spectator.
-  .bhom.geometry.Polyline cone_of_vision = 14 [(.bhom.property) = "ConeOfVision"];
+  .bhom.geometry.Polyline cone_of_vision = 14 [(.bhom.field_info).property = "ConeOfVision"];
   // Point representing the spectator's singular eye reference.
-  .bhom.geometry.Point reference_point = 15 [(.bhom.property) = "ReferencePoint"];
+  .bhom.geometry.Point reference_point = 15 [(.bhom.field_info).property = "ReferencePoint"];
   // Polylines of the spectator heads occluding the view of the activity area.
-  repeated .bhom.geometry.Polyline occluding_heads = 16 [(.bhom.property) = "OccludingHeads"];
-  google.protobuf.Any object_id = 17 [(.bhom.property) = "ObjectId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
-  google.protobuf.Any result_case = 18 [(.bhom.property) = "ResultCase"];  // any IComparable: a message, or a google.protobuf wrapper for single values
-  double time_step = 19 [(.bhom.property) = "TimeStep"];
+  repeated .bhom.geometry.Polyline occluding_heads = 16 [(.bhom.field_info).property = "OccludingHeads"];
+  google.protobuf.Any object_id = 17 [(.bhom.field_info).property = "ObjectId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
+  google.protobuf.Any result_case = 18 [(.bhom.field_info).property = "ResultCase"];  // any IComparable: a message, or a google.protobuf wrapper for single values
+  double time_step = 19 [(.bhom.field_info).property = "TimeStep"];
 }
 
 message AvalueSettings {
-  option (.bhom.csharp_type) = "BH.oM.Humans.ViewQuality.AvalueSettings";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.ViewQuality.AvalueSettings";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
   // Reference Cone of Vision used for all Spectators. This is equivalent to the curve generated from the intersection of the near clipping plane and the viewing frustum.It should be planar and closed and in a plane parallel to the global XY Plane.Default value is a square based frustum with 30 degree field of view and near clipping plane 0.1 from the eye reference location. Giving a a 0.115 * 0.115 square EffectiveConeOfVision.
-  .bhom.geometry.Polyline effective_cone_of_vision = 10 [(.bhom.property) = "EffectiveConeOfVision"];
+  .bhom.geometry.Polyline effective_cone_of_vision = 10 [(.bhom.field_info).property = "EffectiveConeOfVision"];
   // The distance from a spectator to the far clipping plane of their view frustum. Spectators in front of this plane will not be used in the occlusion part of the Avalue calculation. Default value is 1.
-  double far_clipping_plane_distance = 11 [(.bhom.property) = "FarClippingPlaneDistance"];
+  double far_clipping_plane_distance = 11 [(.bhom.field_info).property = "FarClippingPlaneDistance"];
   // Calculate proportion of playing area obstructed by heads of Spectators in front. Default value is false
-  bool calculate_occlusion = 12 [(.bhom.property) = "CalculateOcclusion"];
+  bool calculate_occlusion = 12 [(.bhom.field_info).property = "CalculateOcclusion"];
   // Width of default EffectiveConeOfVision. Default value is 0.115. Used only when no EffectiveConeOfVision is provided.
-  double effective_cone_of_vision_width = 13 [(.bhom.property) = "EffectiveConeOfVisionWidth"];
+  double effective_cone_of_vision_width = 13 [(.bhom.field_info).property = "EffectiveConeOfVisionWidth"];
   // Height of default EffectiveConeOfVision. Default value is 0.115. Used only when no EffectiveConeOfVision is provided.
-  double effective_cone_of_vision_height = 14 [(.bhom.property) = "EffectiveConeOfVisionHeight"];
+  double effective_cone_of_vision_height = 14 [(.bhom.field_info).property = "EffectiveConeOfVisionHeight"];
   // The distance from a spectator to the near clipping plane of their view frustum. Default value is 0.1. Used only when no EffectiveConeOfVision is provided.
-  double near_clipping_plane_distance = 15 [(.bhom.property) = "NearClippingPlaneDistance"];
+  double near_clipping_plane_distance = 15 [(.bhom.field_info).property = "NearClippingPlaneDistance"];
   // Optional focal point to set the view direction of the spectators. If none provided the Avalue is calculated using the neutral viewing direction of each spectator.
-  .bhom.geometry.Point focal_point = 16 [(.bhom.property) = "FocalPoint"];
+  .bhom.geometry.Point focal_point = 16 [(.bhom.field_info).property = "FocalPoint"];
 }
 
 message Cvalue {
-  option (.bhom.csharp_type) = "BH.oM.Humans.ViewQuality.Cvalue";
-  double c_value = 10 [(.bhom.property) = "CValue"];
-  double horiz_dist = 11 [(.bhom.property) = "HorizDist"];
-  double height_above_pitch = 12 [(.bhom.property) = "HeightAbovePitch"];
-  double absolute_dist = 13 [(.bhom.property) = "AbsoluteDist"];
-  .bhom.geometry.Point focalpoint = 14 [(.bhom.property) = "Focalpoint"];
-  google.protobuf.Any object_id = 15 [(.bhom.property) = "ObjectId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
-  google.protobuf.Any result_case = 16 [(.bhom.property) = "ResultCase"];  // any IComparable: a message, or a google.protobuf wrapper for single values
-  double time_step = 17 [(.bhom.property) = "TimeStep"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.ViewQuality.Cvalue";
+  double c_value = 10 [(.bhom.field_info).property = "CValue"];
+  double horiz_dist = 11 [(.bhom.field_info).property = "HorizDist"];
+  double height_above_pitch = 12 [(.bhom.field_info).property = "HeightAbovePitch"];
+  double absolute_dist = 13 [(.bhom.field_info).property = "AbsoluteDist"];
+  .bhom.geometry.Point focalpoint = 14 [(.bhom.field_info).property = "Focalpoint"];
+  google.protobuf.Any object_id = 15 [(.bhom.field_info).property = "ObjectId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
+  google.protobuf.Any result_case = 16 [(.bhom.field_info).property = "ResultCase"];  // any IComparable: a message, or a google.protobuf wrapper for single values
+  double time_step = 17 [(.bhom.field_info).property = "TimeStep"];
 }
 
 enum CvalueFocalMethodEnum {
-  option (.bhom.csharp_enum) = "BH.oM.Humans.ViewQuality.CvalueFocalMethodEnum";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Humans.ViewQuality.CvalueFocalMethodEnum";
   CVALUE_FOCAL_METHOD_ENUM_OFFSET_THROUGH_CORNERS = 0;
   CVALUE_FOCAL_METHOD_ENUM_CLOSEST = 1;
   CVALUE_FOCAL_METHOD_ENUM_PERPENDICULAR = 2;
@@ -336,81 +326,73 @@ enum CvalueFocalMethodEnum {
 }
 
 message CvalueSettings {
-  option (.bhom.csharp_type) = "BH.oM.Humans.ViewQuality.CvalueSettings";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  CvalueFocalMethodEnum focal_method = 10 [(.bhom.property) = "FocalMethod"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.ViewQuality.CvalueSettings";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  CvalueFocalMethodEnum focal_method = 10 [(.bhom.field_info).property = "FocalMethod"];
   // Value assigned to spectators where Cvalue cannot be calculated, for example on a front row.
-  double default_c_value = 11 [(.bhom.property) = "DefaultCValue"];
+  double default_c_value = 11 [(.bhom.field_info).property = "DefaultCValue"];
   // The distance from a spectator to the far clipping plane of their view frustum. Spectators in front of this plane will not be used in the Cvalue calculation.
-  double far_clipping_plane_distance = 12 [(.bhom.property) = "FarClippingPlaneDistance"];
+  double far_clipping_plane_distance = 12 [(.bhom.field_info).property = "FarClippingPlaneDistance"];
   // Spectator view cone angle in radians. Default is approximately 2.0944 radians or 120 degrees. Field of view for a spectator, within which spectators in front are consider to be effectively blocking the view and used for the Cvalue calcualtion.
-  double view_cone_angle = 13 [(.bhom.property) = "ViewConeAngle"];
+  double view_cone_angle = 13 [(.bhom.field_info).property = "ViewConeAngle"];
 }
 
 message Evalue {
-  option (.bhom.csharp_type) = "BH.oM.Humans.ViewQuality.Evalue";
-  double torsion = 10 [(.bhom.property) = "Torsion"];
-  double horiz_view_ang = 11 [(.bhom.property) = "HorizViewAng"];
-  repeated .bhom.geometry.Vector horiz_view_vectors = 12 [(.bhom.property) = "HorizViewVectors"];
-  repeated .bhom.geometry.Vector vert_view_vectors = 13 [(.bhom.property) = "VertViewVectors"];
-  double vert_view_ang = 14 [(.bhom.property) = "VertViewAng"];
-  google.protobuf.Any object_id = 15 [(.bhom.property) = "ObjectId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
-  google.protobuf.Any result_case = 16 [(.bhom.property) = "ResultCase"];  // any IComparable: a message, or a google.protobuf wrapper for single values
-  double time_step = 17 [(.bhom.property) = "TimeStep"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.ViewQuality.Evalue";
+  double torsion = 10 [(.bhom.field_info).property = "Torsion"];
+  double horiz_view_ang = 11 [(.bhom.field_info).property = "HorizViewAng"];
+  repeated .bhom.geometry.Vector horiz_view_vectors = 12 [(.bhom.field_info).property = "HorizViewVectors"];
+  repeated .bhom.geometry.Vector vert_view_vectors = 13 [(.bhom.field_info).property = "VertViewVectors"];
+  double vert_view_ang = 14 [(.bhom.field_info).property = "VertViewAng"];
+  google.protobuf.Any object_id = 15 [(.bhom.field_info).property = "ObjectId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
+  google.protobuf.Any result_case = 16 [(.bhom.field_info).property = "ResultCase"];  // any IComparable: a message, or a google.protobuf wrapper for single values
+  double time_step = 17 [(.bhom.field_info).property = "TimeStep"];
 }
 
 message EvalueSettings {
-  option (.bhom.csharp_type) = "BH.oM.Humans.ViewQuality.EvalueSettings";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  EvalueViewEnum view_type = 10 [(.bhom.property) = "ViewType"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.ViewQuality.EvalueSettings";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  EvalueViewEnum view_type = 10 [(.bhom.field_info).property = "ViewType"];
 }
 
 enum EvalueViewEnum {
-  option (.bhom.csharp_enum) = "BH.oM.Humans.ViewQuality.EvalueViewEnum";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Humans.ViewQuality.EvalueViewEnum";
   EVALUE_VIEW_ENUM_TO_POINT = 0;
   EVALUE_VIEW_ENUM_PERPENDICULAR_TO_ROW = 1;
   EVALUE_VIEW_ENUM_UNDEFINED = 2;
 }
 
 message EyePositionParameters {
-  option (.bhom.csharp_type) = "BH.oM.Humans.ViewQuality.EyePositionParameters";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  double eye_position_z = 10 [(.bhom.property) = "EyePositionZ"];
-  double eye_position_x = 11 [(.bhom.property) = "EyePositionX"];
-  double wheel_chair_eye_position_z = 12 [(.bhom.property) = "WheelChairEyePositionZ"];
-  double wheel_chair_eye_position_x = 13 [(.bhom.property) = "WheelChairEyePositionX"];
-  double standing_eye_position_z = 14 [(.bhom.property) = "StandingEyePositionZ"];
-  double standing_eye_position_x = 15 [(.bhom.property) = "StandingEyePositionX"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.ViewQuality.EyePositionParameters";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  double eye_position_z = 10 [(.bhom.field_info).property = "EyePositionZ"];
+  double eye_position_x = 11 [(.bhom.field_info).property = "EyePositionX"];
+  double wheel_chair_eye_position_z = 12 [(.bhom.field_info).property = "WheelChairEyePositionZ"];
+  double wheel_chair_eye_position_x = 13 [(.bhom.field_info).property = "WheelChairEyePositionX"];
+  double standing_eye_position_z = 14 [(.bhom.field_info).property = "StandingEyePositionZ"];
+  double standing_eye_position_x = 15 [(.bhom.field_info).property = "StandingEyePositionX"];
 }
 
 message Spectator {
-  option (.bhom.csharp_type) = "BH.oM.Humans.ViewQuality.Spectator";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  Head head = 10 [(.bhom.property) = "Head"];
-  .bhom.geometry.Polyline head_outline = 11 [(.bhom.property) = "HeadOutline"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Humans.ViewQuality.Spectator";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  Head head = 10 [(.bhom.field_info).property = "Head"];
+  .bhom.geometry.Polyline head_outline = 11 [(.bhom.field_info).property = "HeadOutline"];
 }
 

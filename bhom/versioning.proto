@@ -10,38 +10,36 @@ import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 
 message NoUpdateException {
-  option (.bhom.csharp_type) = "BH.oM.Versioning.NoUpdateException";
+  option (.bhom.message_info).csharp_type = "BH.oM.Versioning.NoUpdateException";
   // TargetSite is not exchanged: System.Reflection.MethodBase has no protobuf equivalent.
   reserved 10;
-  option (.bhom.reserved_member) = "TargetSite=10";
-  string message = 11 [(.bhom.property) = "Message"];
-  google.protobuf.Any data = 12 [(.bhom.property) = "Data"];  // any IDictionary: a message, or a google.protobuf wrapper for single values
+  option (.bhom.message_info).reserved_member = "TargetSite=10";
+  string message = 11 [(.bhom.field_info).property = "Message"];
+  google.protobuf.Any data = 12 [(.bhom.field_info).property = "Data"];  // any IDictionary: a message, or a google.protobuf wrapper for single values
   // InnerException is not exchanged: System.Exception has no protobuf equivalent.
   reserved 13;
-  option (.bhom.reserved_member) = "InnerException=13";
-  string help_link = 14 [(.bhom.property) = "HelpLink"];
-  string source = 15 [(.bhom.property) = "Source"];
-  int32 h_result = 16 [(.bhom.property) = "HResult"];
-  string stack_trace = 17 [(.bhom.property) = "StackTrace"];
+  option (.bhom.message_info).reserved_member = "InnerException=13";
+  string help_link = 14 [(.bhom.field_info).property = "HelpLink"];
+  string source = 15 [(.bhom.field_info).property = "Source"];
+  int32 h_result = 16 [(.bhom.field_info).property = "HResult"];
+  string stack_trace = 17 [(.bhom.field_info).property = "StackTrace"];
 }
 
 message VersioningEvent {
-  option (.bhom.csharp_type) = "BH.oM.Versioning.VersioningEvent";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string old_document = 10 [(.bhom.property) = "OldDocument"];
-  string new_document = 11 [(.bhom.property) = "NewDocument"];
-  string old_version = 12 [(.bhom.property) = "OldVersion"];
-  string new_version = 13 [(.bhom.property) = "NewVersion"];
-  .bhom.base.EventType type = 14 [(.bhom.property) = "Type"];
-  google.protobuf.Timestamp time = 15 [(.bhom.property) = "Time"];
-  google.protobuf.Timestamp utc_time = 16 [(.bhom.property) = "UtcTime"];
-  string stack_trace = 17 [(.bhom.property) = "StackTrace"];
-  string message = 18 [(.bhom.property) = "Message"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Versioning.VersioningEvent";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string old_document = 10 [(.bhom.field_info).property = "OldDocument"];
+  string new_document = 11 [(.bhom.field_info).property = "NewDocument"];
+  string old_version = 12 [(.bhom.field_info).property = "OldVersion"];
+  string new_version = 13 [(.bhom.field_info).property = "NewVersion"];
+  .bhom.base.EventType type = 14 [(.bhom.field_info).property = "Type"];
+  google.protobuf.Timestamp time = 15 [(.bhom.field_info).property = "Time"];
+  google.protobuf.Timestamp utc_time = 16 [(.bhom.field_info).property = "UtcTime"];
+  string stack_trace = 17 [(.bhom.field_info).property = "StackTrace"];
+  string message = 18 [(.bhom.field_info).property = "Message"];
 }
 

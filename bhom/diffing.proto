@@ -10,55 +10,55 @@ import "google/protobuf/any.proto";
 
 // Class defined as per AECDeltas specification https://github.com/aecdeltas/aec-deltas-spec/wiki/Delta-Container-Specification#payload
 message DeltaPayload {
-  option (.bhom.csharp_type) = "BH.oM.AECDeltas.DeltaPayload";
-  string stream_id = 10 [(.bhom.property) = "StreamID"];
-  map<string, google.protobuf.Any> diff = 11 [(.bhom.property) = "Diff"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string revision_from = 12 [(.bhom.property) = "RevisionFrom"];
-  string revision_to = 13 [(.bhom.property) = "RevisionTo"];
-  int64 timestamp = 14 [(.bhom.property) = "Timestamp"];
-  string signature = 15 [(.bhom.property) = "Signature"];
-  string sender = 16 [(.bhom.property) = "Sender"];
-  string comment = 17 [(.bhom.property) = "Comment"];
+  option (.bhom.message_info).csharp_type = "BH.oM.AECDeltas.DeltaPayload";
+  string stream_id = 10 [(.bhom.field_info).property = "StreamID"];
+  map<string, google.protobuf.Any> diff = 11 [(.bhom.field_info).property = "Diff"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string revision_from = 12 [(.bhom.field_info).property = "RevisionFrom"];
+  string revision_to = 13 [(.bhom.field_info).property = "RevisionTo"];
+  int64 timestamp = 14 [(.bhom.field_info).property = "Timestamp"];
+  string signature = 15 [(.bhom.field_info).property = "Signature"];
+  string sender = 16 [(.bhom.field_info).property = "Sender"];
+  string comment = 17 [(.bhom.field_info).property = "Comment"];
 }
 
 // Contains the Diff plus context information: parent Stream, Timestamp, etc.
 message Delta {
-  option (.bhom.csharp_type) = "BH.oM.Diffing.Delta";
+  option (.bhom.message_info).csharp_type = "BH.oM.Diffing.Delta";
   // The ID of the owning Stream. It must be the same for both the Revision that this Delta targets and the Revision that it will produce.
-  string stream_id = 10 [(.bhom.property) = "StreamID"];
+  string stream_id = 10 [(.bhom.field_info).property = "StreamID"];
   // Represent the differences between two sets of objects.
-  Diff diff = 11 [(.bhom.property) = "Diff"];
+  Diff diff = 11 [(.bhom.field_info).property = "Diff"];
   // Revision ID that this Delta targets.
-  string revision_from = 12 [(.bhom.property) = "RevisionFrom"];
+  string revision_from = 12 [(.bhom.field_info).property = "RevisionFrom"];
   // Revision ID that this Delta produces.
-  string revision_to = 13 [(.bhom.property) = "RevisionTo"];
+  string revision_to = 13 [(.bhom.field_info).property = "RevisionTo"];
   // In UTC ticks.
-  int64 timestamp = 14 [(.bhom.property) = "Timestamp"];
+  int64 timestamp = 14 [(.bhom.field_info).property = "Timestamp"];
   // Any descriptive string identifying either the Author and/or the software used.
-  string author = 15 [(.bhom.property) = "Author"];
-  string comment = 16 [(.bhom.property) = "Comment"];
+  string author = 15 [(.bhom.field_info).property = "Author"];
+  string comment = 16 [(.bhom.field_info).property = "Comment"];
 }
 
 // Represents the differences between two sets of objects.
 message Diff {
-  option (.bhom.csharp_type) = "BH.oM.Diffing.Diff";
+  option (.bhom.message_info).csharp_type = "BH.oM.Diffing.Diff";
   // Objects present in the second set that are not present in the first set.
-  repeated google.protobuf.Any added_objects = 10 [(.bhom.property) = "AddedObjects"];
+  repeated google.protobuf.Any added_objects = 10 [(.bhom.field_info).property = "AddedObjects"];
   // Objects not present in the second set that were present in the first set.
-  repeated google.protobuf.Any removed_objects = 11 [(.bhom.property) = "RemovedObjects"];
+  repeated google.protobuf.Any removed_objects = 11 [(.bhom.field_info).property = "RemovedObjects"];
   // Objects that are recognised as present both in the first set and the second set, but that have some property that is different.
   // The rules that were used to recognise modification are in the `DiffingConfig.ComparisonConfig`.
-  repeated google.protobuf.Any modified_objects = 12 [(.bhom.property) = "ModifiedObjects"];
+  repeated google.protobuf.Any modified_objects = 12 [(.bhom.field_info).property = "ModifiedObjects"];
   // Objects that are recognised as the same in the first and second set.
-  repeated google.protobuf.Any unchanged_objects = 13 [(.bhom.property) = "UnchangedObjects"];
-  repeated ObjectDifferences modified_objects_differences = 14 [(.bhom.property) = "ModifiedObjectsDifferences"];
+  repeated google.protobuf.Any unchanged_objects = 13 [(.bhom.field_info).property = "UnchangedObjects"];
+  repeated ObjectDifferences modified_objects_differences = 14 [(.bhom.field_info).property = "ModifiedObjectsDifferences"];
   // Default diffing settings for this Stream. Hashes of objects contained in this stream will be computed based on these configs.
-  DiffingConfig diffing_config = 15 [(.bhom.property) = "DiffingConfig"];
+  DiffingConfig diffing_config = 15 [(.bhom.field_info).property = "DiffingConfig"];
 }
 
 // Specifies various kinds of Differences. It can be useful to mark and filter specific implementations of IPropertyDifferences.
 enum DifferenceType {
-  option (.bhom.csharp_enum) = "BH.oM.Diffing.DifferenceType";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Diffing.DifferenceType";
   DIFFERENCE_TYPE_MODIFIED = 0;
   DIFFERENCE_TYPE_REMOVED = 1;
   DIFFERENCE_TYPE_ADDED = 2;
@@ -66,27 +66,27 @@ enum DifferenceType {
 
 // General configurations for the Diffing process, including settings for the Hash computation.
 message DiffingConfig {
-  option (.bhom.csharp_type) = "BH.oM.Diffing.DiffingConfig";
+  option (.bhom.message_info).csharp_type = "BH.oM.Diffing.DiffingConfig";
   // Settings to determine the uniqueness of an Object.
-  .bhom.base.BaseComparisonConfig comparison_config = 10 [(.bhom.property) = "ComparisonConfig"];
+  .bhom.base.BaseComparisonConfig comparison_config = 10 [(.bhom.field_info).property = "ComparisonConfig"];
   // Enables the property-level diffing: differences in object properties are stored in the `ModifiedPropsPerObject` dictionary of the Diff object.
   // WARNING: may be slow.
   // For large object collections, if you are not interested in what properties changed, you can turn this to false to speed up.
-  bool enable_property_diffing = 11 [(.bhom.property) = "EnablePropertyDiffing"];
+  bool enable_property_diffing = 11 [(.bhom.field_info).property = "EnablePropertyDiffing"];
   // If enabled, the Diff includes also the objects that did not change (`Unchanged`).
   // When dealing with very large sets, you can keep this on `false` to improve performance: the UnchangedObjects can be derived from the original set, minus the Deleted and Modified objects.
-  bool include_unchanged_objects = 12 [(.bhom.property) = "IncludeUnchangedObjects"];
+  bool include_unchanged_objects = 12 [(.bhom.field_info).property = "IncludeUnchangedObjects"];
   // By default, duplicate IDs are not allowed and Diffing will not consider them. If you want to be able to specify duplicate IDs, set this to true.
-  bool allow_duplicate_i_ds = 13 [(.bhom.property) = "AllowDuplicateIDs"];
+  bool allow_duplicate_i_ds = 13 [(.bhom.field_info).property = "AllowDuplicateIDs"];
   // CustomObjectDifferencesComparers is not exchanged: System.Func`4[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[BH.oM.Base.BaseComparisonConfig, BHoM, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Collections.Generic.List`1[[BH.oM.Diffing.IPropertyDifference, Diffing_oM, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] has no protobuf equivalent.
   reserved 14;
-  option (.bhom.reserved_member) = "CustomObjectDifferencesComparers=14";
+  option (.bhom.message_info).reserved_member = "CustomObjectDifferencesComparers=14";
 }
 
 // Represents a difference found between a Previous and Following version of an object.
 // C# interface: BH.oM.Diffing.IPropertyDifference
 message IPropertyDifference {
-  option (.bhom.csharp_type) = "BH.oM.Diffing.IPropertyDifference";
+  option (.bhom.message_info).csharp_type = "BH.oM.Diffing.IPropertyDifference";
   oneof value {
     PropertyDifference property_difference = 1;
   }
@@ -94,79 +94,75 @@ message IPropertyDifference {
 
 // Represents all the differences found between a Previous and Following version of an object.
 message ObjectDifferences {
-  option (.bhom.csharp_type) = "BH.oM.Diffing.ObjectDifferences";
+  option (.bhom.message_info).csharp_type = "BH.oM.Diffing.ObjectDifferences";
   // Older version of the object (created or modified before `FollowingObject`).
-  google.protobuf.Any past_object = 10 [(.bhom.property) = "PastObject"];
+  google.protobuf.Any past_object = 10 [(.bhom.field_info).property = "PastObject"];
   // Newer version of the object (created or modified after `PastObject`).
-  google.protobuf.Any following_object = 11 [(.bhom.property) = "FollowingObject"];
+  google.protobuf.Any following_object = 11 [(.bhom.field_info).property = "FollowingObject"];
   // List of all the differences found between the `past` and `following` versions of the object (under a given ComparisonConfig).
-  repeated IPropertyDifference differences = 12 [(.bhom.property) = "Differences"];
+  repeated IPropertyDifference differences = 12 [(.bhom.field_info).property = "Differences"];
 }
 
 // Represents a difference found between a Previous and Following version of an object.
 message PropertyDifference {
-  option (.bhom.csharp_type) = "BH.oM.Diffing.PropertyDifference";
+  option (.bhom.message_info).csharp_type = "BH.oM.Diffing.PropertyDifference";
   // The human-friendly name associated with this property difference. This may differ from the actual property name: see `FullName`.
-  string name = 2 [(.bhom.property) = "Name"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
   // A human-friendly description associated with this property difference.
-  string description = 10 [(.bhom.property) = "Description"];
+  string description = 10 [(.bhom.field_info).property = "Description"];
   // The older value of this property (associated with the past version of the object).
-  google.protobuf.Any past_value = 11 [(.bhom.property) = "PastValue"];
+  google.protobuf.Any past_value = 11 [(.bhom.field_info).property = "PastValue"];
   // The newer value of this property (associated with the following version of the object).
-  google.protobuf.Any following_value = 12 [(.bhom.property) = "FollowingValue"];
+  google.protobuf.Any following_value = 12 [(.bhom.field_info).property = "FollowingValue"];
   // Actual Full Name of the object's property whose value is different.
-  string full_name = 13 [(.bhom.property) = "FullName"];
+  string full_name = 13 [(.bhom.field_info).property = "FullName"];
 }
 
 message Revision {
-  option (.bhom.csharp_type) = "BH.oM.Diffing.Revision";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Diffing.Revision";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
   // ID of the Stream that owns this Revision.
-  string stream_id = 10 [(.bhom.property) = "StreamID"];
+  string stream_id = 10 [(.bhom.field_info).property = "StreamID"];
   // Unique GUID of this Revision.
-  string revision_id = 11 [(.bhom.property) = "RevisionID"];
+  string revision_id = 11 [(.bhom.field_info).property = "RevisionID"];
   // Name assigned to this Revision. It may be descriptive of the changes included in this Revision, e.g. AddedBasementColumns.
-  string revision_name = 12 [(.bhom.property) = "RevisionName"];
+  string revision_name = 12 [(.bhom.field_info).property = "RevisionName"];
   // In UTC.Now ticks. Automatically defined when creating a new Revision.
-  int64 timestamp = 13 [(.bhom.property) = "Timestamp"];
+  int64 timestamp = 13 [(.bhom.field_info).property = "Timestamp"];
   // Author of the Stream Revision. Automatically calculated as it should be univocally defined.
-  string author = 14 [(.bhom.property) = "Author"];
+  string author = 14 [(.bhom.field_info).property = "Author"];
   // Any comment to be added on this this Revision.
-  string comment = 15 [(.bhom.property) = "Comment"];
+  string comment = 15 [(.bhom.field_info).property = "Comment"];
   // Objects to be included in this Revision.
-  repeated google.protobuf.Any objects = 16 [(.bhom.property) = "Objects"];
+  repeated google.protobuf.Any objects = 16 [(.bhom.field_info).property = "Objects"];
   // Diffing settings for this Revision. Hashes of objects contained in this stream will be computed based on these configs.
-  DiffingConfig revision_diff_confing = 17 [(.bhom.property) = "RevisionDiffConfing"];
+  DiffingConfig revision_diff_confing = 17 [(.bhom.field_info).property = "RevisionDiffConfing"];
 }
 
 // Stores the current and previous Hash of the parent BHoMObject, as assigned after the inclusion in a Revision.
 message RevisionFragment {
-  option (.bhom.csharp_type) = "BH.oM.Diffing.RevisionFragment";
+  option (.bhom.message_info).csharp_type = "BH.oM.Diffing.RevisionFragment";
   // Current object Hash.
-  string hash = 10 [(.bhom.property) = "Hash"];
+  string hash = 10 [(.bhom.field_info).property = "Hash"];
   // Previous object Hash, typically the one it had in its previous Revision.
-  string previous_hash = 11 [(.bhom.property) = "PreviousHash"];
+  string previous_hash = 11 [(.bhom.field_info).property = "PreviousHash"];
 }
 
 // Points to a specific Stream. Can be used to generate a new Stream and StreamId.
 message StreamPointer {
-  option (.bhom.csharp_type) = "BH.oM.Diffing.StreamPointer";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string stream_id = 10 [(.bhom.property) = "StreamID"];
-  string stream_name = 11 [(.bhom.property) = "StreamName"];
-  string description = 12 [(.bhom.property) = "Description"];
-  int64 timestamp = 13 [(.bhom.property) = "Timestamp"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Diffing.StreamPointer";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string stream_id = 10 [(.bhom.field_info).property = "StreamID"];
+  string stream_name = 11 [(.bhom.field_info).property = "StreamName"];
+  string description = 12 [(.bhom.field_info).property = "Description"];
+  int64 timestamp = 13 [(.bhom.field_info).property = "Timestamp"];
 }
 

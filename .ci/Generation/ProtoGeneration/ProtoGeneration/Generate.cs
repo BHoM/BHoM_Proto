@@ -113,26 +113,13 @@ namespace ProtoGeneration
                 RepositoriesToInclude = new List<string> { "BHoM/BHoM" },
                 RootPackage = "bhom",
                 ConsumerSideUnions = true,
-                SkippedUnionTypes = new List<string> { "BH.oM.Base.IFragment" },
-                FileGroups = new List<ProtoFileGroup>
-                {
-                    new ProtoFileGroup
-                    {
-                        Name = "disciplines",
-                        Assemblies = new List<string> { "Acoustic_oM", "Analytical_oM", "Architecture_oM", "Environment_oM", "Facade_oM", "Ground_oM",
-                            "LifeCycleAssessment_oM", "Lighting_oM", "MEP_oM", "Physical_oM", "Security_oM", "Structure_oM" }
-                    },
-                    new ProtoFileGroup
-                    {
-                        Name = "geometry",
-                        Assemblies = new List<string> { "Geometry_oM", "Graphics_oM" }
-                    },
-                    new ProtoFileGroup
-                    {
-                        Name = "requests",
-                        NamespaceSegments = new List<string> { "Requests" }
-                    }
-                }
+                // One file per assembly.
+                FileGroups = new List<ProtoFileGroup>(),
+                SkippedUnionTypes = new List<string>(),
+                // Open sets of implementations, spread over many files and toolkits: exchanged as google.protobuf.Any.
+                OpenUnionTypes = new List<string> { "BH.oM.Base.IFragment", "BH.oM.Physical.Materials.IMaterialProperties", "BH.oM.Dimensional.IElementM" },
+                // Only the implementations in Geometry_oM are exchanged (not e.g. RenderMesh and RenderPoint from Graphics_oM).
+                ClosedUnionTypes = new List<string> { "BH.oM.Geometry.IGeometry" }
             };
         }
 
@@ -167,9 +154,15 @@ namespace ProtoGeneration
             sb.AppendLine($"Import cycles: {(result.ImportCycles.Count == 0 ? "none" : string.Join("; ", result.ImportCycles.Select(c => string.Join(" <-> ", c))))}");
             sb.AppendLine();
 
-            sb.AppendLine("## Properties typed as interfaces implemented in other files");
+            sb.AppendLine("## Properties typed as interfaces implemented in other files, or set in ProtoConfig.json");
             sb.AppendLine();
             sb.AppendLine("Every other interface or abstract class used as a property type is a typed union in its own file.");
+            sb.AppendLine();
+            sb.AppendLine("- **Any**: `google.protobuf.Any`, with the `any_of` option naming the interface. Used for `OpenUnionTypes`, and for interfaces without implementations in their own file.");
+            sb.AppendLine("- **Closed**: the union of the interface's own file (`ClosedUnionTypes`). Implementations in other files are not exchanged.");
+            sb.AppendLine("- **ConsumerSideUnion**: a union defined in the file of the property owner, covering every implementation.");
+            sb.AppendLine("- **TypedWithOther**: the union of the interface's own file, with a `google.protobuf.Any other` slot for implementations in other files.");
+            sb.AppendLine("- **Skipped**: not exchanged (`SkippedUnionTypes`); the field number is reserved.");
             sb.AppendLine();
             foreach (IGrouping<UnionResolution, PropertyResolution> group in result.Resolutions.GroupBy(r => r.Resolution).OrderBy(g => g.Key))
             {

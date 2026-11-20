@@ -9,153 +9,135 @@ import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 
 message Branch {
-  option (.bhom.csharp_type) = "BH.oM.Planning.Branch";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string last_pusher = 10 [(.bhom.property) = "LastPusher"];
-  string title = 11 [(.bhom.property) = "Title"];
-  string repo_name = 12 [(.bhom.property) = "RepoName"];
-  bool protected = 13 [(.bhom.property) = "Protected"];
-  google.protobuf.Timestamp last_commit_date = 14 [(.bhom.property) = "LastCommitDate"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Planning.Branch";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string last_pusher = 10 [(.bhom.field_info).property = "LastPusher"];
+  string title = 11 [(.bhom.field_info).property = "Title"];
+  string repo_name = 12 [(.bhom.field_info).property = "RepoName"];
+  bool protected = 13 [(.bhom.field_info).property = "Protected"];
+  google.protobuf.Timestamp last_commit_date = 14 [(.bhom.field_info).property = "LastCommitDate"];
 }
 
 message CodeAssembly {
-  option (.bhom.csharp_type) = "BH.oM.Planning.CodeAssembly";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string repository = 10 [(.bhom.property) = "Repository"];
-  repeated string references = 11 [(.bhom.property) = "References"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Planning.CodeAssembly";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string repository = 10 [(.bhom.field_info).property = "Repository"];
+  repeated string references = 11 [(.bhom.field_info).property = "References"];
 }
 
 message Commit {
-  option (.bhom.csharp_type) = "BH.oM.Planning.Commit";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string repo_name = 10 [(.bhom.property) = "RepoName"];
-  google.protobuf.Timestamp date = 11 [(.bhom.property) = "Date"];
-  string author = 12 [(.bhom.property) = "Author"];
-  string committer = 13 [(.bhom.property) = "Committer"];
-  int32 additions = 14 [(.bhom.property) = "Additions"];
-  int32 deletions = 15 [(.bhom.property) = "Deletions"];
-  int32 total_changes = 16 [(.bhom.property) = "TotalChanges"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Planning.Commit";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string repo_name = 10 [(.bhom.field_info).property = "RepoName"];
+  google.protobuf.Timestamp date = 11 [(.bhom.field_info).property = "Date"];
+  string author = 12 [(.bhom.field_info).property = "Author"];
+  string committer = 13 [(.bhom.field_info).property = "Committer"];
+  int32 additions = 14 [(.bhom.field_info).property = "Additions"];
+  int32 deletions = 15 [(.bhom.field_info).property = "Deletions"];
+  int32 total_changes = 16 [(.bhom.field_info).property = "TotalChanges"];
 }
 
 message ConstructionPhase {
-  option (.bhom.csharp_type) = "BH.oM.Planning.ConstructionPhase";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  google.protobuf.Timestamp start_time = 10 [(.bhom.property) = "StartTime"];
-  google.protobuf.Timestamp end_time = 11 [(.bhom.property) = "EndTime"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Planning.ConstructionPhase";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  google.protobuf.Timestamp start_time = 10 [(.bhom.field_info).property = "StartTime"];
+  google.protobuf.Timestamp end_time = 11 [(.bhom.field_info).property = "EndTime"];
 }
 
 message Issue {
-  option (.bhom.csharp_type) = "BH.oM.Planning.Issue";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string creator = 10 [(.bhom.property) = "Creator"];
-  repeated string assignees = 11 [(.bhom.property) = "Assignees"];
-  string title = 12 [(.bhom.property) = "Title"];
-  string repo_name = 13 [(.bhom.property) = "RepoName"];
-  int32 number = 14 [(.bhom.property) = "Number"];
-  google.protobuf.Timestamp creation_date = 15 [(.bhom.property) = "CreationDate"];
-  string milestone_name = 16 [(.bhom.property) = "MilestoneName"];
-  bool pull_requested = 17 [(.bhom.property) = "PullRequested"];
-  repeated string labels = 18 [(.bhom.property) = "Labels"];
-  string url = 19 [(.bhom.property) = "Url"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Planning.Issue";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string creator = 10 [(.bhom.field_info).property = "Creator"];
+  repeated string assignees = 11 [(.bhom.field_info).property = "Assignees"];
+  string title = 12 [(.bhom.field_info).property = "Title"];
+  string repo_name = 13 [(.bhom.field_info).property = "RepoName"];
+  int32 number = 14 [(.bhom.field_info).property = "Number"];
+  google.protobuf.Timestamp creation_date = 15 [(.bhom.field_info).property = "CreationDate"];
+  string milestone_name = 16 [(.bhom.field_info).property = "MilestoneName"];
+  bool pull_requested = 17 [(.bhom.field_info).property = "PullRequested"];
+  repeated string labels = 18 [(.bhom.field_info).property = "Labels"];
+  string url = 19 [(.bhom.field_info).property = "Url"];
 }
 
 enum ItemState {
-  option (.bhom.csharp_enum) = "BH.oM.Planning.ItemState";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Planning.ItemState";
   ITEM_STATE_OPEN = 0;
   ITEM_STATE_CLOSED = 1;
 }
 
 message Label {
-  option (.bhom.csharp_type) = "BH.oM.Planning.Label";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string colour = 10 [(.bhom.property) = "Colour"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Planning.Label";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string colour = 10 [(.bhom.field_info).property = "Colour"];
 }
 
 message Milestone {
-  option (.bhom.csharp_type) = "BH.oM.Planning.Milestone";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  optional google.protobuf.Timestamp due_on = 10 [(.bhom.property) = "DueOn"];
-  ItemState state = 11 [(.bhom.property) = "State"];
-  string description = 12 [(.bhom.property) = "Description"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Planning.Milestone";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  optional google.protobuf.Timestamp due_on = 10 [(.bhom.field_info).property = "DueOn"];
+  ItemState state = 11 [(.bhom.field_info).property = "State"];
+  string description = 12 [(.bhom.field_info).property = "Description"];
 }
 
 message PullRequest {
-  option (.bhom.csharp_type) = "BH.oM.Planning.PullRequest";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string creator = 10 [(.bhom.property) = "Creator"];
-  string title = 11 [(.bhom.property) = "Title"];
-  string body = 12 [(.bhom.property) = "Body"];
-  string html_url = 13 [(.bhom.property) = "HtmlUrl"];
-  string repo_name = 14 [(.bhom.property) = "RepoName"];
-  string branch_name = 15 [(.bhom.property) = "BranchName"];
-  int32 number = 16 [(.bhom.property) = "Number"];
-  google.protobuf.Timestamp creation_date = 17 [(.bhom.property) = "CreationDate"];
-  string milestone_name = 18 [(.bhom.property) = "MilestoneName"];
-  int32 additions = 19 [(.bhom.property) = "Additions"];
-  int32 deletions = 20 [(.bhom.property) = "Deletions"];
-  repeated string reviewers = 21 [(.bhom.property) = "Reviewers"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Planning.PullRequest";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string creator = 10 [(.bhom.field_info).property = "Creator"];
+  string title = 11 [(.bhom.field_info).property = "Title"];
+  string body = 12 [(.bhom.field_info).property = "Body"];
+  string html_url = 13 [(.bhom.field_info).property = "HtmlUrl"];
+  string repo_name = 14 [(.bhom.field_info).property = "RepoName"];
+  string branch_name = 15 [(.bhom.field_info).property = "BranchName"];
+  int32 number = 16 [(.bhom.field_info).property = "Number"];
+  google.protobuf.Timestamp creation_date = 17 [(.bhom.field_info).property = "CreationDate"];
+  string milestone_name = 18 [(.bhom.field_info).property = "MilestoneName"];
+  int32 additions = 19 [(.bhom.field_info).property = "Additions"];
+  int32 deletions = 20 [(.bhom.field_info).property = "Deletions"];
+  repeated string reviewers = 21 [(.bhom.field_info).property = "Reviewers"];
 }
 
 message Repository {
-  option (.bhom.csharp_type) = "BH.oM.Planning.Repository";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  int32 open_issues = 10 [(.bhom.property) = "OpenIssues"];
-  int32 open_pull_requests = 11 [(.bhom.property) = "OpenPullRequests"];
-  int32 closed_issues = 12 [(.bhom.property) = "ClosedIssues"];
-  int32 closed_pull_requests = 13 [(.bhom.property) = "ClosedPullRequests"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Planning.Repository";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  int32 open_issues = 10 [(.bhom.field_info).property = "OpenIssues"];
+  int32 open_pull_requests = 11 [(.bhom.field_info).property = "OpenPullRequests"];
+  int32 closed_issues = 12 [(.bhom.field_info).property = "ClosedIssues"];
+  int32 closed_pull_requests = 13 [(.bhom.field_info).property = "ClosedPullRequests"];
 }
 

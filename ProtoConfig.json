@@ -7,46 +7,15 @@
     "BHoM/BHoM"
   ],
   "RootPackage": "bhom",
-  "FileGroups": [
-    {
-      "_t": "BH.oM.Adapters.Protobuf.ProtoFileGroup",
-      "Name": "disciplines",
-      "Assemblies": [
-        "Acoustic_oM",
-        "Analytical_oM",
-        "Architecture_oM",
-        "Environment_oM",
-        "Facade_oM",
-        "Ground_oM",
-        "LifeCycleAssessment_oM",
-        "Lighting_oM",
-        "MEP_oM",
-        "Physical_oM",
-        "Security_oM",
-        "Structure_oM"
-      ],
-      "NamespaceSegments": []
-    },
-    {
-      "_t": "BH.oM.Adapters.Protobuf.ProtoFileGroup",
-      "Name": "geometry",
-      "Assemblies": [
-        "Geometry_oM",
-        "Graphics_oM"
-      ],
-      "NamespaceSegments": []
-    },
-    {
-      "_t": "BH.oM.Adapters.Protobuf.ProtoFileGroup",
-      "Name": "requests",
-      "Assemblies": [],
-      "NamespaceSegments": [
-        "Requests"
-      ]
-    }
+  "FileGroups": [],
+  "SkippedUnionTypes": [],
+  "OpenUnionTypes": [
+    "BH.oM.Base.IFragment",
+    "BH.oM.Physical.Materials.IMaterialProperties",
+    "BH.oM.Dimensional.IElementM"
   ],
-  "SkippedUnionTypes": [
-    "BH.oM.Base.IFragment"
+  "ClosedUnionTypes": [
+    "BH.oM.Geometry.IGeometry"
   ],
   "ConsumerSideUnions": true,
   "_bhomVersion": "10.0"

@@ -9,7 +9,7 @@ import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 
 enum DocumentationType {
-  option (.bhom.csharp_enum) = "BH.oM.Base.Attributes.Enums.DocumentationType";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Base.Attributes.Enums.DocumentationType";
   DOCUMENTATION_TYPE_UNDEFINED = 0;
   DOCUMENTATION_TYPE_API = 1;
   DOCUMENTATION_TYPE_DOCUMENTATION = 2;
@@ -18,38 +18,34 @@ enum DocumentationType {
 
 // Setting to determine whether an element using this enum should be displayed on a User Interface (UI).
 enum UIExposure {
-  option (.bhom.csharp_enum) = "BH.oM.Base.Attributes.Enums.UIExposure";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Base.Attributes.Enums.UIExposure";
   UI_EXPOSURE_DISPLAY = 0;
   UI_EXPOSURE_HIDDEN = 1;
 }
 
 message BHoMGroup_BHoMObject {
-  option (.bhom.csharp_type) = "BH.oM.Base.BHoMGroup`1[[BH.oM.Base.BHoMObject, BHoM, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null]]";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  repeated BHoMObject elements = 10 [(.bhom.property) = "Elements"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Base.BHoMGroup`1[[BH.oM.Base.BHoMObject, BHoM, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null]]";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  repeated BHoMObject elements = 10 [(.bhom.field_info).property = "Elements"];
 }
 
 message BHoMObject {
-  option (.bhom.csharp_type) = "BH.oM.Base.BHoMObject";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Base.BHoMObject";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
 }
 
 // Settings to determine the uniqueness of an Object, i.e. when comparing and when computing the object Hash.
 // C# abstract class: BH.oM.Base.BaseComparisonConfig
 message BaseComparisonConfig {
-  option (.bhom.csharp_type) = "BH.oM.Base.BaseComparisonConfig";
+  option (.bhom.message_info).csharp_type = "BH.oM.Base.BaseComparisonConfig";
   oneof value {
     ComparisonConfig comparison_config = 1;
   }
@@ -57,113 +53,109 @@ message BaseComparisonConfig {
 
 // Settings to determine the uniqueness of an Object, i.e. when comparing and when computing the object Hash.
 message ComparisonConfig {
-  option (.bhom.csharp_type) = "BH.oM.Base.ComparisonConfig";
+  option (.bhom.message_info).csharp_type = "BH.oM.Base.ComparisonConfig";
   // Names of properties you want to disregard in defining the uniqueness of an object. You can specify the property name or the Full Name. Supports * wildcard.
   // Examples of valid values: `BHoM_Guid`, `StartNode`, `Bar.StartNode.Position.X`, `Bar.*.Position.Y`. See the wiki for more details.
-  repeated string property_exceptions = 10 [(.bhom.property) = "PropertyExceptions"];
+  repeated string property_exceptions = 10 [(.bhom.field_info).property = "PropertyExceptions"];
   // If one or more entries are specified here, only objects/properties that match them will be considered in the hash.
   // E.g. Given input objects BH.oM.Structure.Elements.Bar, specifying `StartNode` will only check that property of the Bar.
   // Like for PropertyExceptions, you can specify the property name or the Full Name. Supports * wildcard.
   // Note that using this will incur in a general slowdown because it is computationally heavy. See the wiki for more details.
-  repeated string properties_to_consider = 11 [(.bhom.property) = "PropertiesToConsider"];
+  repeated string properties_to_consider = 11 [(.bhom.field_info).property = "PropertiesToConsider"];
   // Keys of the BHoMObjects' CustomData dictionary that should be ignored.
   // By default it includes `RenderMesh`.
   // This does not support wildcard usage. See the wiki for more details.
-  repeated string customdata_keys_exceptions = 12 [(.bhom.property) = "CustomdataKeysExceptions"];
+  repeated string customdata_keys_exceptions = 12 [(.bhom.field_info).property = "CustomdataKeysExceptions"];
   // Keys of the BHoMObjects' CustomData dictionary that should be included in the comparison.
   // Adding keys to this List will exclude any key that is not in this List.
   // I.e. for every object, if it has CustomData keys present in this List, we then exclude any other CustomData key found in it.
-  repeated string customdata_keys_to_consider = 13 [(.bhom.property) = "CustomdataKeysToConsider"];
+  repeated string customdata_keys_to_consider = 13 [(.bhom.field_info).property = "CustomdataKeysToConsider"];
   // Any corresponding type is ignored. E.g. `typeof(Guid)`.
-  repeated string type_exceptions = 14 [(.bhom.property) = "TypeExceptions"];  // C# type full name
+  repeated string type_exceptions = 14 [(.bhom.field_info).property = "TypeExceptions"];  // C# type full name
   // Any corresponding namespace is ignored. E.g. `BH.oM.Structure`. Does not support wildcard. See the wiki for more details.
-  repeated string namespace_exceptions = 15 [(.bhom.property) = "NamespaceExceptions"];
+  repeated string namespace_exceptions = 15 [(.bhom.field_info).property = "NamespaceExceptions"];
   // If any property is nested into the object over that level, it is ignored. Useful to limit the runtime.
   // Defaults to unlimited.
-  int32 max_nesting = 16 [(.bhom.property) = "MaxNesting"];
+  int32 max_nesting = 16 [(.bhom.field_info).property = "MaxNesting"];
   // Sets the maximum number of property differences to be determined before stopping. Useful to limit the runtime.
   // Defaults to unlimited.
-  int32 max_property_differences = 17 [(.bhom.property) = "MaxPropertyDifferences"];
+  int32 max_property_differences = 17 [(.bhom.field_info).property = "MaxPropertyDifferences"];
   // Numeric tolerance for property values, applied to all numerical properties. Defaults to double.MinValue: no rounding applied.
   // Applies rounding for numbers smaller than this.
   // You can override on a per-property basis by using `PropertyNumericTolerances`.
   // If conflicting values/multiple matches are found among the Configurations on numerical precision, the largest approximation among all (least precise number) is registered.
-  double numeric_tolerance = 18 [(.bhom.property) = "NumericTolerance"];
+  double numeric_tolerance = 18 [(.bhom.field_info).property = "NumericTolerance"];
   // Tolerance used for individual properties. When computing Hash or the property Diffing, if the analysed property name is found in this collection, the corresponding tolerance is applied.
   // Supports * wildcard in the property name matching. E.g. `StartNode.Point.*, 2`.
   // If a match is found, this take precedence over the global `NumericTolerance`.
   // If conflicting values/multiple matches are found among the Configurations on numerical precision, the largest approximation among all (least precise number) is registered.
-  repeated NamedNumericTolerance property_numeric_tolerances = 19 [(.bhom.property) = "PropertyNumericTolerances"];  // unique values
+  repeated NamedNumericTolerance property_numeric_tolerances = 19 [(.bhom.field_info).property = "PropertyNumericTolerances"];  // unique values
   // Number of significant figures allowed for numerical data.
   // Defaults to `int.MaxValue`: no approximation applied.
   // You can override on a per-property basis by using `PropertySignificantDigits`.
   // If conflicting values/multiple matches are found among the Configurations on numerical precision, the largest approximation among all (least precise number) is registered.
-  int32 significant_figures = 20 [(.bhom.property) = "SignificantFigures"];
+  int32 significant_figures = 20 [(.bhom.field_info).property = "SignificantFigures"];
   // Number of significant figures allowed for numerical data on a per-property base.
   // Supports * wildcard in the property name matching. E.g. `StartNode.Point.*, 2`.
   // If a match is found, this take precedence over the global `SignificantFigures`.
   // If conflicting values/multiple matches are found among the Configurations on numerical precision, the largest approximation among all (least precise number) is registered.
-  repeated NamedSignificantFigures property_significant_figures = 21 [(.bhom.property) = "PropertySignificantFigures"];  // unique values
+  repeated NamedSignificantFigures property_significant_figures = 21 [(.bhom.field_info).property = "PropertySignificantFigures"];  // unique values
   // If true, geometric types will be identified based on the GeometryHash function. This function reduces the identity of geometry down to its most basic components, and it is faster than scouring for all its properties. See its implementation in the Geometry_Engine for more details.
-  bool use_geometry_hash = 22 [(.bhom.property) = "UseGeometryHash"];
+  bool use_geometry_hash = 22 [(.bhom.field_info).property = "UseGeometryHash"];
 }
 
 // Additional functions that can be specified as delegates and that will be executed while determining the uniqueness of an object, i.e. when comparing and when computing the object Hash.
 message ComparisonFunctions {
-  option (.bhom.csharp_type) = "BH.oM.Base.ComparisonFunctions";
+  option (.bhom.message_info).csharp_type = "BH.oM.Base.ComparisonFunctions";
   // PropertyFullNameModifier is not exchanged: System.Func`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] has no protobuf equivalent.
   reserved 10;
-  option (.bhom.reserved_member) = "PropertyFullNameModifier=10";
+  option (.bhom.message_info).reserved_member = "PropertyFullNameModifier=10";
   // PropertyFullNameFilter is not exchanged: System.Func`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] has no protobuf equivalent.
   reserved 11;
-  option (.bhom.reserved_member) = "PropertyFullNameFilter=11";
+  option (.bhom.message_info).reserved_member = "PropertyFullNameFilter=11";
   // CustomDataKeyFilter is not exchanged: System.Func`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] has no protobuf equivalent.
   reserved 12;
-  option (.bhom.reserved_member) = "CustomDataKeyFilter=12";
+  option (.bhom.message_info).reserved_member = "CustomDataKeyFilter=12";
   // PropertyDisplayNameModifier is not exchanged: System.Func`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] has no protobuf equivalent.
   reserved 13;
-  option (.bhom.reserved_member) = "PropertyDisplayNameModifier=13";
+  option (.bhom.message_info).reserved_member = "PropertyDisplayNameModifier=13";
 }
 
 // Information about how an object's property should be included or not in a comparison (i.e. when computing an object's Hash or Diffing).A ComparisonInclusion object is returned by the extension method of the same name (which is invoked automatically when Hashing or Diffing).The ComparisonInclusion() method can be implemented in specific Toolkits/namespaces to customise the comparison (i.e. with Toolkit-specific information which would be otherwise unavailable to the base Hash/Diffing).See the wiki for examples of this.
 message ComparisonInclusion {
-  option (.bhom.csharp_type) = "BH.oM.Base.ComparisonInclusion";
+  option (.bhom.message_info).csharp_type = "BH.oM.Base.ComparisonInclusion";
   // Whether the current property should be included or not in the comparison (i.e. Hash or Diffing).
-  bool include = 10 [(.bhom.property) = "Include"];
+  bool include = 10 [(.bhom.field_info).property = "Include"];
   // A custom DisplayName can be set so changes detected will be displayed with this name instead of the default Property Name.
-  string display_name = 11 [(.bhom.property) = "DisplayName"];
+  string display_name = 11 [(.bhom.field_info).property = "DisplayName"];
 }
 
 // Allows the user to define their own objects with a custom set of properties.
 message CustomObject {
-  option (.bhom.csharp_type) = "BH.oM.Base.CustomObject";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Base.CustomObject";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
 }
 
 message Event {
-  option (.bhom.csharp_type) = "BH.oM.Base.Debugging.Event";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  google.protobuf.Timestamp time = 10 [(.bhom.property) = "Time"];
-  google.protobuf.Timestamp utc_time = 11 [(.bhom.property) = "UtcTime"];
-  string stack_trace = 12 [(.bhom.property) = "StackTrace"];
-  string message = 13 [(.bhom.property) = "Message"];
-  EventType type = 14 [(.bhom.property) = "Type"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Base.Debugging.Event";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  google.protobuf.Timestamp time = 10 [(.bhom.field_info).property = "Time"];
+  google.protobuf.Timestamp utc_time = 11 [(.bhom.field_info).property = "UtcTime"];
+  string stack_trace = 12 [(.bhom.field_info).property = "StackTrace"];
+  string message = 13 [(.bhom.field_info).property = "Message"];
+  EventType type = 14 [(.bhom.field_info).property = "Type"];
 }
 
 enum EventType {
-  option (.bhom.csharp_enum) = "BH.oM.Base.Debugging.EventType";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Base.Debugging.EventType";
   EVENT_TYPE_UNKNOWN = 0;
   EVENT_TYPE_ERROR = 1;
   EVENT_TYPE_WARNING = 2;
@@ -171,34 +163,32 @@ enum EventType {
 }
 
 message Log {
-  option (.bhom.csharp_type) = "BH.oM.Base.Debugging.Log";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  repeated Event all_events = 10 [(.bhom.property) = "AllEvents"];
-  repeated Event current_events = 11 [(.bhom.property) = "CurrentEvents"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Base.Debugging.Log";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  repeated Event all_events = 10 [(.bhom.field_info).property = "AllEvents"];
+  repeated Event current_events = 11 [(.bhom.field_info).property = "CurrentEvents"];
 }
 
 message FragmentSet {
-  option (.bhom.csharp_type) = "BH.oM.Base.FragmentSet";
-  google.protobuf.Any comparer = 10 [(.bhom.property) = "Comparer"];  // any IEqualityComparer`1: a message, or a google.protobuf wrapper for single values
-  int32 count = 11 [(.bhom.property) = "Count"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Base.FragmentSet";
+  google.protobuf.Any comparer = 10 [(.bhom.field_info).property = "Comparer"];  // any IEqualityComparer`1: a message, or a google.protobuf wrapper for single values
+  int32 count = 11 [(.bhom.field_info).property = "Count"];
 }
 
 // Stores the hash of the parent BHoMObject.
 message HashFragment {
-  option (.bhom.csharp_type) = "BH.oM.Base.HashFragment";
+  option (.bhom.message_info).csharp_type = "BH.oM.Base.HashFragment";
   // Hash of the parent BHoMObject.
-  string hash = 10 [(.bhom.property) = "Hash"];
+  string hash = 10 [(.bhom.field_info).property = "Hash"];
 }
 
 // C# interface: BH.oM.Base.IBHoMObject
 message IBHoMObject {
-  option (.bhom.csharp_type) = "BH.oM.Base.IBHoMObject";
+  option (.bhom.message_info).csharp_type = "BH.oM.Base.IBHoMObject";
   oneof value {
     BHoMObject bhom_object = 1;
     CustomObject custom_object = 2;
@@ -206,77 +196,73 @@ message IBHoMObject {
     Log log = 4;
     UnderlyingType underlying_type = 5;
     UsageLogEntry usage_log_entry = 6;
-    // Implementations defined in other files (499, in bhom/data.proto, bhom/deeplearning.proto, bhom/diffing.proto, bhom/disciplines.proto, bhom/geometry.proto, bhom/humans.proto, bhom/inspection.proto, bhom/planning.proto, bhom/programming.proto, bhom/spatial.proto, bhom/test.proto, bhom/verification.proto, bhom/versioning.proto)
+    // Implementations defined in other files (499, in bhom/acoustic.proto, bhom/analytical.proto, bhom/architecture.proto, bhom/data.proto, bhom/deeplearning.proto, bhom/diffing.proto, bhom/environment.proto, bhom/facade.proto, bhom/graphics.proto, bhom/ground.proto, bhom/humans.proto, bhom/inspection.proto, bhom/lifecycleassessment.proto, bhom/lighting.proto, bhom/mep.proto, bhom/physical.proto, bhom/planning.proto, bhom/programming.proto, bhom/security.proto, bhom/spatial.proto, bhom/structure.proto, bhom/test.proto, bhom/verification.proto, bhom/versioning.proto)
     google.protobuf.Any other = 50000;
   }
 }
 
 // Tolerance used for specific numerical objects or properties with a specific name.When computing Hash or the property Diffing, if the analysed object or property name is found in this collection, the corresponding tolerance is considered.
 message NamedNumericTolerance {
-  option (.bhom.csharp_type) = "BH.oM.Base.NamedNumericTolerance";
+  option (.bhom.message_info).csharp_type = "BH.oM.Base.NamedNumericTolerance";
   // When computing Hash or the property Diffing, if the analysed object name or property name is found in this collection, the corresponding tolerance is applied.
   // Supports * wildcard in the property name matching. Examples:
   // - `BH.oM.Geometry.Vector`: applies the corresponding tolerance to all numerical properties of Vectors, i.e. X, Y, Z;
   // - `BH.oM.Structure.Elements.*.Position`: applies the corresponding tolerance to all numerical properties of properties named `Position` under any Structural Element,
   // e.g. Bar.Position.X, Bar.Position.Y, Bar.Position.Z. and at the same time also Node.Position.X, Node.Position.Y, Node.Position.Z.
-  string name = 2 [(.bhom.property) = "Name"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
   // Numeric tolerance. Applies rounding for numbers smaller than this. Defaults to 1E-12.
-  double tolerance = 10 [(.bhom.property) = "Tolerance"];
+  double tolerance = 10 [(.bhom.field_info).property = "Tolerance"];
 }
 
 // Significant digits used for specific numerical objects or properties with a specific name.When computing Hash or the property Diffing, if the analysed object or property name is found in this collection, the corresponding SignificantFigures approximation is applied.
 message NamedSignificantFigures {
-  option (.bhom.csharp_type) = "BH.oM.Base.NamedSignificantFigures";
+  option (.bhom.message_info).csharp_type = "BH.oM.Base.NamedSignificantFigures";
   // When computing Hash or the property Diffing, if the analysed object name or property name is found in this collection, the corresponding SignificantFigures approximation is applied.
   // Supports * wildcard in the property name matching. Examples:
   // - `BH.oM.Geometry.Vector`: applies the corresponding tolerance to all numerical properties of Vectors, i.e. X, Y, Z;
   // - `BH.oM.Structure.Elements.*.Position`: applies the corresponding tolerance to all numerical properties of properties named `Position` under any Structural Element,
   // e.g. Bar.Position.X, Bar.Position.Y, Bar.Position.Z. and at the same time also Node.Position.X, Node.Position.Y, Node.Position.Z.
-  string name = 2 [(.bhom.property) = "Name"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
   // Significant figures to be taken for this property.
-  int32 significant_figures = 10 [(.bhom.property) = "SignificantFigures"];
+  int32 significant_figures = 10 [(.bhom.field_info).property = "SignificantFigures"];
 }
 
 // Metadata related to a C# property
 message Property {
-  option (.bhom.csharp_type) = "BH.oM.Base.Reflection.Property";
-  string name = 2 [(.bhom.property) = "Name"];
-  string type = 10 [(.bhom.property) = "Type"];  // C# type full name
-  string description = 11 [(.bhom.property) = "Description"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Base.Reflection.Property";
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  string type = 10 [(.bhom.field_info).property = "Type"];  // C# type full name
+  string description = 11 [(.bhom.field_info).property = "Description"];
 }
 
 message UnderlyingType {
-  option (.bhom.csharp_type) = "BH.oM.Base.Reflection.UnderlyingType";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string type = 10 [(.bhom.property) = "Type"];  // C# type full name
-  int32 depth = 11 [(.bhom.property) = "Depth"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Base.Reflection.UnderlyingType";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string type = 10 [(.bhom.field_info).property = "Type"];  // C# type full name
+  int32 depth = 11 [(.bhom.field_info).property = "Depth"];
 }
 
 message UsageLogEntry {
-  option (.bhom.csharp_type) = "BH.oM.Base.UsageLogEntry";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  google.protobuf.Timestamp time = 10 [(.bhom.property) = "Time"];
-  string ui = 11 [(.bhom.property) = "UI"];
-  string ui_version = 12 [(.bhom.property) = "UiVersion"];
-  string bhom_version = 13 [(.bhom.property) = "BHoMVersion"];
-  string component_id = 14 [(.bhom.property) = "ComponentId"];
-  string caller_name = 15 [(.bhom.property) = "CallerName"];
-  google.protobuf.Any selected_item = 16 [(.bhom.property) = "SelectedItem"];
-  string file_id = 17 [(.bhom.property) = "FileId"];
-  string file_name = 18 [(.bhom.property) = "FileName"];
-  string project_id = 19 [(.bhom.property) = "ProjectID"];
-  repeated Event errors = 20 [(.bhom.property) = "Errors"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Base.UsageLogEntry";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  google.protobuf.Timestamp time = 10 [(.bhom.field_info).property = "Time"];
+  string ui = 11 [(.bhom.field_info).property = "UI"];
+  string ui_version = 12 [(.bhom.field_info).property = "UiVersion"];
+  string bhom_version = 13 [(.bhom.field_info).property = "BHoMVersion"];
+  string component_id = 14 [(.bhom.field_info).property = "ComponentId"];
+  string caller_name = 15 [(.bhom.field_info).property = "CallerName"];
+  google.protobuf.Any selected_item = 16 [(.bhom.field_info).property = "SelectedItem"];
+  string file_id = 17 [(.bhom.field_info).property = "FileId"];
+  string file_name = 18 [(.bhom.field_info).property = "FileName"];
+  string project_id = 19 [(.bhom.field_info).property = "ProjectID"];
+  repeated Event errors = 20 [(.bhom.field_info).property = "Errors"];
 }
 

@@ -10,44 +10,42 @@ import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 
 message DiscretePoint {
-  option (.bhom.csharp_type) = "BH.oM.Data.Collections.DiscretePoint";
-  int32 x = 10 [(.bhom.property) = "X"];
-  int32 y = 11 [(.bhom.property) = "Y"];
-  int32 z = 12 [(.bhom.property) = "Z"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Data.Collections.DiscretePoint";
+  int32 x = 10 [(.bhom.field_info).property = "X"];
+  int32 y = 11 [(.bhom.field_info).property = "Y"];
+  int32 z = 12 [(.bhom.field_info).property = "Z"];
 }
 
 // A numerical domain defined by a minimum and maximum value.
 message Domain {
-  option (.bhom.csharp_type) = "BH.oM.Data.Collections.Domain";
+  option (.bhom.message_info).csharp_type = "BH.oM.Data.Collections.Domain";
   // The lowest bound of the domain.
-  double min = 10 [(.bhom.property) = "Min"];
+  double min = 10 [(.bhom.field_info).property = "Min"];
   // The highest bound of the domain.
-  double max = 11 [(.bhom.property) = "Max"];
+  double max = 11 [(.bhom.field_info).property = "Max"];
 }
 
 // A multidimensional domain, defined by the minimum and maximum values in each dimension, enclosing a hypercube.
 message DomainBox {
-  option (.bhom.csharp_type) = "BH.oM.Data.Collections.DomainBox";
+  option (.bhom.message_info).csharp_type = "BH.oM.Data.Collections.DomainBox";
   // Array containing the domain for each dimension.
-  repeated Domain domains = 10 [(.bhom.property) = "Domains"];
+  repeated Domain domains = 10 [(.bhom.field_info).property = "Domains"];
 }
 
 message Table {
-  option (.bhom.csharp_type) = "BH.oM.Data.Collections.Table";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Data.Collections.Table";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
   // Data is not exchanged: System.Data.DataTable has no protobuf equivalent.
   reserved 10;
-  option (.bhom.reserved_member) = "Data=10";
+  option (.bhom.message_info).reserved_member = "Data=10";
 }
 
 enum GraphLinkDirection {
-  option (.bhom.csharp_enum) = "BH.oM.Data.GraphLinkDirection";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Data.GraphLinkDirection";
   GRAPH_LINK_DIRECTION_INCOMING = 0;
   GRAPH_LINK_DIRECTION_OUTGOING = 1;
   GRAPH_LINK_DIRECTION_BOTH = 2;
@@ -55,7 +53,7 @@ enum GraphLinkDirection {
 
 // Level of confidence for the serialized DataSet, outlining both the reliability of the source and the fidelity of the dataset to that source.
 enum Confidence {
-  option (.bhom.csharp_enum) = "BH.oM.Data.Library.Confidence";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Data.Library.Confidence";
   CONFIDENCE_UNDEFINED = 0;
   CONFIDENCE_NONE = 1;
   CONFIDENCE_LOW = 2;
@@ -64,58 +62,113 @@ enum Confidence {
 }
 
 message Dataset {
-  option (.bhom.csharp_type) = "BH.oM.Data.Library.Dataset";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  Source source_information = 10 [(.bhom.property) = "SourceInformation"];
-  google.protobuf.Timestamp time_of_creation = 11 [(.bhom.property) = "TimeOfCreation"];
-  repeated .bhom.base.IBHoMObject data = 12 [(.bhom.property) = "Data"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Data.Library.Dataset";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  Source source_information = 10 [(.bhom.field_info).property = "SourceInformation"];
+  google.protobuf.Timestamp time_of_creation = 11 [(.bhom.field_info).property = "TimeOfCreation"];
+  repeated .bhom.base.IBHoMObject data = 12 [(.bhom.field_info).property = "Data"];
 }
 
 // Settings object to be used by the Library_Engine for controling Dataset extraction.
 message LibrarySettings {
-  option (.bhom.csharp_type) = "BH.oM.Data.Library.LibrarySettings";
+  option (.bhom.message_info).csharp_type = "BH.oM.Data.Library.LibrarySettings";
   // List of folder paths to user-specified folder paths to be used by the Library_Engine when extracting Datasets.
-  repeated string user_library_paths = 10 [(.bhom.property) = "UserLibraryPaths"];  // unique values
+  repeated string user_library_paths = 10 [(.bhom.field_info).property = "UserLibraryPaths"];  // unique values
 }
 
 message Source {
-  option (.bhom.csharp_type) = "BH.oM.Data.Library.Source";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Data.Library.Source";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
   // Hyperlink or file path to where the source information used can be found.
-  string source_link = 10 [(.bhom.property) = "SourceLink"];
+  string source_link = 10 [(.bhom.field_info).property = "SourceLink"];
   // Title of the source. For example Book title, Paper title, Code title etc.
-  string title = 11 [(.bhom.property) = "Title"];
+  string title = 11 [(.bhom.field_info).property = "Title"];
   // Author of the source.
-  string author = 12 [(.bhom.property) = "Author"];
+  string author = 12 [(.bhom.field_info).property = "Author"];
   // Table, figure or code reference etc.
-  string item_reference = 13 [(.bhom.property) = "ItemReference"];
+  string item_reference = 13 [(.bhom.field_info).property = "ItemReference"];
   // Version or edition of the source.
-  string version = 14 [(.bhom.property) = "Version"];
+  string version = 14 [(.bhom.field_info).property = "Version"];
   // Publisher of the source.
-  string publisher = 15 [(.bhom.property) = "Publisher"];
+  string publisher = 15 [(.bhom.field_info).property = "Publisher"];
   // Schema of the source.
-  string schema = 16 [(.bhom.property) = "Schema"];
+  string schema = 16 [(.bhom.field_info).property = "Schema"];
   // Language of the source.
-  string language = 17 [(.bhom.property) = "Language"];
+  string language = 17 [(.bhom.field_info).property = "Language"];
   // Country/Region of the source.
-  string location = 18 [(.bhom.property) = "Location"];
+  string location = 18 [(.bhom.field_info).property = "Location"];
   // Any applicable copyright information associated with the source.
-  string copyright = 19 [(.bhom.property) = "Copyright"];
+  string copyright = 19 [(.bhom.field_info).property = "Copyright"];
   // Contributors to the source.
-  string contributors = 20 [(.bhom.property) = "Contributors"];
+  string contributors = 20 [(.bhom.field_info).property = "Contributors"];
   // Level of confidence of the data related to the source.
-  Confidence confidence = 21 [(.bhom.property) = "Confidence"];
+  Confidence confidence = 21 [(.bhom.field_info).property = "Confidence"];
+}
+
+message BatchRequest {
+  option (.bhom.message_info).csharp_type = "BH.oM.Data.Requests.BatchRequest";
+  repeated IRequest requests = 10 [(.bhom.field_info).property = "Requests"];
+}
+
+message CustomRequest {
+  option (.bhom.message_info).csharp_type = "BH.oM.Data.Requests.CustomRequest";
+  string body = 10 [(.bhom.field_info).property = "Body"];
+}
+
+message FilterRequest {
+  option (.bhom.message_info).csharp_type = "BH.oM.Data.Requests.FilterRequest";
+  string tag = 10 [(.bhom.field_info).property = "Tag"];
+  string type = 11 [(.bhom.field_info).property = "Type"];  // C# type full name
+  map<string, google.protobuf.Any> equalities = 12 [(.bhom.field_info).property = "Equalities"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+}
+
+// C# interface: BH.oM.Data.Requests.IRequest
+message IRequest {
+  option (.bhom.message_info).csharp_type = "BH.oM.Data.Requests.IRequest";
+  oneof value {
+    BatchRequest batch_request = 1;
+    CustomRequest custom_request = 2;
+    FilterRequest filter_request = 3;
+    LogicalAndRequest logical_and_request = 4;
+    LogicalNotRequest logical_not_request = 5;
+    LogicalOrRequest logical_or_request = 6;
+    SelectionRequest selection_request = 7;
+    // Implementations defined in other files (5, in bhom/structure.proto)
+    google.protobuf.Any other = 50000;
+  }
+}
+
+// IRequest that combines a group of requests into a logical AND statement.
+message LogicalAndRequest {
+  option (.bhom.message_info).csharp_type = "BH.oM.Data.Requests.LogicalAndRequest";
+  // IRequests to be combined into a logical AND statement.
+  repeated IRequest requests = 10 [(.bhom.field_info).property = "Requests"];
+}
+
+// IRequest that inverts the query specified by the input request, i.e. any object that fits this request will be excluded from a pull.
+message LogicalNotRequest {
+  option (.bhom.message_info).csharp_type = "BH.oM.Data.Requests.LogicalNotRequest";
+  // Request to be inverted, i.e. defining what should be excluded.
+  IRequest request = 10 [(.bhom.field_info).property = "Request"];
+}
+
+// IRequest that combines a group of requests into a logical OR statement.
+message LogicalOrRequest {
+  option (.bhom.message_info).csharp_type = "BH.oM.Data.Requests.LogicalOrRequest";
+  // IRequests to be combined into a logical OR statement.
+  repeated IRequest requests = 10 [(.bhom.field_info).property = "Requests"];
+}
+
+// IRequest that filters all elements currently selected in the software.
+message SelectionRequest {
+  option (.bhom.message_info).csharp_type = "BH.oM.Data.Requests.SelectionRequest";
 }
 

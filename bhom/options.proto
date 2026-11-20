@@ -6,19 +6,38 @@ package bhom;
 
 import "google/protobuf/descriptor.proto";
 
-extend google.protobuf.MessageOptions {
+// Options on messages, e.g. option (.bhom.message_info).csharp_type = "BH.oM.Structure.Elements.Bar";
+message MessageInfo {
   // Full name of the C# type the message represents. For a union, the interface or abstract class.
-  string csharp_type = 50001;
+  string csharp_type = 1;
   // Members whose field numbers are reserved, as <property or type name>=<number>, so the numbers are never reused.
-  repeated string reserved_member = 50002;
+  repeated string reserved_member = 2;
+}
+
+// Options on fields, e.g. [(.bhom.field_info).property = "Start"].
+message FieldInfo {
+  // Name of the C# property the field represents.
+  string property = 1;
+  // For google.protobuf.Any fields: full name of the C# interface or abstract class the values implement.
+  // Values of other types are ignored by the BHoM reader.
+  string any_of = 2;
+}
+
+// Options on enums, e.g. option (.bhom.enum_info).csharp_enum = "BH.oM.Structure.Elements.BarFEAType";
+message EnumInfo {
+  // Full name of the C# enum the enum represents.
+  string csharp_enum = 1;
+}
+
+// One number for each kind of options, so new options never need a new number.
+extend google.protobuf.MessageOptions {
+  MessageInfo message_info = 50000;
 }
 
 extend google.protobuf.FieldOptions {
-  // Name of the C# property the field represents.
-  string property = 50001;
+  FieldInfo field_info = 50000;
 }
 
 extend google.protobuf.EnumOptions {
-  // Full name of the C# enum the enum represents.
-  string csharp_enum = 50001;
+  EnumInfo enum_info = 50000;
 }

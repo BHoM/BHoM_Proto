@@ -6,138 +6,9 @@ package bhom.classification;
 
 import "bhom/options.proto";
 
-// A building element category from the RICS Whole Life Carbon Assessment standard, version 2 (2023), which breaks a building down into the elements that carbon is reported against. The categories are hierarchical: each member carries its code (for example 2.1.2) and the reporting stage it belongs to (1 concept, 2 planning, 3 post-completion, or 0 for a grouping that is not itself selectable) as attributes, and a detailed category rolls up into the coarser ones whose code it starts with. Members are named after their code, with the dots replaced by underscores. Source: the RICS Whole Life Carbon Assessment standard, published by RICS at https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/construction-standards/whole-life-carbon-assessment. Its supporting building element categories spreadsheet holds the scope notes for each category.
-enum RICSCategory {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Element.RICSCategory";
-  RICS_CATEGORY_UNDEFINED = 0;
-  RICS_CATEGORY_0_1 = 1;
-  RICS_CATEGORY_0_1_1 = 2;
-  RICS_CATEGORY_0_1_1_1 = 3;
-  RICS_CATEGORY_0_1_1_2 = 4;
-  RICS_CATEGORY_0_1_2 = 5;
-  RICS_CATEGORY_0_1_2_1 = 6;
-  RICS_CATEGORY_0_1_2_2 = 7;
-  RICS_CATEGORY_0_1_2_3 = 8;
-  RICS_CATEGORY_0_1_2_4 = 9;
-  RICS_CATEGORY_0_1_2_5 = 10;
-  RICS_CATEGORY_0_1_2_6 = 11;
-  RICS_CATEGORY_1 = 12;
-  RICS_CATEGORY_1_1 = 13;
-  RICS_CATEGORY_1_2 = 14;
-  RICS_CATEGORY_1_2_1 = 15;
-  RICS_CATEGORY_1_2_2 = 16;
-  RICS_CATEGORY_1_2_3 = 17;
-  RICS_CATEGORY_2 = 18;
-  RICS_CATEGORY_2_1 = 19;
-  RICS_CATEGORY_2_1_1 = 20;
-  RICS_CATEGORY_2_1_2 = 21;
-  RICS_CATEGORY_2_2 = 22;
-  RICS_CATEGORY_2_2_1 = 23;
-  RICS_CATEGORY_2_2_2 = 24;
-  RICS_CATEGORY_2_3 = 25;
-  RICS_CATEGORY_2_4 = 26;
-  RICS_CATEGORY_2_4_1 = 27;
-  RICS_CATEGORY_2_4_2 = 28;
-  RICS_CATEGORY_2_4_3 = 29;
-  RICS_CATEGORY_2_5 = 30;
-  RICS_CATEGORY_2_5_1 = 31;
-  RICS_CATEGORY_2_5_2 = 32;
-  RICS_CATEGORY_2_5_3 = 33;
-  RICS_CATEGORY_2_5_4 = 34;
-  RICS_CATEGORY_2_6 = 35;
-  RICS_CATEGORY_2_6_1 = 36;
-  RICS_CATEGORY_2_6_2 = 37;
-  RICS_CATEGORY_2_6_3 = 38;
-  RICS_CATEGORY_2_7 = 39;
-  RICS_CATEGORY_2_7_1 = 40;
-  RICS_CATEGORY_2_7_2 = 41;
-  RICS_CATEGORY_2_8 = 42;
-  RICS_CATEGORY_3 = 43;
-  RICS_CATEGORY_3_1 = 44;
-  RICS_CATEGORY_3_2 = 45;
-  RICS_CATEGORY_3_2_1 = 46;
-  RICS_CATEGORY_3_2_2 = 47;
-  RICS_CATEGORY_3_2_3 = 48;
-  RICS_CATEGORY_3_3 = 49;
-  RICS_CATEGORY_4 = 50;
-  RICS_CATEGORY_4_1 = 51;
-  RICS_CATEGORY_4_2 = 52;
-  RICS_CATEGORY_4_3 = 53;
-  RICS_CATEGORY_4_4 = 54;
-  RICS_CATEGORY_4_5 = 55;
-  RICS_CATEGORY_4_6 = 56;
-  RICS_CATEGORY_5 = 57;
-  RICS_CATEGORY_5_1 = 58;
-  RICS_CATEGORY_5_1_1 = 59;
-  RICS_CATEGORY_5_1_2 = 60;
-  RICS_CATEGORY_5_1_2_1 = 61;
-  RICS_CATEGORY_5_1_2_2 = 62;
-  RICS_CATEGORY_5_1_3 = 63;
-  RICS_CATEGORY_5_1_3_1 = 64;
-  RICS_CATEGORY_5_1_3_2 = 65;
-  RICS_CATEGORY_5_2 = 66;
-  RICS_CATEGORY_5_2_1 = 67;
-  RICS_CATEGORY_5_2_1_1 = 68;
-  RICS_CATEGORY_5_2_1_2 = 69;
-  RICS_CATEGORY_5_2_1_3 = 70;
-  RICS_CATEGORY_5_2_2 = 71;
-  RICS_CATEGORY_5_2_2_1 = 72;
-  RICS_CATEGORY_5_2_2_2 = 73;
-  RICS_CATEGORY_5_2_3 = 74;
-  RICS_CATEGORY_5_2_4 = 75;
-  RICS_CATEGORY_5_2_4_1 = 76;
-  RICS_CATEGORY_5_2_4_2 = 77;
-  RICS_CATEGORY_5_2_4_3 = 78;
-  RICS_CATEGORY_5_3 = 79;
-  RICS_CATEGORY_5_3_1 = 80;
-  RICS_CATEGORY_5_3_1_1 = 81;
-  RICS_CATEGORY_5_3_1_2 = 82;
-  RICS_CATEGORY_5_3_1_3 = 83;
-  RICS_CATEGORY_5_3_1_4 = 84;
-  RICS_CATEGORY_5_3_2 = 85;
-  RICS_CATEGORY_5_3_2_1 = 86;
-  RICS_CATEGORY_5_3_2_2 = 87;
-  RICS_CATEGORY_5_3_2_3 = 88;
-  RICS_CATEGORY_5_3_2_4 = 89;
-  RICS_CATEGORY_5_3_2_5 = 90;
-  RICS_CATEGORY_5_3_2_6 = 91;
-  RICS_CATEGORY_5_4 = 92;
-  RICS_CATEGORY_5_4_1 = 93;
-  RICS_CATEGORY_5_4_1_1 = 94;
-  RICS_CATEGORY_5_4_1_2 = 95;
-  RICS_CATEGORY_5_5 = 96;
-  RICS_CATEGORY_5_5_1 = 97;
-  RICS_CATEGORY_5_5_1_1 = 98;
-  RICS_CATEGORY_5_5_1_2 = 99;
-  RICS_CATEGORY_5_5_1_3 = 100;
-  RICS_CATEGORY_5_5_2 = 101;
-  RICS_CATEGORY_5_5_3 = 102;
-  RICS_CATEGORY_5_5_3_2 = 103;
-  RICS_CATEGORY_5_5_3_3 = 104;
-  RICS_CATEGORY_5_5_4 = 105;
-  RICS_CATEGORY_5_5_5 = 106;
-  RICS_CATEGORY_5_5_6 = 107;
-  RICS_CATEGORY_6 = 108;
-  RICS_CATEGORY_7 = 109;
-  RICS_CATEGORY_7_1 = 110;
-  RICS_CATEGORY_7_2 = 111;
-  RICS_CATEGORY_7_3 = 112;
-  RICS_CATEGORY_8 = 113;
-  RICS_CATEGORY_8_1 = 114;
-  RICS_CATEGORY_8_1_1 = 115;
-  RICS_CATEGORY_8_1_2 = 116;
-  RICS_CATEGORY_8_1_3 = 117;
-  RICS_CATEGORY_8_2 = 118;
-  RICS_CATEGORY_8_3 = 119;
-  RICS_CATEGORY_8_3_1 = 120;
-  RICS_CATEGORY_8_3_2 = 121;
-  RICS_CATEGORY_8_3_3 = 122;
-  RICS_CATEGORY_9 = 123;
-}
-
 // The part of a building that an energy study covers.
 enum EnergyScope {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Environment.EnergyScope";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Environment.EnergyScope";
   ENERGY_SCOPE_UNDEFINED = 0;
   ENERGY_SCOPE_COMMON_AREA = 1;
   ENERGY_SCOPE_PUBLIC_REALM = 2;
@@ -148,7 +19,7 @@ enum EnergyScope {
 
 // The method or standard an energy simulation follows (e.g. ASHRAE 90.1, Part L, TM54).
 enum SimulationMethod {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Environment.SimulationMethod";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Environment.SimulationMethod";
   SIMULATION_METHOD_UNDEFINED = 0;
   SIMULATION_METHOD_ASHRAE90_1DEFAULT = 1;
   SIMULATION_METHOD_ASHRAE90_1TAILORED = 2;
@@ -165,7 +36,7 @@ enum SimulationMethod {
 
 // The purpose of an energy simulation: compliance, prediction or calibration.
 enum SimulationType {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Environment.SimulationType";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Environment.SimulationType";
   SIMULATION_TYPE_UNDEFINED = 0;
   SIMULATION_TYPE_COMPLIANCE = 1;
   SIMULATION_TYPE_PREDICTION = 2;
@@ -174,7 +45,7 @@ enum SimulationType {
 
 // The principal material of a building facade.
 enum FacadeMaterial {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Facade.FacadeMaterial";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Facade.FacadeMaterial";
   FACADE_MATERIAL_UNDEFINED = 0;
   FACADE_MATERIAL_ALUMINIUM = 1;
   FACADE_MATERIAL_BRICK = 2;
@@ -196,7 +67,7 @@ enum FacadeMaterial {
 
 // The principal construction system of a building facade.
 enum FacadeSystem {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Facade.FacadeSystem";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Facade.FacadeSystem";
   FACADE_SYSTEM_UNDEFINED = 0;
   FACADE_SYSTEM_BESPOKE = 1;
   FACADE_SYSTEM_CAVITY_WALL = 2;
@@ -213,7 +84,7 @@ enum FacadeSystem {
 
 // The type of glazing of a building facade, by number of glazing layers.
 enum GlazingType {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Facade.GlazingType";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Facade.GlazingType";
   GLAZING_TYPE_UNDEFINED = 0;
   GLAZING_TYPE_SINGLE_GLAZING = 1;
   GLAZING_TYPE_DOUBLE_GLAZING_UNIT = 2;
@@ -223,7 +94,7 @@ enum GlazingType {
 
 // The insulation material used in the vertical elements (walls) of a building facade.
 enum VerticalInsulationMaterial {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Facade.VerticalInsulationMaterial";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Facade.VerticalInsulationMaterial";
   VERTICAL_INSULATION_MATERIAL_UNDEFINED = 0;
   VERTICAL_INSULATION_MATERIAL_CORK_FIBRES = 1;
   VERTICAL_INSULATION_MATERIAL_EPS_EXPANDED_POLYSTYRENE = 2;
@@ -239,7 +110,7 @@ enum VerticalInsulationMaterial {
 
 // The impact assessment method of a life cycle assessment, and the region it applies to (e.g. CML under EN 15804+A1, PEF under EN 15804+A2, TRACI).
 enum AssessmentCategory {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.LifeCycleAssessment.AssessmentCategory";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.LifeCycleAssessment.AssessmentCategory";
   ASSESSMENT_CATEGORY_UNDEFINED = 0;
   ASSESSMENT_CATEGORY_CML = 1;
   ASSESSMENT_CATEGORY_PEF = 2;
@@ -249,7 +120,7 @@ enum AssessmentCategory {
 
 // The principal cooling plant of a building's HVAC system.
 enum HVACCooling {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.MEP.HVACCooling";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.MEP.HVACCooling";
   HVAC_COOLING_UNDEFINED = 0;
   HVAC_COOLING_WATER_COOLED_CHILLER = 1;
   HVAC_COOLING_AIR_COOLED_CHILLER = 2;
@@ -264,7 +135,7 @@ enum HVACCooling {
 
 // The principal terminal or distribution equipment of a building's HVAC system.
 enum HVACEquipment {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.MEP.HVACEquipment";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.MEP.HVACEquipment";
   HVAC_EQUIPMENT_UNDEFINED = 0;
   HVAC_EQUIPMENT_AIR_TO_AIR_HEAT_PUMP = 1;
   HVAC_EQUIPMENT_WATER_TO_AIR_HEAT_PUMP = 2;
@@ -280,7 +151,7 @@ enum HVACEquipment {
 
 // The principal heating plant of a building's HVAC system.
 enum HVACHeating {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.MEP.HVACHeating";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.MEP.HVACHeating";
   HVAC_HEATING_UNDEFINED = 0;
   HVAC_HEATING_HEATING_HOT_WATER_BOILER = 1;
   HVAC_HEATING_DISTRICT_HEATING = 2;
@@ -293,7 +164,7 @@ enum HVACHeating {
 
 // The nature of the construction work on a building: new build, existing building or refurbishment.
 enum ConstructionType {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Project.ConstructionType";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Project.ConstructionType";
   CONSTRUCTION_TYPE_UNDEFINED = 0;
   CONSTRUCTION_TYPE_EXISTING_BUILDING = 1;
   CONSTRUCTION_TYPE_NEW_BUILDING = 2;
@@ -305,7 +176,7 @@ enum ConstructionType {
 
 // A country or territory, named in the ISO 3166 style long form (e.g. United_Kingdom_of_Great_Britain_and_Northern_Ireland).
 enum CountryRegion {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Project.CountryRegion";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Project.CountryRegion";
   COUNTRY_REGION_UNDEFINED = 0;
   COUNTRY_REGION_AFGHANISTAN = 1;
   COUNTRY_REGION_ALAND_ISLANDS = 2;
@@ -560,7 +431,7 @@ enum CountryRegion {
 
 // A discipline of project work: facade, interior, MEP or structure.
 enum Discipline {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Project.Discipline";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Project.Discipline";
   DISCIPLINE_UNDEFINED = 0;
   DISCIPLINE_FACADE = 1;
   DISCIPLINE_INTERIOR = 2;
@@ -571,7 +442,7 @@ enum Discipline {
 
 // The stage of a project, using the RIBA Plan of Work 2020 stages 0-7. The stages are UK-centric; use the closest equivalent where another stage model is in use.
 enum ProjectStage {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Project.ProjectStage";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Project.ProjectStage";
   PROJECT_STAGE_UNDEFINED = 0;
   PROJECT_STAGE_STRATEGIC_DEFINITION = 1;
   PROJECT_STAGE_PREPARATION_AND_BRIEF = 2;
@@ -585,7 +456,7 @@ enum ProjectStage {
 
 // The activity status of a project: active, dormant or inactive.
 enum ProjectStatus {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Project.ProjectStatus";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Project.ProjectStatus";
   PROJECT_STATUS_UNDEFINED = 0;
   PROJECT_STATUS_ACTIVE = 1;
   PROJECT_STATUS_DORMANT = 2;
@@ -594,7 +465,7 @@ enum ProjectStatus {
 
 // The scope of a study of a building: which part of it, or which alternatives, the study covers. It is not specific to any kind of assessment.
 enum StudyType {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Project.StudyType";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Project.StudyType";
   STUDY_TYPE_UNDEFINED = 0;
   STUDY_TYPE_BAY_STUDY = 1;
   STUDY_TYPE_CANOPY_OR_ROOF = 2;
@@ -606,7 +477,7 @@ enum StudyType {
 
 // The construction of the typical floor slabs, classified by material and construction method. Slabs generally rest on the VerticalStructure; the beams and framing that support them are covered by VerticalStructure.
 enum FloorType {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Structure.FloorType";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Structure.FloorType";
   FLOOR_TYPE_UNDEFINED = 0;
   FLOOR_TYPE_COMPOSITE_METAL_DECK = 1;
   FLOOR_TYPE_STEEL_LIGHT_GAUGE_STEEL = 2;
@@ -622,7 +493,7 @@ enum FloorType {
 
 // The type of foundation that transfers the building's loads to the ground, classified by material and construction method (e.g. pads, piles, rafts).
 enum FoundationType {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Structure.FoundationType";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Structure.FoundationType";
   FOUNDATION_TYPE_UNDEFINED = 0;
   FOUNDATION_TYPE_CONCRETE_MASS_PADS = 1;
   FOUNDATION_TYPE_CONCRETE_REINFORCED_PADS = 2;
@@ -640,7 +511,7 @@ enum FoundationType {
 
 // Whether the ground floor slab bears directly on the ground or is suspended above it.
 enum GroundFloorType {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Structure.GroundFloorType";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Structure.GroundFloorType";
   GROUND_FLOOR_TYPE_UNDEFINED = 0;
   GROUND_FLOOR_TYPE_GROUND_BEARING = 1;
   GROUND_FLOOR_TYPE_SUSPENDED = 2;
@@ -650,7 +521,7 @@ enum GroundFloorType {
 
 // A coarse band for the seismic hazard at the building's site, from low to high, with poor soil conditions included in the highest band. It is not tied to a particular design code.
 enum SeismicDesignCategory {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Structure.SeismicDesignCategory";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Structure.SeismicDesignCategory";
   SEISMIC_DESIGN_CATEGORY_UNDEFINED = 0;
   SEISMIC_DESIGN_CATEGORY_LOW_TO_NO_SEISMIC = 1;
   SEISMIC_DESIGN_CATEGORY_MEDIUM_SEISMIC = 2;
@@ -661,7 +532,7 @@ enum SeismicDesignCategory {
 
 // The principal structural system that resists lateral loads such as wind and seismic action, classified by material and system type (e.g. shear walls, moment frames, braced frames). Only the principal system is recorded; elements that mainly carry vertical load are classified under VerticalStructure, even if they contribute some lateral resistance.
 enum StabilitySystem {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Structure.StabilitySystem";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Structure.StabilitySystem";
   STABILITY_SYSTEM_UNDEFINED = 0;
   STABILITY_SYSTEM_CONCRETE_SHEAR_WALLS = 1;
   STABILITY_SYSTEM_CONCRETE_MOMENT_FRAMES = 2;
@@ -674,7 +545,7 @@ enum StabilitySystem {
 
 // The principal structural system that carries vertical loads down to the foundations: primary and secondary framing, columns and vertically load-bearing walls, classified by material and construction method. Only the principal system is recorded; a wall or frame that also resists lateral loads as part of the stability system is classified here only if it is the main carrier of vertical load. Slabs are not included; they are covered by FloorType.
 enum VerticalStructure {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Structure.VerticalStructure";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Structure.VerticalStructure";
   VERTICAL_STRUCTURE_UNDEFINED = 0;
   VERTICAL_STRUCTURE_STEEL_HOT_ROLLED_STEEL = 1;
   VERTICAL_STRUCTURE_STEEL_LIGHT_GAUGE_STEEL = 2;
@@ -692,7 +563,7 @@ enum VerticalStructure {
 
 // The design wind speed at the building's site, banded in m/s from very low (under 20 m/s) to very high (50 m/s and above).
 enum WindSpeed {
-  option (.bhom.csharp_enum) = "BH.oM.Classification.Structure.WindSpeed";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Classification.Structure.WindSpeed";
   WIND_SPEED_UNDEFINED = 0;
   WIND_SPEED_V_LOW_LESS_THAN20MS = 1;
   WIND_SPEED_LOW_20TO30MS = 2;

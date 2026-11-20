@@ -9,149 +9,133 @@ import "google/protobuf/any.proto";
 
 // Represents a group of syntax nodes covered by a common description. This is equivalent to a block of code inside a method.
 message BlockNode {
-  option (.bhom.csharp_type) = "BH.oM.Programming.BlockNode";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  repeated INode internal_nodes = 10 [(.bhom.property) = "InternalNodes"];
-  string description = 11 [(.bhom.property) = "Description"];
-  repeated DataParam outputs = 12 [(.bhom.property) = "Outputs"];
-  repeated ReceiverParam inputs = 13 [(.bhom.property) = "Inputs"];
-  bool is_inline = 14 [(.bhom.property) = "IsInline"];
-  bool is_declaration = 15 [(.bhom.property) = "IsDeclaration"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.BlockNode";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  repeated INode internal_nodes = 10 [(.bhom.field_info).property = "InternalNodes"];
+  string description = 11 [(.bhom.field_info).property = "Description"];
+  repeated DataParam outputs = 12 [(.bhom.field_info).property = "Outputs"];
+  repeated ReceiverParam inputs = 13 [(.bhom.field_info).property = "Inputs"];
+  bool is_inline = 14 [(.bhom.field_info).property = "IsInline"];
+  bool is_declaration = 15 [(.bhom.field_info).property = "IsDeclaration"];
 }
 
 // Content of a Cluster syntax node.
 message ClusterContent {
-  option (.bhom.csharp_type) = "BH.oM.Programming.ClusterContent";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  repeated INode internal_nodes = 10 [(.bhom.property) = "InternalNodes"];
-  repeated NodeGroup node_groups = 11 [(.bhom.property) = "NodeGroups"];
-  repeated DataParam inputs = 12 [(.bhom.property) = "Inputs"];
-  repeated ReceiverParam outputs = 13 [(.bhom.property) = "Outputs"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.ClusterContent";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  repeated INode internal_nodes = 10 [(.bhom.field_info).property = "InternalNodes"];
+  repeated NodeGroup node_groups = 11 [(.bhom.field_info).property = "NodeGroups"];
+  repeated DataParam inputs = 12 [(.bhom.field_info).property = "Inputs"];
+  repeated ReceiverParam outputs = 13 [(.bhom.field_info).property = "Outputs"];
 }
 
 // Represents a cluster of syntax nodes. This is equivalent to a method declaration.
 message ClusterNode {
-  option (.bhom.csharp_type) = "BH.oM.Programming.ClusterNode";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  ClusterContent content = 10 [(.bhom.property) = "Content"];
-  string description = 11 [(.bhom.property) = "Description"];
-  repeated DataParam outputs = 12 [(.bhom.property) = "Outputs"];
-  repeated ReceiverParam inputs = 13 [(.bhom.property) = "Inputs"];
-  bool is_inline = 14 [(.bhom.property) = "IsInline"];
-  bool is_declaration = 15 [(.bhom.property) = "IsDeclaration"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.ClusterNode";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  ClusterContent content = 10 [(.bhom.field_info).property = "Content"];
+  string description = 11 [(.bhom.field_info).property = "Description"];
+  repeated DataParam outputs = 12 [(.bhom.field_info).property = "Outputs"];
+  repeated ReceiverParam inputs = 13 [(.bhom.field_info).property = "Inputs"];
+  bool is_inline = 14 [(.bhom.field_info).property = "IsInline"];
+  bool is_declaration = 15 [(.bhom.field_info).property = "IsDeclaration"];
 }
 
 // A syntax node representing a call to a constructor.
 message ConstructorNode {
-  option (.bhom.csharp_type) = "BH.oM.Programming.ConstructorNode";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.ConstructorNode";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
   // Constructor is not exchanged: System.Reflection.ConstructorInfo has no protobuf equivalent.
   reserved 10;
-  option (.bhom.reserved_member) = "Constructor=10";
-  string description = 11 [(.bhom.property) = "Description"];
-  repeated ReceiverParam inputs = 12 [(.bhom.property) = "Inputs"];
-  repeated DataParam outputs = 13 [(.bhom.property) = "Outputs"];
-  bool is_inline = 14 [(.bhom.property) = "IsInline"];
-  bool is_declaration = 15 [(.bhom.property) = "IsDeclaration"];
+  option (.bhom.message_info).reserved_member = "Constructor=10";
+  string description = 11 [(.bhom.field_info).property = "Description"];
+  repeated ReceiverParam inputs = 12 [(.bhom.field_info).property = "Inputs"];
+  repeated DataParam outputs = 13 [(.bhom.field_info).property = "Outputs"];
+  bool is_inline = 14 [(.bhom.field_info).property = "IsInline"];
+  bool is_declaration = 15 [(.bhom.field_info).property = "IsDeclaration"];
 }
 
 // A syntax node representing the creation of a BHoM Custom object.
 message CustomObjectNode {
-  option (.bhom.csharp_type) = "BH.oM.Programming.CustomObjectNode";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string description = 10 [(.bhom.property) = "Description"];
-  repeated ReceiverParam inputs = 11 [(.bhom.property) = "Inputs"];
-  repeated DataParam outputs = 12 [(.bhom.property) = "Outputs"];
-  bool is_inline = 13 [(.bhom.property) = "IsInline"];
-  bool is_declaration = 14 [(.bhom.property) = "IsDeclaration"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.CustomObjectNode";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string description = 10 [(.bhom.field_info).property = "Description"];
+  repeated ReceiverParam inputs = 11 [(.bhom.field_info).property = "Inputs"];
+  repeated DataParam outputs = 12 [(.bhom.field_info).property = "Outputs"];
+  bool is_inline = 13 [(.bhom.field_info).property = "IsInline"];
+  bool is_declaration = 14 [(.bhom.field_info).property = "IsDeclaration"];
 }
 
 // Output of a syntax node.
 message DataParam {
-  option (.bhom.csharp_type) = "BH.oM.Programming.DataParam";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  google.protobuf.Any data = 10 [(.bhom.property) = "Data"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.DataParam";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  google.protobuf.Any data = 10 [(.bhom.field_info).property = "Data"];
   // Guids of the connected Receiver parameters.
-  repeated string target_ids = 11 [(.bhom.property) = "TargetIds"];
+  repeated string target_ids = 11 [(.bhom.field_info).property = "TargetIds"];
   // Type of data expected by this parameter.
-  string data_type = 12 [(.bhom.property) = "DataType"];  // C# type full name
-  string description = 13 [(.bhom.property) = "Description"];
+  string data_type = 12 [(.bhom.field_info).property = "DataType"];  // C# type full name
+  string description = 13 [(.bhom.field_info).property = "Description"];
 }
 
 // A syntax node corresponding to a call to the BHoM Explode method/component.
 message ExplodeNode {
-  option (.bhom.csharp_type) = "BH.oM.Programming.ExplodeNode";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string description = 10 [(.bhom.property) = "Description"];
-  repeated ReceiverParam inputs = 11 [(.bhom.property) = "Inputs"];
-  repeated DataParam outputs = 12 [(.bhom.property) = "Outputs"];
-  bool is_inline = 13 [(.bhom.property) = "IsInline"];
-  bool is_declaration = 14 [(.bhom.property) = "IsDeclaration"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.ExplodeNode";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string description = 10 [(.bhom.field_info).property = "Description"];
+  repeated ReceiverParam inputs = 11 [(.bhom.field_info).property = "Inputs"];
+  repeated DataParam outputs = 12 [(.bhom.field_info).property = "Outputs"];
+  bool is_inline = 13 [(.bhom.field_info).property = "IsInline"];
+  bool is_declaration = 14 [(.bhom.field_info).property = "IsDeclaration"];
 }
 
 // A syntax node corresponding to a call to the BHoM GetProperty method/component.
 message GetPropertyNode {
-  option (.bhom.csharp_type) = "BH.oM.Programming.GetPropertyNode";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string description = 10 [(.bhom.property) = "Description"];
-  repeated ReceiverParam inputs = 11 [(.bhom.property) = "Inputs"];
-  repeated DataParam outputs = 12 [(.bhom.property) = "Outputs"];
-  bool is_inline = 13 [(.bhom.property) = "IsInline"];
-  bool is_declaration = 14 [(.bhom.property) = "IsDeclaration"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.GetPropertyNode";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string description = 10 [(.bhom.field_info).property = "Description"];
+  repeated ReceiverParam inputs = 11 [(.bhom.field_info).property = "Inputs"];
+  repeated DataParam outputs = 12 [(.bhom.field_info).property = "Outputs"];
+  bool is_inline = 13 [(.bhom.field_info).property = "IsInline"];
+  bool is_declaration = 14 [(.bhom.field_info).property = "IsDeclaration"];
 }
 
 // Interface common to all syntax nodes
 // C# interface: BH.oM.Programming.INode
 message INode {
-  option (.bhom.csharp_type) = "BH.oM.Programming.INode";
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.INode";
   oneof value {
     BlockNode block_node = 1;
     ClusterNode cluster_node = 2;
@@ -172,160 +156,142 @@ message INode {
 // A syntax node representing the initialisation of an object.
 // In C#, this would be equivalent to something like 'new Point {X = x, Y = y }'
 message InitialiserNode {
-  option (.bhom.csharp_type) = "BH.oM.Programming.InitialiserNode";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string object_type = 10 [(.bhom.property) = "ObjectType"];  // C# type full name
-  string description = 11 [(.bhom.property) = "Description"];
-  repeated ReceiverParam inputs = 12 [(.bhom.property) = "Inputs"];
-  repeated DataParam outputs = 13 [(.bhom.property) = "Outputs"];
-  bool is_inline = 14 [(.bhom.property) = "IsInline"];
-  bool is_declaration = 15 [(.bhom.property) = "IsDeclaration"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.InitialiserNode";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string object_type = 10 [(.bhom.field_info).property = "ObjectType"];  // C# type full name
+  string description = 11 [(.bhom.field_info).property = "Description"];
+  repeated ReceiverParam inputs = 12 [(.bhom.field_info).property = "Inputs"];
+  repeated DataParam outputs = 13 [(.bhom.field_info).property = "Outputs"];
+  bool is_inline = 14 [(.bhom.field_info).property = "IsInline"];
+  bool is_declaration = 15 [(.bhom.field_info).property = "IsDeclaration"];
 }
 
 // A syntax node corresponding to a call to the CreateData BHoM component.
 message LibraryNode {
-  option (.bhom.csharp_type) = "BH.oM.Programming.LibraryNode";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string source_file = 10 [(.bhom.property) = "SourceFile"];
-  string description = 11 [(.bhom.property) = "Description"];
-  repeated ReceiverParam inputs = 12 [(.bhom.property) = "Inputs"];
-  repeated DataParam outputs = 13 [(.bhom.property) = "Outputs"];
-  bool is_inline = 14 [(.bhom.property) = "IsInline"];
-  bool is_declaration = 15 [(.bhom.property) = "IsDeclaration"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.LibraryNode";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string source_file = 10 [(.bhom.field_info).property = "SourceFile"];
+  string description = 11 [(.bhom.field_info).property = "Description"];
+  repeated ReceiverParam inputs = 12 [(.bhom.field_info).property = "Inputs"];
+  repeated DataParam outputs = 13 [(.bhom.field_info).property = "Outputs"];
+  bool is_inline = 14 [(.bhom.field_info).property = "IsInline"];
+  bool is_declaration = 15 [(.bhom.field_info).property = "IsDeclaration"];
 }
 
 // A syntax node corresponding to a code loop.
 message LoopNode {
-  option (.bhom.csharp_type) = "BH.oM.Programming.LoopNode";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  repeated INode internal_nodes = 10 [(.bhom.property) = "InternalNodes"];
-  string description = 11 [(.bhom.property) = "Description"];
-  repeated DataParam outputs = 12 [(.bhom.property) = "Outputs"];
-  repeated ReceiverParam inputs = 13 [(.bhom.property) = "Inputs"];
-  bool is_inline = 14 [(.bhom.property) = "IsInline"];
-  bool is_declaration = 15 [(.bhom.property) = "IsDeclaration"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.LoopNode";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  repeated INode internal_nodes = 10 [(.bhom.field_info).property = "InternalNodes"];
+  string description = 11 [(.bhom.field_info).property = "Description"];
+  repeated DataParam outputs = 12 [(.bhom.field_info).property = "Outputs"];
+  repeated ReceiverParam inputs = 13 [(.bhom.field_info).property = "Inputs"];
+  bool is_inline = 14 [(.bhom.field_info).property = "IsInline"];
+  bool is_declaration = 15 [(.bhom.field_info).property = "IsDeclaration"];
 }
 
 // A syntax node representing a call to a method.
 message MethodNode {
-  option (.bhom.csharp_type) = "BH.oM.Programming.MethodNode";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.MethodNode";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
   // Method is not exchanged: System.Reflection.MethodInfo has no protobuf equivalent.
   reserved 10;
-  option (.bhom.reserved_member) = "Method=10";
-  string description = 11 [(.bhom.property) = "Description"];
-  repeated ReceiverParam inputs = 12 [(.bhom.property) = "Inputs"];
-  repeated DataParam outputs = 13 [(.bhom.property) = "Outputs"];
-  bool is_inline = 14 [(.bhom.property) = "IsInline"];
-  bool is_declaration = 15 [(.bhom.property) = "IsDeclaration"];
+  option (.bhom.message_info).reserved_member = "Method=10";
+  string description = 11 [(.bhom.field_info).property = "Description"];
+  repeated ReceiverParam inputs = 12 [(.bhom.field_info).property = "Inputs"];
+  repeated DataParam outputs = 13 [(.bhom.field_info).property = "Outputs"];
+  bool is_inline = 14 [(.bhom.field_info).property = "IsInline"];
+  bool is_declaration = 15 [(.bhom.field_info).property = "IsDeclaration"];
 }
 
 // A group of syntax nodes referenced by their Guid.
 message NodeGroup {
-  option (.bhom.csharp_type) = "BH.oM.Programming.NodeGroup";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string description = 10 [(.bhom.property) = "Description"];
-  repeated string node_ids = 11 [(.bhom.property) = "NodeIds"];
-  repeated NodeGroup internal_groups = 12 [(.bhom.property) = "InternalGroups"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.NodeGroup";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string description = 10 [(.bhom.field_info).property = "Description"];
+  repeated string node_ids = 11 [(.bhom.field_info).property = "NodeIds"];
+  repeated NodeGroup internal_groups = 12 [(.bhom.field_info).property = "InternalGroups"];
 }
 
 // A syntax node that is in itself a single data parameter.
 message ParamNode {
-  option (.bhom.csharp_type) = "BH.oM.Programming.ParamNode";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string description = 10 [(.bhom.property) = "Description"];
-  repeated ReceiverParam inputs = 11 [(.bhom.property) = "Inputs"];
-  repeated DataParam outputs = 12 [(.bhom.property) = "Outputs"];
-  bool is_inline = 13 [(.bhom.property) = "IsInline"];
-  bool is_declaration = 14 [(.bhom.property) = "IsDeclaration"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.ParamNode";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string description = 10 [(.bhom.field_info).property = "Description"];
+  repeated ReceiverParam inputs = 11 [(.bhom.field_info).property = "Inputs"];
+  repeated DataParam outputs = 12 [(.bhom.field_info).property = "Outputs"];
+  bool is_inline = 13 [(.bhom.field_info).property = "IsInline"];
+  bool is_declaration = 14 [(.bhom.field_info).property = "IsDeclaration"];
 }
 
 // Input of a syntax node.
 message ReceiverParam {
-  option (.bhom.csharp_type) = "BH.oM.Programming.ReceiverParam";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.ReceiverParam";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
   // Guids of the connected data parameters feeding into this.
-  string source_id = 10 [(.bhom.property) = "SourceId"];
+  string source_id = 10 [(.bhom.field_info).property = "SourceId"];
   // Type of data expected by this parameter.
-  string data_type = 11 [(.bhom.property) = "DataType"];  // C# type full name
-  string description = 12 [(.bhom.property) = "Description"];
-  google.protobuf.Any default_value = 13 [(.bhom.property) = "DefaultValue"];
+  string data_type = 11 [(.bhom.field_info).property = "DataType"];  // C# type full name
+  string description = 12 [(.bhom.field_info).property = "Description"];
+  google.protobuf.Any default_value = 13 [(.bhom.field_info).property = "DefaultValue"];
 }
 
 // A syntax node corresponding to a call to the BHoM SetProperty method/component.
 message SetPropertyNode {
-  option (.bhom.csharp_type) = "BH.oM.Programming.SetPropertyNode";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string description = 10 [(.bhom.property) = "Description"];
-  repeated ReceiverParam inputs = 11 [(.bhom.property) = "Inputs"];
-  repeated DataParam outputs = 12 [(.bhom.property) = "Outputs"];
-  bool is_inline = 13 [(.bhom.property) = "IsInline"];
-  bool is_declaration = 14 [(.bhom.property) = "IsDeclaration"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.SetPropertyNode";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string description = 10 [(.bhom.field_info).property = "Description"];
+  repeated ReceiverParam inputs = 11 [(.bhom.field_info).property = "Inputs"];
+  repeated DataParam outputs = 12 [(.bhom.field_info).property = "Outputs"];
+  bool is_inline = 13 [(.bhom.field_info).property = "IsInline"];
+  bool is_declaration = 14 [(.bhom.field_info).property = "IsDeclaration"];
 }
 
 // A syntax node representing the creation of an object Type.
 message TypeNode {
-  option (.bhom.csharp_type) = "BH.oM.Programming.TypeNode";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  string type = 10 [(.bhom.property) = "Type"];  // C# type full name
-  string description = 11 [(.bhom.property) = "Description"];
-  repeated ReceiverParam inputs = 12 [(.bhom.property) = "Inputs"];
-  repeated DataParam outputs = 13 [(.bhom.property) = "Outputs"];
-  bool is_inline = 14 [(.bhom.property) = "IsInline"];
-  bool is_declaration = 15 [(.bhom.property) = "IsDeclaration"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Programming.TypeNode";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  string type = 10 [(.bhom.field_info).property = "Type"];  // C# type full name
+  string description = 11 [(.bhom.field_info).property = "Description"];
+  repeated ReceiverParam inputs = 12 [(.bhom.field_info).property = "Inputs"];
+  repeated DataParam outputs = 13 [(.bhom.field_info).property = "Outputs"];
+  bool is_inline = 14 [(.bhom.field_info).property = "IsInline"];
+  bool is_declaration = 15 [(.bhom.field_info).property = "IsDeclaration"];
 }
 

@@ -11,7 +11,7 @@ import "google/protobuf/any.proto";
 
 // Formula in a form of a string in a specific convention, used to calculate values in verification workflows.
 message Formula {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Conditions.Formula";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Conditions.Formula";
   // Equation in a form of a string, resulting in either numerical, string or Boolean values.
   // Only basic mathematical operators are currently supported.
   // Strings need to be wrapped in single quotation marks (').
@@ -24,44 +24,44 @@ message Formula {
   // a == 'StringValueA' or (a == 'StringValueB' and b == 'StringValueC')
   // if a == 0: 'zero', else if a == 1: 'one', else if a == 2: 'two', else: 'not supported'
   // if a == b and a == c: 'all values equal', else: 'values not equal'
-  string equation = 10 [(.bhom.property) = "Equation"];
+  string equation = 10 [(.bhom.field_info).property = "Equation"];
   // Tolerance to be applied when evaluating the formula.
-  google.protobuf.Any tolerance = 11 [(.bhom.property) = "Tolerance"];
+  google.protobuf.Any tolerance = 11 [(.bhom.field_info).property = "Tolerance"];
 }
 
 // Condition that verifies an object based on a given formula.
 message FormulaCondition {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Conditions.FormulaCondition";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Conditions.FormulaCondition";
   // Initial values to be extracted from the verified object.
   // Keys are the names of variables to be used in the calculations.
   // Values are value sources to extract the values from.
-  map<string, IValueSource> inputs = 10 [(.bhom.property) = "Inputs"];
+  map<string, IValueSource> inputs = 10 [(.bhom.field_info).property = "Inputs"];
   // Formulae to calculate the variables to be verified in the verification formula.
   // Formulae can be chained, i.e. one calculated variable can be derived from the previously calculated ones.
   // Keys are the names of variables to be used in the calculations.
   // Values are the formulae correspondent to each given variable name.
-  map<string, Formula> calculation_formulae = 11 [(.bhom.property) = "CalculationFormulae"];
+  map<string, Formula> calculation_formulae = 11 [(.bhom.field_info).property = "CalculationFormulae"];
   // Final formula to verify, needs to return a Boolean value, e.g. 'a > b'.
-  Formula verification_formula = 12 [(.bhom.property) = "VerificationFormula"];
+  Formula verification_formula = 12 [(.bhom.field_info).property = "VerificationFormula"];
 }
 
 // Condition that requires an object to own an AdapterId fragment with a given Id to be considered a pass.
 message HasId {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Conditions.HasId";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Conditions.HasId";
   // Collection of ids, one of which needs to be found among object's AdapterId.Id fragment properties for it to pass.
-  repeated google.protobuf.Any ids = 10 [(.bhom.property) = "Ids"];
+  repeated google.protobuf.Any ids = 10 [(.bhom.field_info).property = "Ids"];
 }
 
 message HasValue {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Conditions.HasValue";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Conditions.HasValue";
   // Object defining the source of a value to evaluate.
-  IValueSource value_source = 10 [(.bhom.property) = "ValueSource"];
+  IValueSource value_source = 10 [(.bhom.field_info).property = "ValueSource"];
 }
 
 // Top level interface for conditions: lightweight objects describing a yes/no question to be asked against another object.
 // C# interface: BH.oM.Verification.Conditions.ICondition
 message ICondition {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Conditions.ICondition";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Conditions.ICondition";
   oneof value {
     FormulaCondition formula_condition = 1;
     HasId has_id = 2;
@@ -80,7 +80,7 @@ message ICondition {
 // Interface for objects defining how to extract a value from an object.
 // C# interface: BH.oM.Verification.Conditions.IValueSource
 message IValueSource {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Conditions.IValueSource";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Conditions.IValueSource";
   oneof value {
     PropertyValueSource property_value_source = 1;
   }
@@ -88,92 +88,92 @@ message IValueSource {
 
 // Condition that verifies if a value extracted from an object is within a certain domain (range).
 message IsInDomain {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Conditions.IsInDomain";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Conditions.IsInDomain";
   // Object defining the source of a value to evaluate.
-  IValueSource value_source = 10 [(.bhom.property) = "ValueSource"];
+  IValueSource value_source = 10 [(.bhom.field_info).property = "ValueSource"];
   // Reference value that the extracted value is compared to.
-  .bhom.data.Domain domain = 11 [(.bhom.property) = "Domain"];
+  .bhom.data.Domain domain = 11 [(.bhom.field_info).property = "Domain"];
   // If applicable, tolerance to be applied in the comparison.
-  double tolerance = 12 [(.bhom.property) = "Tolerance"];
+  double tolerance = 12 [(.bhom.field_info).property = "Tolerance"];
 }
 
 // Condition that verifies if a value extracted from an object is included in the given set of values.
 message IsInSet {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Conditions.IsInSet";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Conditions.IsInSet";
   // Object defining the source of a value to evaluate.
-  IValueSource value_source = 10 [(.bhom.property) = "ValueSource"];
+  IValueSource value_source = 10 [(.bhom.field_info).property = "ValueSource"];
   // Set of values for the extracted value to compare against.
-  repeated google.protobuf.Any set = 11 [(.bhom.property) = "Set"];
+  repeated google.protobuf.Any set = 11 [(.bhom.field_info).property = "Set"];
   // Options as per how the comparison is computed.
-  .bhom.base.ComparisonConfig comparison_config = 12 [(.bhom.property) = "ComparisonConfig"];
+  .bhom.base.ComparisonConfig comparison_config = 12 [(.bhom.field_info).property = "ComparisonConfig"];
 }
 
 // Condition that verifies whether an object is null.
 message IsNotNull {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Conditions.IsNotNull";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Conditions.IsNotNull";
 }
 
 // Condition that verifies whether an object is of a given type.
 message IsOfType {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Conditions.IsOfType";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Conditions.IsOfType";
   // Type specified as System.Type or string representing type full name.
-  google.protobuf.Any type = 10 [(.bhom.property) = "Type"];
+  google.protobuf.Any type = 10 [(.bhom.field_info).property = "Type"];
 }
 
 // Condition that contains a collection of nested conditions, which all need to be met for an object to be considered a pass.
 message LogicalAndCondition {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Conditions.LogicalAndCondition";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Conditions.LogicalAndCondition";
   // A collection of conditions to be evaluated in combination.
-  repeated ICondition conditions = 10 [(.bhom.property) = "Conditions"];
+  repeated ICondition conditions = 10 [(.bhom.field_info).property = "Conditions"];
 }
 
 // Condition that contains a nested condition that it inverses, i.e. the nested condition needs to fail for an object to be considered a pass.
 message LogicalNotCondition {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Conditions.LogicalNotCondition";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Conditions.LogicalNotCondition";
   // Condition to be inverted.
-  ICondition condition = 10 [(.bhom.property) = "Condition"];
+  ICondition condition = 10 [(.bhom.field_info).property = "Condition"];
 }
 
 // Condition that contains a collection of nested conditions, of which at least one needs to be met for an object to be considered a pass.
 message LogicalOrCondition {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Conditions.LogicalOrCondition";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Conditions.LogicalOrCondition";
   // A collection of conditions to be evaluated in combination.
-  repeated ICondition conditions = 10 [(.bhom.property) = "Conditions"];
+  repeated ICondition conditions = 10 [(.bhom.field_info).property = "Conditions"];
 }
 
 // Object pointing at a property as the source of a value to extract.
 message PropertyValueSource {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Conditions.PropertyValueSource";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Conditions.PropertyValueSource";
   // Name of the property to get the value from. If the property under given name is not found, other sources are also searched:
   // - CustomData for key matching PropertyName (only for IBHoMObjects)
   // - Fragment with type name matching PropertyName (only for IBHoMObjects)
   // - Parameterless extension method with name matching PropertyName
-  string property_name = 10 [(.bhom.property) = "PropertyName"];
+  string property_name = 10 [(.bhom.field_info).property = "PropertyName"];
 }
 
 message ValueCondition {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Conditions.ValueCondition";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Conditions.ValueCondition";
   // Object defining the source of a value to evaluate.
-  IValueSource value_source = 10 [(.bhom.property) = "ValueSource"];
+  IValueSource value_source = 10 [(.bhom.field_info).property = "ValueSource"];
   // Reference value to compare the extracted value against.
-  google.protobuf.Any reference_value = 11 [(.bhom.property) = "ReferenceValue"];
+  google.protobuf.Any reference_value = 11 [(.bhom.field_info).property = "ReferenceValue"];
   // Specifies whether the extracted value should be smaller, greater, etc. than the reference value.
-  ValueComparisonType comparison_type = 12 [(.bhom.property) = "ComparisonType"];
+  ValueComparisonType comparison_type = 12 [(.bhom.field_info).property = "ComparisonType"];
   // If applicable, tolerance to be considered in the comparison.
-  google.protobuf.Any tolerance = 13 [(.bhom.property) = "Tolerance"];
+  google.protobuf.Any tolerance = 13 [(.bhom.field_info).property = "Tolerance"];
 }
 
 // Basic object defining a condition-based 'filter from' workflow.
 message ConditionBasedFilter {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Extraction.ConditionBasedFilter";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Extraction.ConditionBasedFilter";
   // Filtering condition to be met for objects to be returned.
-  ICondition condition = 10 [(.bhom.property) = "Condition"];
+  ICondition condition = 10 [(.bhom.field_info).property = "Condition"];
 }
 
 // Top interface for all extraction objects.
 // C# interface: BH.oM.Verification.Extraction.IExtraction
 message IExtraction {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Extraction.IExtraction";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Extraction.IExtraction";
   oneof value {
     ConditionBasedFilter condition_based_filter = 1;
   }
@@ -181,7 +181,7 @@ message IExtraction {
 
 // Specifies severity of a requirement failure.
 enum FailureSeverity {
-  option (.bhom.csharp_enum) = "BH.oM.Verification.FailureSeverity";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Verification.FailureSeverity";
   FAILURE_SEVERITY_NOTE = 0;
   FAILURE_SEVERITY_WARNING = 1;
   FAILURE_SEVERITY_ERROR = 2;
@@ -189,22 +189,22 @@ enum FailureSeverity {
 
 // To consider an object as `passed`, should it satisfy All Specification or just one is enough?
 enum PassRequirement {
-  option (.bhom.csharp_enum) = "BH.oM.Verification.PassRequirement";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Verification.PassRequirement";
   PASS_REQUIREMENT_ALL_MUST_PASS = 0;
   PASS_REQUIREMENT_AT_LEAST_ONE_PASSES = 1;
 }
 
 // Config object containing settings for reporting results of checks against formula conditions.
 message FormulaConditionReportingConfig {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Reporting.FormulaConditionReportingConfig";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Reporting.FormulaConditionReportingConfig";
   // Dictionary of reporting configs (values) bound to the components, which values they are meant to format (keys).
-  map<string, IValueConditionReportingConfig> component_configs = 10 [(.bhom.property) = "ComponentConfigs"];
+  map<string, IValueConditionReportingConfig> component_configs = 10 [(.bhom.field_info).property = "ComponentConfigs"];
 }
 
 // Top interface for all condition reporting config objects.
 // C# interface: BH.oM.Verification.Reporting.IConditionReportingConfig
 message IConditionReportingConfig {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Reporting.IConditionReportingConfig";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Reporting.IConditionReportingConfig";
   oneof value {
     FormulaConditionReportingConfig formula_condition_reporting_config = 1;
     LogicalCollectionConditionReportingConfig logical_collection_condition_reporting_config = 2;
@@ -217,7 +217,7 @@ message IConditionReportingConfig {
 // Interface for all value condition reporting config objects.
 // C# interface: BH.oM.Verification.Reporting.IValueConditionReportingConfig
 message IValueConditionReportingConfig {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Reporting.IValueConditionReportingConfig";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Reporting.IValueConditionReportingConfig";
   oneof value {
     NumberConditionReportingConfig number_condition_reporting_config = 1;
     ValueConditionReportingConfig value_condition_reporting_config = 2;
@@ -226,42 +226,42 @@ message IValueConditionReportingConfig {
 
 // Config object containing settings for reporting results of checks against logical conditions with a collection of nested conditions.
 message LogicalCollectionConditionReportingConfig {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Reporting.LogicalCollectionConditionReportingConfig";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Reporting.LogicalCollectionConditionReportingConfig";
   // Dictionary of reporting configs (values) bound to the conditions, which results they are meant to format (keys).
-  repeated IConditionToIConditionReportingConfigEntry nested_configs = 10 [(.bhom.property) = "NestedConfigs"];
+  repeated IConditionToIConditionReportingConfigEntry nested_configs = 10 [(.bhom.field_info).property = "NestedConfigs"];
 }
 
 // Config object containing settings for reporting results of checks against numerical value conditions.
 message NumberConditionReportingConfig {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Reporting.NumberConditionReportingConfig";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Reporting.NumberConditionReportingConfig";
   // Text to be used as a label for units expressing the extracted value.
-  string unit_label = 10 [(.bhom.property) = "UnitLabel"];
+  string unit_label = 10 [(.bhom.field_info).property = "UnitLabel"];
   // Multiplier to be applied to the extracted value prior to reporting.
-  double value_multiplier = 11 [(.bhom.property) = "ValueMultiplier"];
+  double value_multiplier = 11 [(.bhom.field_info).property = "ValueMultiplier"];
   // Rounding accuracy to be used when reporting the extracted value.
-  double rounding_accuracy = 12 [(.bhom.property) = "RoundingAccuracy"];
+  double rounding_accuracy = 12 [(.bhom.field_info).property = "RoundingAccuracy"];
   // Override text to be used as a label for value source.
-  string value_source_label_override = 13 [(.bhom.property) = "ValueSourceLabelOverride"];
+  string value_source_label_override = 13 [(.bhom.field_info).property = "ValueSourceLabelOverride"];
 }
 
 // Config object containing settings for reporting results of checks against logical conditions with a single nested condition.
 message SingleLogicalConditionReportingConfig {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Reporting.SingleLogicalConditionReportingConfig";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Reporting.SingleLogicalConditionReportingConfig";
   // Reporting config to be applied to format the check report of nested condition.
-  IConditionReportingConfig nested_config = 10 [(.bhom.property) = "NestedConfig"];
+  IConditionReportingConfig nested_config = 10 [(.bhom.field_info).property = "NestedConfig"];
 }
 
 // Config object containing settings for reporting results of checks against value conditions.
 message ValueConditionReportingConfig {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Reporting.ValueConditionReportingConfig";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Reporting.ValueConditionReportingConfig";
   // Override text to be used as a label for value source.
-  string value_source_label_override = 10 [(.bhom.property) = "ValueSourceLabelOverride"];
+  string value_source_label_override = 10 [(.bhom.field_info).property = "ValueSourceLabelOverride"];
 }
 
 // Top interface for all kinds of Requirements.
 // C# interface: BH.oM.Verification.Requirements.IRequirement
 message IRequirement {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Requirements.IRequirement";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Requirements.IRequirement";
   oneof value {
     Requirement requirement = 1;
   }
@@ -269,43 +269,41 @@ message IRequirement {
 
 // Object representing a single, condition-based requirement to run against each object in a set filtered based on Specification.ExtractionAlso contains the config required to represent the verification results in a human friendly form.
 message Requirement {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Requirements.Requirement";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Requirements.Requirement";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
   // Human readable identifier to reference the Requirement.
-  string clause = 10 [(.bhom.property) = "Clause"];
+  string clause = 10 [(.bhom.field_info).property = "Clause"];
   // Source material for this Requirement. E.g. Codes, best practices, guidelines, etc.
-  .bhom.data.Source source = 11 [(.bhom.property) = "Source"];
+  .bhom.data.Source source = 11 [(.bhom.field_info).property = "Source"];
   // Any additional notes.
-  string comment = 12 [(.bhom.property) = "Comment"];
+  string comment = 12 [(.bhom.field_info).property = "Comment"];
   // General, human-readable message explaining what does the failure mean to the user.
-  string failure_message = 13 [(.bhom.property) = "FailureMessage"];
+  string failure_message = 13 [(.bhom.field_info).property = "FailureMessage"];
   // Severity of Requirement failure, originating from the concept that not all conditions are necessarily errors.
-  FailureSeverity severity = 14 [(.bhom.property) = "Severity"];
+  FailureSeverity severity = 14 [(.bhom.field_info).property = "Severity"];
   // Condition to be met for an object to pass a Requirement.
-  ICondition condition = 15 [(.bhom.property) = "Condition"];
+  ICondition condition = 15 [(.bhom.field_info).property = "Condition"];
   // Reporting config containing settings needed to present the verification results in a human friendly form.
-  IConditionReportingConfig reporting_config = 16 [(.bhom.property) = "ReportingConfig"];
+  IConditionReportingConfig reporting_config = 16 [(.bhom.field_info).property = "ReportingConfig"];
 }
 
 // Object representing result of FormulaCondition.
 message FormulaConditionResult {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Results.FormulaConditionResult";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Results.FormulaConditionResult";
   // Information whether the object passed or failed the condition. Null means inconclusive result.
-  optional bool passed = 10 [(.bhom.property) = "Passed"];
+  optional bool passed = 10 [(.bhom.field_info).property = "Passed"];
   // Values of components (variables) calculated in the process of obtaining the final result.
-  map<string, google.protobuf.Any> components = 11 [(.bhom.property) = "Components"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  map<string, google.protobuf.Any> components = 11 [(.bhom.field_info).property = "Components"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
 }
 
 // Top interface for all condition results.
 // C# interface: BH.oM.Verification.Results.IConditionResult
 message IConditionResult {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Results.IConditionResult";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Results.IConditionResult";
   oneof value {
     FormulaConditionResult formula_condition_result = 1;
     IsNotNullResult is_not_null_result = 2;
@@ -318,94 +316,92 @@ message IConditionResult {
 
 // Object representing result of IsNotNull condition.
 message IsNotNullResult {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Results.IsNotNullResult";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Results.IsNotNullResult";
   // Information whether the object passed or failed the condition. Null means inconclusive result.
-  optional bool passed = 10 [(.bhom.property) = "Passed"];
+  optional bool passed = 10 [(.bhom.field_info).property = "Passed"];
 }
 
 // Object representing result of IsOfType condition.
 message IsOfTypeResult {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Results.IsOfTypeResult";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Results.IsOfTypeResult";
   // Information whether the object passed or failed the condition. Null means inconclusive result.
-  optional bool passed = 10 [(.bhom.property) = "Passed"];
+  optional bool passed = 10 [(.bhom.field_info).property = "Passed"];
   // Type of the checked object.
-  string extracted_type = 11 [(.bhom.property) = "ExtractedType"];  // C# type full name
+  string extracted_type = 11 [(.bhom.field_info).property = "ExtractedType"];  // C# type full name
 }
 
 // Object representing result of ILogicalCollectionCondition.
 message LogicalCollectionConditionResult {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Results.LogicalCollectionConditionResult";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Results.LogicalCollectionConditionResult";
   // Information whether the object passed or failed the condition. Null means inconclusive result.
-  optional bool passed = 10 [(.bhom.property) = "Passed"];
+  optional bool passed = 10 [(.bhom.field_info).property = "Passed"];
   // Results of all nested conditions.
-  repeated IConditionResult results = 11 [(.bhom.property) = "Results"];
+  repeated IConditionResult results = 11 [(.bhom.field_info).property = "Results"];
 }
 
 // Object representing result of verification of an object against a Requirement.
 message RequirementResult {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Results.RequirementResult";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Results.RequirementResult";
   // BHoM_Guid of Requirement object this result was based on.
-  google.protobuf.Any requirement_id = 10 [(.bhom.property) = "RequirementId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
+  google.protobuf.Any requirement_id = 10 [(.bhom.field_info).property = "RequirementId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
   // Identifier of an object this result was based on. In case of IBHoMObjects it is their BHoM_Guid.
-  google.protobuf.Any object_id = 11 [(.bhom.property) = "ObjectId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
+  google.protobuf.Any object_id = 11 [(.bhom.field_info).property = "ObjectId"];  // any IComparable: a message, or a google.protobuf wrapper for single values
   // Result of object verification against the condition specified in the Requirement.
-  IConditionResult verification_result = 12 [(.bhom.property) = "VerificationResult"];
+  IConditionResult verification_result = 12 [(.bhom.field_info).property = "VerificationResult"];
   // List of events that occurred during the verification process.
-  repeated .bhom.base.Event events = 13 [(.bhom.property) = "Events"];
+  repeated .bhom.base.Event events = 13 [(.bhom.field_info).property = "Events"];
 }
 
 // Object representing result of ISingleLogicalCondition.
 message SingleLogicalConditionResult {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Results.SingleLogicalConditionResult";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Results.SingleLogicalConditionResult";
   // Information whether the object passed or failed the condition. Null means inconclusive result.
-  optional bool passed = 10 [(.bhom.property) = "Passed"];
+  optional bool passed = 10 [(.bhom.field_info).property = "Passed"];
   // Results of the nested condition.
-  IConditionResult result = 11 [(.bhom.property) = "Result"];
+  IConditionResult result = 11 [(.bhom.field_info).property = "Result"];
 }
 
 // Object representing result of verification of a Specification.
 message SpecificationResult {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Results.SpecificationResult";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Results.SpecificationResult";
   // Specification that was verified.
-  Specification specification = 10 [(.bhom.property) = "Specification"];
+  Specification specification = 10 [(.bhom.field_info).property = "Specification"];
   // Objects collected during the extraction stage and checked against the requirements.
-  repeated google.protobuf.Any extracted_objects = 11 [(.bhom.property) = "ExtractedObjects"];
+  repeated google.protobuf.Any extracted_objects = 11 [(.bhom.field_info).property = "ExtractedObjects"];
   // Collection of verification results of each filtered object against each Requirement contained within the Specification.
-  repeated RequirementResult requirement_results = 12 [(.bhom.property) = "RequirementResults"];
+  repeated RequirementResult requirement_results = 12 [(.bhom.field_info).property = "RequirementResults"];
 }
 
 // Object representing result of IValueCondition.
 message ValueConditionResult {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Results.ValueConditionResult";
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Results.ValueConditionResult";
   // Information whether the object passed or failed the condition. Null means inconclusive result.
-  optional bool passed = 10 [(.bhom.property) = "Passed"];
+  optional bool passed = 10 [(.bhom.field_info).property = "Passed"];
   // Value extracted from the object and checked against condition requirements.
-  google.protobuf.Any extracted_value = 11 [(.bhom.property) = "ExtractedValue"];
+  google.protobuf.Any extracted_value = 11 [(.bhom.field_info).property = "ExtractedValue"];
 }
 
 // A top level object in verification workflow. Contains the information about the whole workflow, from extraction, to checking, to reporting.
 message Specification {
-  option (.bhom.csharp_type) = "BH.oM.Verification.Specifications.Specification";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.Verification.Specifications.Specification";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
   // Human readable identifier to reference the Specification.
-  string clause = 10 [(.bhom.property) = "Clause"];
+  string clause = 10 [(.bhom.field_info).property = "Clause"];
   // Description of the Specification.
-  string description = 11 [(.bhom.property) = "Description"];
+  string description = 11 [(.bhom.field_info).property = "Description"];
   // Object describing how to extract the objects to be verify against Requirements.
-  IExtraction extraction = 12 [(.bhom.property) = "Extraction"];
+  IExtraction extraction = 12 [(.bhom.field_info).property = "Extraction"];
   // A collection of objects, each containing an atomic check together with reporting config and metadata.
-  repeated IRequirement requirements = 13 [(.bhom.property) = "Requirements"];
+  repeated IRequirement requirements = 13 [(.bhom.field_info).property = "Requirements"];
 }
 
 // Specifies the requirement to be met by a value in relation to a reference value to consider the check as passed.
 enum ValueComparisonType {
-  option (.bhom.csharp_enum) = "BH.oM.Verification.ValueComparisonType";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Verification.ValueComparisonType";
   VALUE_COMPARISON_TYPE_EQUAL_TO = 0;
   VALUE_COMPARISON_TYPE_NOT_EQUAL_TO = 1;
   VALUE_COMPARISON_TYPE_LESS_THAN = 2;

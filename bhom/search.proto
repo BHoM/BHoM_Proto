@@ -8,7 +8,7 @@ import "bhom/options.proto";
 
 // Defines the scorer method to be used in the fuzzy matching methods (i.e. Extract).
 enum Scorer {
-  option (.bhom.csharp_enum) = "BH.oM.Search.Scorer";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.Search.Scorer";
   SCORER_DEFAULT_RATIO = 0;
   SCORER_PARTIAL_RATIO = 1;
   SCORER_TOKEN_SET = 2;

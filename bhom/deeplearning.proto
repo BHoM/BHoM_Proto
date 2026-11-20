@@ -8,95 +8,81 @@ import "bhom/options.proto";
 import "google/protobuf/any.proto";
 
 message Tree_IModule {
-  option (.bhom.csharp_type) = "BH.oM.Data.Collections.Tree`1[[BH.oM.DeepLearning.IModule, DeepLearning_oM, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null]]";
-  string name = 2 [(.bhom.property) = "Name"];
-  map<string, Tree_IModule> children = 10 [(.bhom.property) = "Children"];
-  IModule value = 11 [(.bhom.property) = "Value"];
+  option (.bhom.message_info).csharp_type = "BH.oM.Data.Collections.Tree`1[[BH.oM.DeepLearning.IModule, DeepLearning_oM, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null]]";
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  map<string, Tree_IModule> children = 10 [(.bhom.field_info).property = "Children"];
+  IModule value = 11 [(.bhom.field_info).property = "Value"];
 }
 
 message LeakyReLU {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Activations.LeakyReLU";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  double negative_slope = 10 [(.bhom.property) = "NegativeSlope"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Activations.LeakyReLU";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  double negative_slope = 10 [(.bhom.field_info).property = "NegativeSlope"];
 }
 
 message LogSigmoid {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Activations.LogSigmoid";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Activations.LogSigmoid";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
 }
 
 message LogSoftmax {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Activations.LogSoftmax";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  int32 dimension = 10 [(.bhom.property) = "Dimension"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Activations.LogSoftmax";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  int32 dimension = 10 [(.bhom.field_info).property = "Dimension"];
 }
 
 message ReLU {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Activations.ReLU";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Activations.ReLU";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
 }
 
 message Sigmoid {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Activations.Sigmoid";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Activations.Sigmoid";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
 }
 
 message Softmax {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Activations.Softmax";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  int32 dimension = 10 [(.bhom.property) = "Dimension"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Activations.Softmax";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  int32 dimension = 10 [(.bhom.field_info).property = "Dimension"];
 }
 
 message Tanh {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Activations.Tanh";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Activations.Tanh";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
 }
 
 // C# interface: BH.oM.DeepLearning.IModule
 message IModule {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.IModule";
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.IModule";
   oneof value {
     LeakyReLU leaky_re_lu = 1;
     LogSigmoid log_sigmoid = 2;
@@ -123,14 +109,14 @@ message IModule {
 }
 
 enum ImageFormat {
-  option (.bhom.csharp_enum) = "BH.oM.DeepLearning.ImageFormat";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.DeepLearning.ImageFormat";
   IMAGE_FORMAT_CHANNEL_FIRST = 0;
   IMAGE_FORMAT_CHANNEL_LAST = 1;
   IMAGE_FORMAT_GREY_SCALE = 2;
 }
 
 enum InterpolationMethod {
-  option (.bhom.csharp_enum) = "BH.oM.DeepLearning.InterpolationMethod";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.DeepLearning.InterpolationMethod";
   INTERPOLATION_METHOD_NEAREST = 0;
   INTERPOLATION_METHOD_BILINEAR = 1;
   INTERPOLATION_METHOD_BICUBIC = 2;
@@ -139,291 +125,251 @@ enum InterpolationMethod {
 }
 
 message AvgPooling2d {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Layers.AvgPooling2d";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  Shape2d kernel_size = 10 [(.bhom.property) = "KernelSize"];
-  Shape2d stride = 11 [(.bhom.property) = "Stride"];
-  Shape2d padding = 12 [(.bhom.property) = "Padding"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Layers.AvgPooling2d";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  Shape2d kernel_size = 10 [(.bhom.field_info).property = "KernelSize"];
+  Shape2d stride = 11 [(.bhom.field_info).property = "Stride"];
+  Shape2d padding = 12 [(.bhom.field_info).property = "Padding"];
 }
 
 message Convolution2d {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Layers.Convolution2d";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  int32 features_in = 10 [(.bhom.property) = "FeaturesIn"];
-  int32 features_out = 11 [(.bhom.property) = "FeaturesOut"];
-  Shape2d kernel_size = 12 [(.bhom.property) = "KernelSize"];
-  Shape2d stride = 13 [(.bhom.property) = "Stride"];
-  Shape2d padding = 14 [(.bhom.property) = "Padding"];
-  Shape2d dilation = 15 [(.bhom.property) = "Dilation"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Layers.Convolution2d";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  int32 features_in = 10 [(.bhom.field_info).property = "FeaturesIn"];
+  int32 features_out = 11 [(.bhom.field_info).property = "FeaturesOut"];
+  Shape2d kernel_size = 12 [(.bhom.field_info).property = "KernelSize"];
+  Shape2d stride = 13 [(.bhom.field_info).property = "Stride"];
+  Shape2d padding = 14 [(.bhom.field_info).property = "Padding"];
+  Shape2d dilation = 15 [(.bhom.field_info).property = "Dilation"];
 }
 
 message GRU {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Layers.GRU";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  int32 input_size = 10 [(.bhom.property) = "InputSize"];
-  int32 hidden_size = 11 [(.bhom.property) = "HiddenSize"];
-  int32 number_of_layers = 12 [(.bhom.property) = "NumberOfLayers"];
-  bool batch_first = 13 [(.bhom.property) = "BatchFirst"];
-  double dropout = 14 [(.bhom.property) = "Dropout"];
-  bool bidirectional = 15 [(.bhom.property) = "Bidirectional"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Layers.GRU";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  int32 input_size = 10 [(.bhom.field_info).property = "InputSize"];
+  int32 hidden_size = 11 [(.bhom.field_info).property = "HiddenSize"];
+  int32 number_of_layers = 12 [(.bhom.field_info).property = "NumberOfLayers"];
+  bool batch_first = 13 [(.bhom.field_info).property = "BatchFirst"];
+  double dropout = 14 [(.bhom.field_info).property = "Dropout"];
+  bool bidirectional = 15 [(.bhom.field_info).property = "Bidirectional"];
 }
 
 message LSTM {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Layers.LSTM";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  int32 input_size = 10 [(.bhom.property) = "InputSize"];
-  int32 hidden_size = 11 [(.bhom.property) = "HiddenSize"];
-  int32 number_of_layers = 12 [(.bhom.property) = "NumberOfLayers"];
-  bool batch_first = 13 [(.bhom.property) = "BatchFirst"];
-  double dropout = 14 [(.bhom.property) = "Dropout"];
-  bool bidirectional = 15 [(.bhom.property) = "Bidirectional"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Layers.LSTM";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  int32 input_size = 10 [(.bhom.field_info).property = "InputSize"];
+  int32 hidden_size = 11 [(.bhom.field_info).property = "HiddenSize"];
+  int32 number_of_layers = 12 [(.bhom.field_info).property = "NumberOfLayers"];
+  bool batch_first = 13 [(.bhom.field_info).property = "BatchFirst"];
+  double dropout = 14 [(.bhom.field_info).property = "Dropout"];
+  bool bidirectional = 15 [(.bhom.field_info).property = "Bidirectional"];
 }
 
 message Linear {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Layers.Linear";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  int32 features_in = 10 [(.bhom.property) = "FeaturesIn"];
-  int32 features_out = 11 [(.bhom.property) = "FeaturesOut"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Layers.Linear";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  int32 features_in = 10 [(.bhom.field_info).property = "FeaturesIn"];
+  int32 features_out = 11 [(.bhom.field_info).property = "FeaturesOut"];
 }
 
 message MaxPooling2d {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Layers.MaxPooling2d";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  Shape2d kernel_size = 10 [(.bhom.property) = "KernelSize"];
-  Shape2d stride = 11 [(.bhom.property) = "Stride"];
-  Shape2d padding = 12 [(.bhom.property) = "Padding"];
-  Shape2d dilation = 13 [(.bhom.property) = "Dilation"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Layers.MaxPooling2d";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  Shape2d kernel_size = 10 [(.bhom.field_info).property = "KernelSize"];
+  Shape2d stride = 11 [(.bhom.field_info).property = "Stride"];
+  Shape2d padding = 12 [(.bhom.field_info).property = "Padding"];
+  Shape2d dilation = 13 [(.bhom.field_info).property = "Dilation"];
 }
 
 message MaxUnPooling2d {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Layers.MaxUnPooling2d";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  Shape2d kernel_size = 10 [(.bhom.property) = "KernelSize"];
-  Shape2d stride = 11 [(.bhom.property) = "Stride"];
-  Shape2d padding = 12 [(.bhom.property) = "Padding"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Layers.MaxUnPooling2d";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  Shape2d kernel_size = 10 [(.bhom.field_info).property = "KernelSize"];
+  Shape2d stride = 11 [(.bhom.field_info).property = "Stride"];
+  Shape2d padding = 12 [(.bhom.field_info).property = "Padding"];
 }
 
 message TransposedConvolution2d {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Layers.TransposedConvolution2d";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  int32 features_in = 10 [(.bhom.property) = "FeaturesIn"];
-  int32 features_out = 11 [(.bhom.property) = "FeaturesOut"];
-  Shape2d kernel_size = 12 [(.bhom.property) = "KernelSize"];
-  Shape2d stride = 13 [(.bhom.property) = "Stride"];
-  Shape2d padding = 14 [(.bhom.property) = "Padding"];
-  Shape2d dilation = 15 [(.bhom.property) = "Dilation"];
-  Shape2d output_size = 16 [(.bhom.property) = "OutputSize"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Layers.TransposedConvolution2d";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  int32 features_in = 10 [(.bhom.field_info).property = "FeaturesIn"];
+  int32 features_out = 11 [(.bhom.field_info).property = "FeaturesOut"];
+  Shape2d kernel_size = 12 [(.bhom.field_info).property = "KernelSize"];
+  Shape2d stride = 13 [(.bhom.field_info).property = "Stride"];
+  Shape2d padding = 14 [(.bhom.field_info).property = "Padding"];
+  Shape2d dilation = 15 [(.bhom.field_info).property = "Dilation"];
+  Shape2d output_size = 16 [(.bhom.field_info).property = "OutputSize"];
 }
 
 message BCEWithSigmoid {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Losses.BCEWithSigmoid";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  Reduce reduce = 10 [(.bhom.property) = "Reduce"];
-  repeated double class_weights = 11 [(.bhom.property) = "ClassWeights"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Losses.BCEWithSigmoid";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  Reduce reduce = 10 [(.bhom.field_info).property = "Reduce"];
+  repeated double class_weights = 11 [(.bhom.field_info).property = "ClassWeights"];
 }
 
 message BinaryCrossEntropy {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Losses.BinaryCrossEntropy";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  Reduce reduce = 10 [(.bhom.property) = "Reduce"];
-  repeated double class_weights = 11 [(.bhom.property) = "ClassWeights"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Losses.BinaryCrossEntropy";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  Reduce reduce = 10 [(.bhom.field_info).property = "Reduce"];
+  repeated double class_weights = 11 [(.bhom.field_info).property = "ClassWeights"];
 }
 
 message CrossEntropy {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Losses.CrossEntropy";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  Reduce reduce = 10 [(.bhom.property) = "Reduce"];
-  repeated double class_weights = 11 [(.bhom.property) = "ClassWeights"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Losses.CrossEntropy";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  Reduce reduce = 10 [(.bhom.field_info).property = "Reduce"];
+  repeated double class_weights = 11 [(.bhom.field_info).property = "ClassWeights"];
 }
 
 message L1 {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Losses.L1";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  Reduce reduce = 10 [(.bhom.property) = "Reduce"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Losses.L1";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  Reduce reduce = 10 [(.bhom.field_info).property = "Reduce"];
 }
 
 message MeanSquareError {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Losses.MeanSquareError";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  Reduce reduce = 10 [(.bhom.property) = "Reduce"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Losses.MeanSquareError";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  Reduce reduce = 10 [(.bhom.field_info).property = "Reduce"];
 }
 
 message NegativeLogLikelihood {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Losses.NegativeLogLikelihood";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  Reduce reduce = 10 [(.bhom.property) = "Reduce"];
-  repeated double class_weights = 11 [(.bhom.property) = "ClassWeights"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Losses.NegativeLogLikelihood";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  Reduce reduce = 10 [(.bhom.field_info).property = "Reduce"];
+  repeated double class_weights = 11 [(.bhom.field_info).property = "ClassWeights"];
 }
 
 message Graph {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Models.Graph";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  Tree_IModule modules = 10 [(.bhom.property) = "Modules"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Models.Graph";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  Tree_IModule modules = 10 [(.bhom.field_info).property = "Modules"];
 }
 
 message Sequential {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Models.Sequential";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  repeated IModule modules = 10 [(.bhom.property) = "Modules"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Models.Sequential";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  repeated IModule modules = 10 [(.bhom.field_info).property = "Modules"];
 }
 
 message Adam {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Optimisers.Adam";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  double learning_rate = 10 [(.bhom.property) = "LearningRate"];
-  double beta1 = 11 [(.bhom.property) = "Beta1"];
-  double beta2 = 12 [(.bhom.property) = "Beta2"];
-  double weight_decay = 13 [(.bhom.property) = "WeightDecay"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Optimisers.Adam";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  double learning_rate = 10 [(.bhom.field_info).property = "LearningRate"];
+  double beta1 = 11 [(.bhom.field_info).property = "Beta1"];
+  double beta2 = 12 [(.bhom.field_info).property = "Beta2"];
+  double weight_decay = 13 [(.bhom.field_info).property = "WeightDecay"];
 }
 
 message SGD {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Optimisers.SGD";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  double learning_rate = 10 [(.bhom.property) = "LearningRate"];
-  double momentum = 11 [(.bhom.property) = "Momentum"];
-  bool nesterov = 12 [(.bhom.property) = "Nesterov"];
-  double weight_decay = 13 [(.bhom.property) = "WeightDecay"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Optimisers.SGD";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  double learning_rate = 10 [(.bhom.field_info).property = "LearningRate"];
+  double momentum = 11 [(.bhom.field_info).property = "Momentum"];
+  bool nesterov = 12 [(.bhom.field_info).property = "Nesterov"];
+  double weight_decay = 13 [(.bhom.field_info).property = "WeightDecay"];
 }
 
 enum Reduce {
-  option (.bhom.csharp_enum) = "BH.oM.DeepLearning.Reduce";
+  option (.bhom.enum_info).csharp_enum = "BH.oM.DeepLearning.Reduce";
   REDUCE_NO = 0;
   REDUCE_MEAN = 1;
   REDUCE_SUM = 2;
 }
 
 message Shape2d {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Shape2d";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  int32 dim1 = 10 [(.bhom.property) = "Dim1"];
-  int32 dim2 = 11 [(.bhom.property) = "Dim2"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Shape2d";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  int32 dim1 = 10 [(.bhom.field_info).property = "Dim1"];
+  int32 dim2 = 11 [(.bhom.field_info).property = "Dim2"];
 }
 
 message Shape3d {
-  option (.bhom.csharp_type) = "BH.oM.DeepLearning.Shape3d";
-  string bhom_guid = 1 [(.bhom.property) = "BHoM_Guid"];
-  string name = 2 [(.bhom.property) = "Name"];
-  // Fragments is not exchanged: IFragment is implemented in other files.
-  reserved 3;
-  option (.bhom.reserved_member) = "Fragments=3";
-  repeated string tags = 4 [(.bhom.property) = "Tags"];  // unique values
-  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.property) = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
-  int32 dim1 = 10 [(.bhom.property) = "Dim1"];
-  int32 dim2 = 11 [(.bhom.property) = "Dim2"];
-  int32 dim3 = 12 [(.bhom.property) = "Dim3"];
+  option (.bhom.message_info).csharp_type = "BH.oM.DeepLearning.Shape3d";
+  string bhom_guid = 1 [(.bhom.field_info).property = "BHoM_Guid"];
+  string name = 2 [(.bhom.field_info).property = "Name"];
+  repeated google.protobuf.Any fragments = 3 [(.bhom.field_info) = { property: "Fragments" any_of: "BH.oM.Base.IFragment" }];  // FragmentSet
+  repeated string tags = 4 [(.bhom.field_info).property = "Tags"];  // unique values
+  map<string, google.protobuf.Any> custom_data = 5 [(.bhom.field_info).property = "CustomData"];  // values are BHoM messages, google.protobuf wrappers, or google.protobuf.Struct/ListValue
+  int32 dim1 = 10 [(.bhom.field_info).property = "Dim1"];
+  int32 dim2 = 11 [(.bhom.field_info).property = "Dim2"];
+  int32 dim3 = 12 [(.bhom.field_info).property = "Dim3"];
 }
 
