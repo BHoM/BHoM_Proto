@@ -1,5 +1,5 @@
 {
-  "_t": "BH.oM.Adapters.gRPC.ProtoConfig",
+  "_t": "BH.oM.Adapters.Protobuf.ProtoConfig",
   "OrganisationsToInclude": [
     "BHoM"
   ],
@@ -9,7 +9,7 @@
   "RootPackage": "bhom",
   "FileGroups": [
     {
-      "_t": "BH.oM.Adapters.gRPC.ProtoFileGroup",
+      "_t": "BH.oM.Adapters.Protobuf.ProtoFileGroup",
       "Name": "disciplines",
       "Assemblies": [
         "Acoustic_oM",
@@ -28,7 +28,7 @@
       "NamespaceSegments": []
     },
     {
-      "_t": "BH.oM.Adapters.gRPC.ProtoFileGroup",
+      "_t": "BH.oM.Adapters.Protobuf.ProtoFileGroup",
       "Name": "geometry",
       "Assemblies": [
         "Geometry_oM",
@@ -37,7 +37,7 @@
       "NamespaceSegments": []
     },
     {
-      "_t": "BH.oM.Adapters.gRPC.ProtoFileGroup",
+      "_t": "BH.oM.Adapters.Protobuf.ProtoFileGroup",
       "Name": "requests",
       "Assemblies": [],
       "NamespaceSegments": [

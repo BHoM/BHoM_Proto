@@ -20,14 +20,14 @@
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.
  */
 
-using BH.Engine.Adapters.gRPC;
+using BH.Engine.Adapters.Protobuf;
 using BH.Engine.Base;
-using BH.oM.Adapters.gRPC;
+using BH.oM.Adapters.Protobuf;
 using BH.oM.Base;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace BH.Test.gRPC
+namespace BH.Test.Proto
 {
     public class ProtoTests
     {
@@ -60,7 +60,7 @@ namespace BH.Test.gRPC
         [Description("Checks that the schema installed in the BHoM resources folder, used when no schema file is given, is the one in this repository.")]
         public void InstalledSchemaMatchesRepository()
         {
-            string installed = Path.Combine(BH.Engine.Adapters.gRPC.Query.SchemaFolder(), Path.GetFileName(SchemaFile));
+            string installed = Path.Combine(BH.Engine.Adapters.Protobuf.Query.SchemaFolder(), Path.GetFileName(SchemaFile));
             Assert.That(File.Exists(installed), Is.True, $"No schema installed at {installed}. Run the generation without --no-install.");
             Assert.That(File.ReadAllBytes(installed), Is.EqualTo(File.ReadAllBytes(SchemaFile)),
                 "The installed schema differs from the one in the repository. Run the generation again.");
@@ -107,7 +107,7 @@ namespace BH.Test.gRPC
         public static IEnumerable<Type> MessageTypes()
         {
             LoadAssemblies();
-            return BH.Engine.Adapters.gRPC.Query.TypesInSchema(SchemaFile)
+            return BH.Engine.Adapters.Protobuf.Query.TypesInSchema(SchemaFile)
                 .Select(ResolveType)
                 .Where(t => t != null && t.IsClass && !t.IsAbstract && typeof(IObject).IsAssignableFrom(t));
         }
@@ -228,7 +228,7 @@ namespace BH.Test.gRPC
 
         private static string SchemaFile => Path.Combine(RootFolder, $"{Config.RootPackage}.protoset");
 
-        private static HashSet<string> TypesInSchema => m_TypesInSchema ??= new HashSet<string>(BH.Engine.Adapters.gRPC.Query.TypesInSchema(SchemaFile));
+        private static HashSet<string> TypesInSchema => m_TypesInSchema ??= new HashSet<string>(BH.Engine.Adapters.Protobuf.Query.TypesInSchema(SchemaFile));
 
         // Properties not part of the exchange, e.g. Fragments, across all types of the schema.
         private static IEnumerable<string> NotExchanged => m_NotExchanged ??= TypesInSchema
@@ -250,7 +250,7 @@ namespace BH.Test.gRPC
         {
             string protoc = Path.Combine(AppContext.BaseDirectory, "protoc", "protoc.exe");
             string include = Path.Combine(AppContext.BaseDirectory, "protoc", "include");
-            string output = Path.Combine(Path.GetTempPath(), "BHoM_gRPC_Tests", Guid.NewGuid().ToString(), "schema.protoset");
+            string output = Path.Combine(Path.GetTempPath(), "BHoM_Proto_Tests", Guid.NewGuid().ToString(), "schema.protoset");
             Directory.CreateDirectory(Path.GetDirectoryName(output));
 
             // Same order as the generation: options.proto first, then the other files by path.

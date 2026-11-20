@@ -1,6 +1,6 @@
-using BH.Engine.Adapters.gRPC;
+using BH.Engine.Adapters.Protobuf;
 using BH.Engine.Base;
-using BH.oM.Adapters.gRPC;
+using BH.oM.Adapters.Protobuf;
 using System.Reflection;
 
 namespace ProtoGeneration

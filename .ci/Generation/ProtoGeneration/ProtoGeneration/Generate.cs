@@ -1,4 +1,4 @@
-using BH.oM.Adapters.gRPC;
+using BH.oM.Adapters.Protobuf;
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
@@ -11,7 +11,7 @@ namespace ProtoGeneration
         /**** Properties                                ****/
         /***************************************************/
 
-        // Root folder of the BHoM_gRPC repository.
+        // Root folder of the BHoM_Proto repository.
         public static string Path { get; set; }
 
         public const string ConfigFileName = "ProtoConfig.json";
@@ -94,7 +94,7 @@ namespace ProtoGeneration
         // Copies the descriptor set to the BHoM resources folder, where ToProtobuf and FromProtobuf find it when no schema file is given.
         public static string InstallSchema(ProtoConfig config)
         {
-            string folder = BH.Engine.Adapters.gRPC.Query.SchemaFolder();
+            string folder = BH.Engine.Adapters.Protobuf.Query.SchemaFolder();
             Directory.CreateDirectory(folder);
             string target = System.IO.Path.Combine(folder, System.IO.Path.GetFileName(SchemaFile(config)));
             File.Copy(SchemaFile(config), target, true);

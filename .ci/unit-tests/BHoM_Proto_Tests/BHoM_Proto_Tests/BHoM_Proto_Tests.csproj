@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <AssemblyVersion>10.0.0.0</AssemblyVersion>
-    <Description>https://github.com/BHoM/BHoM_gRPC</Description>
+    <Description>https://github.com/BHoM/BHoM_Proto</Description>
     <Authors>BHoM</Authors>
     <Copyright>Copyright © https://github.com/BHoM</Copyright>
-    <RootNamespace>BH.Test.gRPC</RootNamespace>
+    <RootNamespace>BH.Test.Proto</RootNamespace>
     <FileVersion>10.0.0.0</FileVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
@@ -45,11 +45,11 @@
     <Reference Include="Google.Protobuf">
       <HintPath>$(ProgramData)\BHoM\Assemblies\Google.Protobuf.dll</HintPath>
     </Reference>
-    <Reference Include="gRPC_oM">
-      <HintPath>$(ProgramData)\BHoM\Assemblies\gRPC_oM.dll</HintPath>
+    <Reference Include="Protobuf_oM">
+      <HintPath>$(ProgramData)\BHoM\Assemblies\Protobuf_oM.dll</HintPath>
     </Reference>
-    <Reference Include="gRPC_Engine">
-      <HintPath>$(ProgramData)\BHoM\Assemblies\gRPC_Engine.dll</HintPath>
+    <Reference Include="Protobuf_Engine">
+      <HintPath>$(ProgramData)\BHoM\Assemblies\Protobuf_Engine.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Bson">
       <HintPath>$(ProgramData)\BHoM\Assemblies\MongoDB.Bson.dll</HintPath>

@@ -1,4 +1,4 @@
-using BH.oM.Adapters.gRPC;
+using BH.oM.Adapters.Protobuf;
 using ProtoGeneration;
 using System.Reflection;
 
@@ -23,7 +23,7 @@ string schemaFile = Generate.SchemaFile(config);
 string existingSchema = File.Exists(schemaFile) ? schemaFile : "";
 Console.WriteLine(existingSchema == "" ? "No existing schema: assigning all field numbers from scratch." : $"Keeping the field numbers of {schemaFile}.");
 
-ProtoGenerationResult result = BH.Engine.Adapters.gRPC.Compute.GenerateProtoFiles(assemblies, config, existingSchema);
+ProtoGenerationResult result = BH.Engine.Adapters.Protobuf.Compute.GenerateProtoFiles(assemblies, config, existingSchema);
 if (result == null)
 {
     Console.WriteLine("Generation failed: " + string.Join(" | ", BH.Engine.Base.Query.CurrentEvents().Select(e => e.Message)));

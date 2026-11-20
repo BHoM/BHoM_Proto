@@ -31,12 +31,12 @@
       <HintPath>$(ProgramData)\BHoM\Assemblies\Google.Protobuf.dll</HintPath>
       <SpecificVersion>false</SpecificVersion>
     </Reference>
-    <Reference Include="gRPC_oM">
-      <HintPath>$(ProgramData)\BHoM\Assemblies\gRPC_oM.dll</HintPath>
+    <Reference Include="Protobuf_oM">
+      <HintPath>$(ProgramData)\BHoM\Assemblies\Protobuf_oM.dll</HintPath>
       <SpecificVersion>false</SpecificVersion>
     </Reference>
-    <Reference Include="gRPC_Engine">
-      <HintPath>$(ProgramData)\BHoM\Assemblies\gRPC_Engine.dll</HintPath>
+    <Reference Include="Protobuf_Engine">
+      <HintPath>$(ProgramData)\BHoM\Assemblies\Protobuf_Engine.dll</HintPath>
       <SpecificVersion>false</SpecificVersion>
     </Reference>
     <Reference Include="MongoDB.Bson">
