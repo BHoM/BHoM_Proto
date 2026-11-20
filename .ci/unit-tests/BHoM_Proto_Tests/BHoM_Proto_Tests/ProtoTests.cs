@@ -118,26 +118,43 @@ namespace BH.Test.Proto
 
         private static IObject Dummy(Type type)
         {
-            object dummy = null;
+            IObject original = null;
             try
             {
-                dummy = BH.Engine.Test.Compute.DummyObject(type);
+                Dummies.TryGetValue(type, out original);
             }
             catch (Exception e)
             {
-                Assert.Inconclusive($"Could not create a dummy {type.Name}: {e.Message}");
+                Assert.Inconclusive($"Could not create the dummy objects: {e.Message}");
             }
 
-            IObject original = dummy as IObject;
             Assume.That(original, Is.Not.Null, $"No dummy {type.Name} could be created.");
 
-            // DummyObject fills interface properties with any loaded implementation, including toolkit types outside the generated scope.
+            // Safety net: the dummies only use types of the schema to fill interface properties, so this should never trigger.
             List<string> outOfScope = OutOfScopeTypes(original).ToList();
             if (outOfScope.Count > 0)
                 Assert.Inconclusive($"The dummy {type.Name} contains types outside the generated scope: {string.Join(", ", outOfScope)}");
 
             return original;
         }
+
+        /***************************************************/
+
+        // One dummy per type of the schema, created in a single call so that properties typed as interfaces or abstract classes
+        // are only filled with implementations that are part of the schema. DummyObject(type) would pick any loaded implementation,
+        // including toolkit types outside the generated scope.
+        private static Dictionary<Type, IObject> Dummies => m_Dummies ??= CreateDummies();
+
+        private static Dictionary<Type, IObject> CreateDummies()
+        {
+            Output<List<object>, List<Type>> result = BH.Engine.Test.Compute.DummyObjects(MessageTypes().ToList());
+            return result.Item1
+                .OfType<IObject>()
+                .GroupBy(d => d.GetType())
+                .ToDictionary(g => g.Key, g => g.First());
+        }
+
+        private static Dictionary<Type, IObject> m_Dummies;
 
         /***************************************************/
 
