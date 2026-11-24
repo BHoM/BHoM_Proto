@@ -20,12 +20,12 @@
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.
  */
 
+using System.Diagnostics;
+using System.Reflection;
 using BH.Engine.Adapters.Protobuf;
 using BH.Engine.Base;
 using BH.oM.Adapters.Protobuf;
 using BH.oM.Base;
-using System.Diagnostics;
-using System.Reflection;
 
 namespace BH.Test.Proto
 {
@@ -98,6 +98,39 @@ namespace BH.Test.Proto
 
             IObject result = bytes.FromProtobufAny();
             AssertEqual(original, result);
+        }
+
+        /***************************************************/
+        /**** Test Methods - Compiled writer            ****/
+        /***************************************************/
+
+        [TestCaseSource(nameof(MessageTypes))]
+        [Description("Checks that the compiled writer used by ToProtobuf and ToProtobufAny produces exactly the same bytes as the reflection writer, the readable reference of the encoding.")]
+        public void CompiledWriterMatchesReference(Type type)
+        {
+            IObject original = Dummy(type);
+
+            BH.Engine.Base.Compute.ClearCurrentEvents();
+            Assert.That(original.ToProtobuf(SchemaFile), Is.EqualTo(original.ToProtobufReflection(SchemaFile)), $"Plain message of {type.Name}. {Events()}");
+            Assert.That(original.ToProtobufAny(SchemaFile), Is.EqualTo(original.ToProtobufAnyReflection(SchemaFile)), $"Any of {type.Name}. {Events()}");
+        }
+
+        /***************************************************/
+
+        [TestCaseSource(nameof(MessageTypes))]
+        [Description("Checks that the compiled reader used by FromProtobuf and FromProtobufAny reads the same object as the reflection reader, the readable reference of the decoding.")]
+        public void CompiledReaderMatchesReference(Type type)
+        {
+            IObject original = Dummy(type);
+
+            BH.Engine.Base.Compute.ClearCurrentEvents();
+            byte[] bytes = original.ToProtobuf(SchemaFile);
+            IObject reference = bytes.FromProtobufReflection(type, SchemaFile);
+            Assume.That(reference, Is.Not.Null, $"The reference reader could not read {type.Name}. {Events()}");
+            AssertEqual(reference, bytes.FromProtobuf(type, SchemaFile));
+
+            byte[] anyBytes = original.ToProtobufAny(SchemaFile);
+            AssertEqual(anyBytes.FromProtobufAnyReflection(SchemaFile), anyBytes.FromProtobufAny(SchemaFile));
         }
 
         /***************************************************/

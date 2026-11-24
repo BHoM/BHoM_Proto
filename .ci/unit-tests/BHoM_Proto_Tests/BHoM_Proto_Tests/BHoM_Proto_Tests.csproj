@@ -25,6 +25,11 @@
     <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
   </ItemGroup>
 
+  <!-- The reflection reference writer and reader the compiled ones of Protobuf_Engine are checked against. -->
+  <ItemGroup>
+    <Compile Include="..\..\..\Reference\*.cs" Link="Reference\%(Filename)%(Extension)" />
+  </ItemGroup>
+
   <ItemGroup>
     <Using Include="NUnit.Framework" />
   </ItemGroup>
