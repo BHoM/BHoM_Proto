@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <RootNamespace>BH.Benchmark.Proto</RootNamespace>
+    <Description>https://github.com/BHoM/BHoM_Proto</Description>
+    <!-- Benchmarks are only meaningful in Release. -->
+    <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
+  </ItemGroup>
+
+  <!-- The reflection reference writer and reader the compiled ones of Protobuf_Engine are checked against. -->
+  <ItemGroup>
+    <Compile Include="..\..\Reference\*.cs" Link="Reference\%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <!-- BHoM assemblies from the installed BHoM folder, as in the other .ci projects.
+       Others they depend on are resolved from the same folder at run time (see Program.cs). -->
+  <ItemGroup>
+    <Reference Include="BHoM"><HintPath>$(ProgramData)\BHoM\Assemblies\BHoM.dll</HintPath></Reference>
+    <Reference Include="BHoM_Engine"><HintPath>$(ProgramData)\BHoM\Assemblies\BHoM_Engine.dll</HintPath></Reference>
+    <Reference Include="Serialiser_Engine"><HintPath>$(ProgramData)\BHoM\Assemblies\Serialiser_Engine.dll</HintPath></Reference>
+    <Reference Include="MongoDB.Bson"><HintPath>$(ProgramData)\BHoM\Assemblies\MongoDB.Bson.dll</HintPath></Reference>
+    <Reference Include="Google.Protobuf"><HintPath>$(ProgramData)\BHoM\Assemblies\Google.Protobuf.dll</HintPath></Reference>
+    <Reference Include="Protobuf_oM"><HintPath>$(ProgramData)\BHoM\Assemblies\Protobuf_oM.dll</HintPath></Reference>
+    <Reference Include="Protobuf_Engine"><HintPath>$(ProgramData)\BHoM\Assemblies\Protobuf_Engine.dll</HintPath></Reference>
+    <Reference Include="Analytical_oM"><HintPath>$(ProgramData)\BHoM\Assemblies\Analytical_oM.dll</HintPath></Reference>
+    <Reference Include="Dimensional_oM"><HintPath>$(ProgramData)\BHoM\Assemblies\Dimensional_oM.dll</HintPath></Reference>
+    <Reference Include="Geometry_oM"><HintPath>$(ProgramData)\BHoM\Assemblies\Geometry_oM.dll</HintPath></Reference>
+    <Reference Include="Physical_oM"><HintPath>$(ProgramData)\BHoM\Assemblies\Physical_oM.dll</HintPath></Reference>
+    <Reference Include="Quantities_oM"><HintPath>$(ProgramData)\BHoM\Assemblies\Quantities_oM.dll</HintPath></Reference>
+    <Reference Include="Spatial_oM"><HintPath>$(ProgramData)\BHoM\Assemblies\Spatial_oM.dll</HintPath></Reference>
+    <Reference Include="Structure_oM"><HintPath>$(ProgramData)\BHoM\Assemblies\Structure_oM.dll</HintPath></Reference>
+    <Reference Include="Structure_Engine"><HintPath>$(ProgramData)\BHoM\Assemblies\Structure_Engine.dll</HintPath></Reference>
+  </ItemGroup>
+
+</Project>
