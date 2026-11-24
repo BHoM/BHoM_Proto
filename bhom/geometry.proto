@@ -10,40 +10,40 @@ import "bhom/options.proto";
 message Arc {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Arc";
   // Defines Arc centre equal to Origin of the CoordinateSystem, as well as the orientation of the Arc in three-dimensional space, equal to local xy-Plane of the CoordinateSystem.
-  Cartesian coordinate_system = 10 [(.bhom.field_info).property = "CoordinateSystem"];
+  Cartesian coordinate_system = 1 [(.bhom.field_info).property = "CoordinateSystem"];
   // Distance from the CoordinateSystem.Origin to the any point on Arc.
-  double radius = 11 [(.bhom.field_info).property = "Radius"];  // [Length, m]
+  double radius = 2 [(.bhom.field_info).property = "Radius"];  // [Length, m]
   // Angle in radians to the start point from the local x-axis, counter clockwise around the local z-axis.
-  double start_angle = 12 [(.bhom.field_info).property = "StartAngle"];  // [Angle, rad]
+  double start_angle = 3 [(.bhom.field_info).property = "StartAngle"];  // [Angle, rad]
   // Angle in radians to the end point from the local x-axis, counter clockwise around the local z-axis.
-  double end_angle = 13 [(.bhom.field_info).property = "EndAngle"];  // [Angle, rad]
+  double end_angle = 4 [(.bhom.field_info).property = "EndAngle"];  // [Angle, rad]
 }
 
 // An ordered set of mutually orthogonal unit vectors defining three-dimensional orientation in space
 message Basis {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Basis";
   // Unit vector defining local x coordinate axis
-  Vector x = 10 [(.bhom.field_info).property = "X"];
+  Vector x = 1 [(.bhom.field_info).property = "X"];
   // Unit vector defining local y coordinate axis
-  Vector y = 11 [(.bhom.field_info).property = "Y"];
+  Vector y = 2 [(.bhom.field_info).property = "Y"];
   // Unit vector defining local z coordinate axis
-  Vector z = 12 [(.bhom.field_info).property = "Z"];
+  Vector z = 3 [(.bhom.field_info).property = "Z"];
 }
 
 // Closed, planar, non-self intersecting curve built up of multiple curve segments.
 message BoundaryCurve {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.BoundaryCurve";
   // A collection of curves, of any or mixed type, which together define a closed, planar, non-self intersection boundary loop.
-  repeated ICurve curves = 10 [(.bhom.field_info).property = "Curves"];
+  repeated ICurve curves = 1 [(.bhom.field_info).property = "Curves"];
 }
 
 // Solid representation defined by a collection of connected surfaces forming a closed volume
 message BoundaryRepresentation {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.BoundaryRepresentation";
   // List of ISurfaces must form a closed volume - checks and guarantees to be performed at conversion
-  repeated ISurface surfaces = 10 [(.bhom.field_info).property = "Surfaces"];
+  repeated ISurface surfaces = 1 [(.bhom.field_info).property = "Surfaces"];
   // The enclosed volume created by the boundary surfaces. Property is set where available at conversion. If unavailable, or invalidated, will read NaN (not a number)
-  double volume = 11 [(.bhom.field_info).property = "Volume"];  // [Volume, m³]
+  double volume = 2 [(.bhom.field_info).property = "Volume"];  // [Volume, m³]
 }
 
 // An axis aligned cuboid, which describes the smallest volume Box, oriented with the global coordinate system, that fully encompases a set of geometry.
@@ -51,88 +51,88 @@ message BoundaryRepresentation {
 message BoundingBox {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.BoundingBox";
   // The lower bound values for the X, Y and Z coordinates of the Box corner Points.
-  Point min = 10 [(.bhom.field_info).property = "Min"];
+  Point min = 1 [(.bhom.field_info).property = "Min"];
   // The upper bound values for the X, Y and Z coordinates of the Box corner Points.
-  Point max = 11 [(.bhom.field_info).property = "Max"];
+  Point max = 2 [(.bhom.field_info).property = "Max"];
 }
 
 // Details the index of the cells which is behind and infront of each Face.
 message CellRelation {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.CellRelation";
   // Index of the cell the Face is connected to which its normal is pointing away from.
-  int32 from_cell = 10 [(.bhom.field_info).property = "FromCell"];
+  int32 from_cell = 1 [(.bhom.field_info).property = "FromCell"];
   // Index of the cell the Face is connected to which its normal is pointing towards.
-  int32 to_cell = 11 [(.bhom.field_info).property = "ToCell"];
+  int32 to_cell = 2 [(.bhom.field_info).property = "ToCell"];
 }
 
 // A plane curve. Standard circle defining a curve of constant distance from a point, its Centre.
 message Circle {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Circle";
   // Origin point defining location of the Circle in three-dimensional space.
-  Point centre = 10 [(.bhom.field_info).property = "Centre"];
+  Point centre = 1 [(.bhom.field_info).property = "Centre"];
   // Vector perpendicular to the plane in which the Circle lies.
-  Vector normal = 11 [(.bhom.field_info).property = "Normal"];
+  Vector normal = 2 [(.bhom.field_info).property = "Normal"];
   // Distance from the Centre to any point on Circle.
-  double radius = 12 [(.bhom.field_info).property = "Radius"];  // [Length, m]
+  double radius = 3 [(.bhom.field_info).property = "Radius"];  // [Length, m]
 }
 
 // A collection of multiple sets of Geometry of any or mixed type. Integrity, continuity and closure is not guaranteed. Discontinuous and/or mixed type definitions are possible, with no restrictions placed on how geometry can be combined.
 message CompositeGeometry {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.CompositeGeometry";
   // A list of assorted geometry, which together define the composite shape.
-  repeated IGeometry elements = 10 [(.bhom.field_info).property = "Elements"];
+  repeated IGeometry elements = 1 [(.bhom.field_info).property = "Elements"];
 }
 
 // A solid circular right angled cone
 message Cone {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Cone";
   // Point defining the centre of the circular base
-  Point centre = 10 [(.bhom.field_info).property = "Centre"];
+  Point centre = 1 [(.bhom.field_info).property = "Centre"];
   // Vector perperdicular to the Cone base. Defines the orientation in three-dimensional space
-  Vector axis = 11 [(.bhom.field_info).property = "Axis"];
+  Vector axis = 2 [(.bhom.field_info).property = "Axis"];
   // Distance from the Centre to the edge of the circular base
-  double radius = 12 [(.bhom.field_info).property = "Radius"];  // [Length, m]
+  double radius = 3 [(.bhom.field_info).property = "Radius"];  // [Length, m]
   // Distance from the centre of the base to the Cone's apex
-  double height = 13 [(.bhom.field_info).property = "Height"];  // [Length, m]
+  double height = 4 [(.bhom.field_info).property = "Height"];  // [Length, m]
 }
 
 // A three-dimensional Cartesian coordinate system, as defined by a set of mutually orthogonal unit vectors and a common origin point
 message Cartesian {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.CoordinateSystem.Cartesian";
   // Unit vector defining local x coordinate axis
-  Vector x = 10 [(.bhom.field_info).property = "X"];
+  Vector x = 1 [(.bhom.field_info).property = "X"];
   // Unit vector defining local y coordinate axis
-  Vector y = 11 [(.bhom.field_info).property = "Y"];
+  Vector y = 2 [(.bhom.field_info).property = "Y"];
   // Unit vector defining local z coordinate axis
-  Vector z = 12 [(.bhom.field_info).property = "Z"];
+  Vector z = 3 [(.bhom.field_info).property = "Z"];
   // Location point in three-dimensional space defining (0,0,0) and the origin for each axis
-  Point origin = 13 [(.bhom.field_info).property = "Origin"];
+  Point origin = 4 [(.bhom.field_info).property = "Origin"];
 }
 
 // A polyhedron. Standard cuboid consisting of six right-angled quadrilateral faces.
 message Cuboid {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Cuboid";
   // Defines both the Cuboid centre as the CoordinateSystem Origin, as well as the orientation in three-dimensional space.
-  Cartesian coordinate_system = 10 [(.bhom.field_info).property = "CoordinateSystem"];
+  Cartesian coordinate_system = 1 [(.bhom.field_info).property = "CoordinateSystem"];
   // Dimension in the local x-axis. The Cuboid will have one face at a distance of Length/2 from the centre along the positive local x-axis and, one face at a distance of Length/2 from the centre along the negative local x-axis.
-  double length = 11 [(.bhom.field_info).property = "Length"];  // [Length, m]
+  double length = 2 [(.bhom.field_info).property = "Length"];  // [Length, m]
   // Dimension in the local y-axis. The Cuboid will have one face at a distance of Depth/2 from the centre along the positive local y-axis and, one face at a distance of Depth/2 from the centre along the negative local y-axis.
-  double depth = 12 [(.bhom.field_info).property = "Depth"];  // [Length, m]
+  double depth = 3 [(.bhom.field_info).property = "Depth"];  // [Length, m]
   // Dimension in the local z-axis. The Cuboid will have one face at a distance of Height/2 from the centre along the positive local z-axis and, one face at a distance of Height/2 from the centre along the negative local z-axis.
-  double height = 13 [(.bhom.field_info).property = "Height"];  // [Length, m]
+  double height = 4 [(.bhom.field_info).property = "Height"];  // [Length, m]
 }
 
 // A solid circular right angled cylinder.
 message Cylinder {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Cylinder";
   // Point defining the centre of the circular base.
-  Point centre = 10 [(.bhom.field_info).property = "Centre"];
+  Point centre = 1 [(.bhom.field_info).property = "Centre"];
   // Vector perperdicular to the base. Defines the orientation in three-dimensional space.
-  Vector axis = 11 [(.bhom.field_info).property = "Axis"];
+  Vector axis = 2 [(.bhom.field_info).property = "Axis"];
   // Distance from the Axis to the Cylinder boundary surface.
-  double radius = 12 [(.bhom.field_info).property = "Radius"];  // [Length, m]
+  double radius = 3 [(.bhom.field_info).property = "Radius"];  // [Length, m]
   // Distance between the base and top surface, measured along the Axis.
-  double height = 13 [(.bhom.field_info).property = "Height"];  // [Length, m]
+  double height = 4 [(.bhom.field_info).property = "Height"];  // [Length, m]
 }
 
 // A plane curve. A standard ellipse defining a curve of constant combined distance around two foci.
@@ -140,26 +140,26 @@ message Cylinder {
 message Ellipse {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Ellipse";
   // Origin point defining location of the Ellipse in three-dimensional space.
-  Point centre = 10 [(.bhom.field_info).property = "Centre"];
+  Point centre = 1 [(.bhom.field_info).property = "Centre"];
   // Together with Axis2 defines orientation in three-dimensional space. Direction only, and not magnitude, matters.
-  Vector axis1 = 11 [(.bhom.field_info).property = "Axis1"];
+  Vector axis1 = 2 [(.bhom.field_info).property = "Axis1"];
   // Together with Axis1 defines orientation in three-dimensional space. Direction only, and not magnitude, matters.
-  Vector axis2 = 12 [(.bhom.field_info).property = "Axis2"];
+  Vector axis2 = 3 [(.bhom.field_info).property = "Axis2"];
   // Distance from the Centre to a point on the Ellipse along Axis1.
-  double radius1 = 13 [(.bhom.field_info).property = "Radius1"];  // [Length, m]
+  double radius1 = 4 [(.bhom.field_info).property = "Radius1"];  // [Length, m]
   // Distance from the Centre to a point on the Ellipse along Axis2.
-  double radius2 = 14 [(.bhom.field_info).property = "Radius2"];  // [Length, m]
+  double radius2 = 5 [(.bhom.field_info).property = "Radius2"];  // [Length, m]
 }
 
 // A constant cross section surface, defined by a single profile curve and a linear axis.
 message Extrusion {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Extrusion";
   // The Extrusion profile curve defining the constant cross sectional shape. Idential curves can be recreated at any point along the Extrusion axis through intersection with the Surface.
-  ICurve curve = 10 [(.bhom.field_info).property = "Curve"];
+  ICurve curve = 1 [(.bhom.field_info).property = "Curve"];
   // The axis along which to translate the profile curve. The Vector magnitude determining the Extrusion length.
-  Vector direction = 11 [(.bhom.field_info).property = "Direction"];  // [Length, m]
+  Vector direction = 2 [(.bhom.field_info).property = "Direction"];  // [Length, m]
   // Defines the Extrusion as closed and therfore a solid volume.
-  bool capped = 12 [(.bhom.field_info).property = "Capped"];
+  bool capped = 3 [(.bhom.field_info).property = "Capped"];
 }
 
 // A triangular or quadrilateral shape forming the basis of a polygon Mesh. Defined by corner vertices referencing indices of a Point list. See BH.oM.Geometry.Mesh object for usage.
@@ -167,13 +167,13 @@ message Extrusion {
 message Face {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Face";
   // Index of first corner in Point list.
-  int32 a = 10 [(.bhom.field_info).property = "A"];
+  int32 a = 1 [(.bhom.field_info).property = "A"];
   // Index of second corner in Point list.
-  int32 b = 11 [(.bhom.field_info).property = "B"];
+  int32 b = 2 [(.bhom.field_info).property = "B"];
   // Index of third corner in Point list.
-  int32 c = 12 [(.bhom.field_info).property = "C"];
+  int32 c = 3 [(.bhom.field_info).property = "C"];
   // Index of fourth corner in Point list. Set to -1 for three-sided Face.
-  int32 d = 13 [(.bhom.field_info).property = "D"];
+  int32 d = 4 [(.bhom.field_info).property = "D"];
 }
 
 // The interface for all one-dimensional geometrical objects.
@@ -279,37 +279,37 @@ message IntegrationSlice {
 // The Vector from Start to End defines the Line direction, which can be important for some applications.
 message Line {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Line";
-  Point start = 10 [(.bhom.field_info).property = "Start"];
-  Point end = 11 [(.bhom.field_info).property = "End"];
+  Point start = 1 [(.bhom.field_info).property = "Start"];
+  Point end = 2 [(.bhom.field_info).property = "End"];
   // Defines the Line as a ray of infinite extents in both directions
-  bool infinite = 12 [(.bhom.field_info).property = "Infinite"];
+  bool infinite = 3 [(.bhom.field_info).property = "Infinite"];
 }
 
 // A free-form surface defined by a series of cross sectional Curves. The surface provides a continuous interpolation passing through each Curve in order.
 message Loft {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Loft";
   // An ordered list of Curves defining the varying cross sectional surface profile.
-  repeated ICurve curves = 10 [(.bhom.field_info).property = "Curves"];
+  repeated ICurve curves = 1 [(.bhom.field_info).property = "Curves"];
 }
 
 // A polygon mesh, defined by a list of triangular or quadrilateral Faces and their Vertices.
 message Mesh {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Mesh";
   // Defines the three-dimensional Mesh geometry as  X, Y, Z coordinates.
-  repeated Point vertices = 10 [(.bhom.field_info).property = "Vertices"];
+  repeated Point vertices = 1 [(.bhom.field_info).property = "Vertices"];
   // The list of polygons, defined as corner Point indices referencing the list of Vertices.
-  repeated Face faces = 11 [(.bhom.field_info).property = "Faces"];
+  repeated Face faces = 2 [(.bhom.field_info).property = "Faces"];
 }
 
 // A polygon mesh, defined by a list of triangular or quadrilateral Faces, Cells and their Vertices.
 message Mesh3D {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Mesh3D";
   // Defines the three-dimensional Mesh geometry as  X, Y, Z coordinates.
-  repeated Point vertices = 10 [(.bhom.field_info).property = "Vertices"];
+  repeated Point vertices = 1 [(.bhom.field_info).property = "Vertices"];
   // The list of polygons, defined as corner Point indices referencing the list of Vertices.
-  repeated Face faces = 11 [(.bhom.field_info).property = "Faces"];
+  repeated Face faces = 2 [(.bhom.field_info).property = "Faces"];
   // A parallel list to the Faces, details the index of the cells which is behind and infront of each Face.
-  repeated CellRelation cell_relation = 12 [(.bhom.field_info).property = "CellRelation"];
+  repeated CellRelation cell_relation = 3 [(.bhom.field_info).property = "CellRelation"];
 }
 
 // A non-uniform rational basis spline (or B-spline). Enables definition of smooth and continuous curves as piece-wise polynomial basis functions evaluated from discrete geometrical ControlPoints.
@@ -318,13 +318,13 @@ message NurbsCurve {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.NurbsCurve";
   // An ordered set of three-dimensional points defining the curve shape. The control point locations are approximating, as opposed to interpolating, meaning in the general case the resulting curve will not pass through the control point locations themselves.
   // The special case of where both Knot and ControlPoint count are equal defines a NurbsCurve of Degree 1. This shape will pass through all ControlPoints, linearly interpolating beween them and being equivalent to a Polyline.
-  repeated Point control_points = 10 [(.bhom.field_info).property = "ControlPoints"];
+  repeated Point control_points = 1 [(.bhom.field_info).property = "ControlPoints"];
   // A list of scalar factors, one for each ControlPoint. The weights in effect add an additional degree of freedom, allowing control over the relative influence of each control point on the curve shape
-  repeated double weights = 11 [(.bhom.field_info).property = "Weights"];
+  repeated double weights = 2 [(.bhom.field_info).property = "Weights"];
   // The knot vector is a non-decreasing list of numbers, the relative spacing of which define the spans and transition points of the basis functions along the curve's domain.
   // Knot vector length must be equal to or greater than the number of ControlPoints, such that together, the difference in counts defines the order (and degree) of the NurbsCurve.
   // The NurbsCurve degree is equal to order plus one.
-  repeated double knots = 12 [(.bhom.field_info).property = "Knots"];
+  repeated double knots = 3 [(.bhom.field_info).property = "Knots"];
 }
 
 // A free-form surface constructed as a UV grid of weighted NURBS ControlPoints. A continuous form is generated by approximating a two-directional network of piece-wise polynomial splines across the U and V directions, creating a smooth surface patch.
@@ -334,21 +334,21 @@ message NurbsCurve {
 message NurbsSurface {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.NurbsSurface";
   // An ordered list of three-dimensional points defining the overall surface patch geometry. Each row of Points in the UV grid are listed sequentially as a single vector. The control point locations are approximating, as opposed to interpolating, meaning in the general case the resulting surface will not pass through the control point locations themselves.
-  repeated Point control_points = 10 [(.bhom.field_info).property = "ControlPoints"];
+  repeated Point control_points = 1 [(.bhom.field_info).property = "ControlPoints"];
   // A list of scalar factors, one for each ControlPoint. The weights in effect add an additional degree of freedom, allowing control over the relative influence of each control point on the surface shape.
-  repeated double weights = 11 [(.bhom.field_info).property = "Weights"];
+  repeated double weights = 2 [(.bhom.field_info).property = "Weights"];
   // Defines the spans and transition points of the basis functions in the U domain. See also BH.oM.Geometry.NurbsCurve for more info on Knot Vectors.
-  repeated double u_knots = 12 [(.bhom.field_info).property = "UKnots"];
+  repeated double u_knots = 3 [(.bhom.field_info).property = "UKnots"];
   // Defines the spans and transition points of the basis functions in the V domain. See also BH.oM.Geometry.NurbsCurve for more info on Knot Vectors.
-  repeated double v_knots = 13 [(.bhom.field_info).property = "VKnots"];
+  repeated double v_knots = 4 [(.bhom.field_info).property = "VKnots"];
   // Sets the degree of the polynomial basis functions in the U direction of the surface patch. This ultimately defines the number of local U ControlPoints that influence a given point of the surface.
-  int32 u_degree = 14 [(.bhom.field_info).property = "UDegree"];
+  int32 u_degree = 5 [(.bhom.field_info).property = "UDegree"];
   // Sets the degree of the polynomial basis functions in the V direction of the surface patch. This ultimately defines the number of local V ControlPoints that influence a given point of the surface.
-  int32 v_degree = 15 [(.bhom.field_info).property = "VDegree"];
+  int32 v_degree = 6 [(.bhom.field_info).property = "VDegree"];
   // Allows definition of a set of free-form shapes to be cut from the underlying Surface.
-  repeated SurfaceTrim inner_trims = 16 [(.bhom.field_info).property = "InnerTrims"];
+  repeated SurfaceTrim inner_trims = 7 [(.bhom.field_info).property = "InnerTrims"];
   // Allows definition of free-form external perimeter to the NurbsSurface patch.
-  repeated SurfaceTrim outer_trims = 17 [(.bhom.field_info).property = "OuterTrims"];
+  repeated SurfaceTrim outer_trims = 8 [(.bhom.field_info).property = "OuterTrims"];
 }
 
 // Options for curve offset operations.
@@ -368,54 +368,54 @@ message OffsetOptions {
 message Pipe {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Pipe";
   // Defines the central axis perpendicular to the circular cross sections, and thus the path along which the tubular surface follows.
-  ICurve centreline = 10 [(.bhom.field_info).property = "Centreline"];
+  ICurve centreline = 1 [(.bhom.field_info).property = "Centreline"];
   // The distance from the Curve Centreline to a point on the Pipe surface.
-  double radius = 11 [(.bhom.field_info).property = "Radius"];  // [Length, m]
+  double radius = 2 [(.bhom.field_info).property = "Radius"];  // [Length, m]
   // Defines the Pipe as closed and therfore a solid volume.
-  bool capped = 12 [(.bhom.field_info).property = "Capped"];
+  bool capped = 3 [(.bhom.field_info).property = "Capped"];
 }
 
 // A surface defined by boundary edge curves lying in a common plane. Planarity toleraces default to the BH.oM.Geometry.Tolerace.Distance.
 message PlanarSurface {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.PlanarSurface";
   // Closed planar curve defining the outer boundary of the surface.
-  ICurve external_boundary = 10 [(.bhom.field_info).property = "ExternalBoundary"];
+  ICurve external_boundary = 1 [(.bhom.field_info).property = "ExternalBoundary"];
   // List of closed (co)planar curves defining any internal openings in the surface.
-  repeated ICurve internal_boundaries = 11 [(.bhom.field_info).property = "InternalBoundaries"];
+  repeated ICurve internal_boundaries = 2 [(.bhom.field_info).property = "InternalBoundaries"];
 }
 
 // Defines a flat infinite two-dimensional surface
 message Plane {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Plane";
   // A point through which the plane passes
-  Point origin = 10 [(.bhom.field_info).property = "Origin"];
+  Point origin = 1 [(.bhom.field_info).property = "Origin"];
   // Vector perpendicualar to the plane, defining the orientation in three-dimensional space
-  Vector normal = 11 [(.bhom.field_info).property = "Normal"];
+  Vector normal = 2 [(.bhom.field_info).property = "Normal"];
 }
 
 // Defines a dimensionless location in three-dimensional space.
 message Point {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Point";
   // Position along global X coordinate axis.
-  double x = 10 [(.bhom.field_info).property = "X"];
+  double x = 1 [(.bhom.field_info).property = "X"];
   // Position along global Y coordinate axis.
-  double y = 11 [(.bhom.field_info).property = "Y"];
+  double y = 2 [(.bhom.field_info).property = "Y"];
   // Position along global Z coordinate axis.
-  double z = 12 [(.bhom.field_info).property = "Z"];
+  double z = 3 [(.bhom.field_info).property = "Z"];
 }
 
 // A composite curve constructed by combining a collection of curves of any type. Whole PolyCurve integrity, continuity and closure is not guaranteed at creation. Discontinuous and/or multi-region definitions are possible, although not recommended as may cause unexpected results in method operating on PolyCurves.
 message PolyCurve {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.PolyCurve";
   // A collection of curves, of any or mixed type, which together define the composite shape.
-  repeated ICurve curves = 10 [(.bhom.field_info).property = "Curves"];
+  repeated ICurve curves = 1 [(.bhom.field_info).property = "Curves"];
 }
 
 // A composite surface constructed by combining a collection of surfaces of any type. Whole PolySurface integrity, continuity and closure is not guaranteed at creation. Discontinuous and/or multi-region definitions are possible, although validity of some engine methods may vary depending on the PolySurface form.
 message PolySurface {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.PolySurface";
   // A collection of surfaces, of any or mixed type, which together define the composite shape.
-  repeated ISurface surfaces = 10 [(.bhom.field_info).property = "Surfaces"];
+  repeated ISurface surfaces = 1 [(.bhom.field_info).property = "Surfaces"];
 }
 
 // Simple Polygon. Closed, planar and non-self intersecting. Can be irregular, convex and/or concave.
@@ -423,32 +423,32 @@ message Polygon {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Polygon";
   // An ordered set of three-dimensional points defining the curve shape.
   // The list should not contain any duplicate points - the first point in the list will be treated as both the start and end point.
-  repeated Point vertices = 10 [(.bhom.field_info).property = "Vertices"];
+  repeated Point vertices = 1 [(.bhom.field_info).property = "Vertices"];
 }
 
 // A curve consisting of a continuous chain of straight line segments. The Polyline is considered closed if the first and last ControlPoints are coincident.
 message Polyline {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Polyline";
   // An ordered set of three-dimensional points defining the curve shape.
-  repeated Point control_points = 10 [(.bhom.field_info).property = "ControlPoints"];
+  repeated Point control_points = 1 [(.bhom.field_info).property = "ControlPoints"];
 }
 
 // A four-dimensional vector, useful in calculation of affine transformations in three-dimensional space. See also BH.oM.Geometry.TransformMatrix.
 message Quaternion {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Quaternion";
-  double x = 10 [(.bhom.field_info).property = "X"];
-  double y = 11 [(.bhom.field_info).property = "Y"];
-  double z = 12 [(.bhom.field_info).property = "Z"];
-  double w = 13 [(.bhom.field_info).property = "W"];
+  double x = 1 [(.bhom.field_info).property = "X"];
+  double y = 2 [(.bhom.field_info).property = "Y"];
+  double z = 3 [(.bhom.field_info).property = "Z"];
+  double w = 4 [(.bhom.field_info).property = "W"];
 }
 
 // Standard sphere defining the closed bounding surface of constant distance from a point, its Centre
 message Sphere {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Sphere";
   // Origin point defining location of the Sphere in three-dimensional space
-  Point centre = 10 [(.bhom.field_info).property = "Centre"];
+  Point centre = 1 [(.bhom.field_info).property = "Centre"];
   // Distance from the Centre to the Sphere boundary surface
-  double radius = 11 [(.bhom.field_info).property = "Radius"];  // [Length, m]
+  double radius = 2 [(.bhom.field_info).property = "Radius"];  // [Length, m]
 }
 
 // A pair of curves representing the boundary of a trimmed surface in both global X, Y, Z coordinates (Curve3d) as well as local surface U, V parameter space (Curve2d).
@@ -456,39 +456,39 @@ message Sphere {
 message SurfaceTrim {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.SurfaceTrim";
   // Trim Curve in global X, Y, Z coordinates.
-  ICurve curve3d = 10 [(.bhom.field_info).property = "Curve3d"];
+  ICurve curve3d = 1 [(.bhom.field_info).property = "Curve3d"];
   // Trim Curve in local surface U, V coordinates.
-  ICurve curve2d = 11 [(.bhom.field_info).property = "Curve2d"];
+  ICurve curve2d = 2 [(.bhom.field_info).property = "Curve2d"];
 }
 
 // A standard solid circular ring torus, formed as a surface of revolution of a circle about an axis.
 message Torus {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Torus";
   // Origin point defining location of the Torus in three-dimensional space.
-  Point centre = 10 [(.bhom.field_info).property = "Centre"];
+  Point centre = 1 [(.bhom.field_info).property = "Centre"];
   // Vector defining the axis of revolution and the orientation of the Torus in three-dimensional space.
-  Vector axis = 11 [(.bhom.field_info).property = "Axis"];
+  Vector axis = 2 [(.bhom.field_info).property = "Axis"];
   // Distance from the Torus Centre (and the axis of revolution) to the centre of the circular cross section.
-  double radius_major = 12 [(.bhom.field_info).property = "RadiusMajor"];  // [Length, m]
+  double radius_major = 3 [(.bhom.field_info).property = "RadiusMajor"];  // [Length, m]
   // The radius defining the size of the circular cross section.
-  double radius_minor = 13 [(.bhom.field_info).property = "RadiusMinor"];  // [Length, m]
+  double radius_minor = 4 [(.bhom.field_info).property = "RadiusMinor"];  // [Length, m]
 }
 
 // A 4x4 matrix describing linear tranformations in three-dimensional space, such as translations, rotations, reflections, scaling and shearing.
 message TransformMatrix {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.TransformMatrix";
-  repeated ListOfDouble matrix = 10 [(.bhom.field_info).property = "Matrix"];
+  repeated ListOfDouble matrix = 1 [(.bhom.field_info).property = "Matrix"];
 }
 
 // Defines a direction and magnitude in three-dimensional Euclidean space.
 message Vector {
   option (.bhom.message_info).csharp_type = "BH.oM.Geometry.Vector";
   // Dimension along global X coordinate axis.
-  double x = 10 [(.bhom.field_info).property = "X"];  // [Length, m]
+  double x = 1 [(.bhom.field_info).property = "X"];  // [Length, m]
   // Dimension along global Y coordinate axis.
-  double y = 11 [(.bhom.field_info).property = "Y"];  // [Length, m]
+  double y = 2 [(.bhom.field_info).property = "Y"];  // [Length, m]
   // Dimension along global Z coordinate axis.
-  double z = 12 [(.bhom.field_info).property = "Z"];  // [Length, m]
+  double z = 3 [(.bhom.field_info).property = "Z"];  // [Length, m]
 }
 
 // ---- Helper wrappers (protobuf cannot nest 'repeated' directly) ----

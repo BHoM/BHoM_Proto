@@ -197,8 +197,8 @@ message RenderGeometry {
 
 message RenderMesh {
   option (.bhom.message_info).csharp_type = "BH.oM.Graphics.RenderMesh";
-  repeated RenderPoint vertices = 10 [(.bhom.field_info).property = "Vertices"];
-  repeated .bhom.geometry.Face faces = 11 [(.bhom.field_info).property = "Faces"];
+  repeated RenderPoint vertices = 1 [(.bhom.field_info).property = "Vertices"];
+  repeated .bhom.geometry.Face faces = 2 [(.bhom.field_info).property = "Faces"];
 }
 
 // Defines options for the Meshing of BHoM Objects.
@@ -221,8 +221,8 @@ message RenderMeshOptions {
 
 message RenderPoint {
   option (.bhom.message_info).csharp_type = "BH.oM.Graphics.RenderPoint";
-  .bhom.geometry.Point point = 10 [(.bhom.field_info).property = "Point"];
-  fixed32 colour = 11 [(.bhom.field_info).property = "Colour"];  // ARGB
+  .bhom.geometry.Point point = 1 [(.bhom.field_info).property = "Point"];
+  fixed32 colour = 2 [(.bhom.field_info).property = "Colour"];  // ARGB
 }
 
 // Render text at a location and orientation in space with specified height, font and colour.
