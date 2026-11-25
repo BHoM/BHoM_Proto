@@ -131,6 +131,21 @@ namespace BH.Test.Proto
             if (ReferenceTypes.IsCollection(type, out Type itemType))
             {
                 bool nested = ReferenceTypes.IsCollection(itemType, out _);
+                if (!nested && ReferenceTypes.IsPacked(field) && ReferenceTypes.IsPackable(itemType) && Nullable.GetUnderlyingType(itemType) == null)
+                {
+                    // proto3 packs repeated numbers, bools and enums: one field holding all the values without their tags.
+                    // Collections of nullable values are written one by one, null items left out.
+                    List<byte> packed = new List<byte>();
+                    foreach (object item in (IEnumerable)value)
+                    {
+                        if (item != null)
+                            packed.AddRange(PackedValue(field, itemType, item));
+                    }
+                    if (packed.Count > 0)
+                        WriteBytes(output, field.FieldNumber, packed.ToArray());
+                    return;
+                }
+
                 FieldDescriptor items = nested ? field.MessageType.FindFieldByNumber(1) : field;
                 foreach (object item in (IEnumerable)value)
                 {
@@ -185,6 +200,15 @@ namespace BH.Test.Proto
                 WriteBytes(output, field.FieldNumber, WriteUnion(value, message, schema));
             else
                 WriteBytes(output, field.FieldNumber, WriteMessage(value, type, message, schema));
+        }
+
+        /***************************************************/
+
+        // A value of a packed field: its encoding as a single field, without the tag.
+        private static byte[] PackedValue(FieldDescriptor field, Type type, object value)
+        {
+            byte[] single = Encode(output => WriteScalar(output, field.FieldNumber, type, value, true));
+            return single.Skip(CodedOutputStream.ComputeTagSize(field.FieldNumber)).ToArray();
         }
 
         /***************************************************/
@@ -387,7 +411,9 @@ namespace BH.Test.Proto
             {
                 output.WriteTag(1, WireFormat.WireType.LengthDelimited);
                 output.WriteString(ReferenceTypes.TypeUrlPrefix + typeName);
-                WriteBytes(output, 2, content);
+                // An empty value, i.e. a message with nothing set, is left out as the proto3 default, as Google's Any.Pack does.
+                if (content.Length > 0)
+                    WriteBytes(output, 2, content);
             });
         }
 
